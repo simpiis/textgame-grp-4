@@ -61,17 +61,19 @@ public class Main {
                 break;
         }
         //testvariabler
+        String monsterType="Monotaur";
         int monsterdmg = 1;
         int monsterhp = 15;
         int monsterlocation = 1;
         int playerlocation = 1;
 
         if (playerlocation == monsterlocation) {
-            playerhp= combatMethod(playerdmg, playerhp, monsterdmg, monsterhp);
+            playerhp= combatMethod(playerdmg, playerhp, monsterdmg, monsterhp, monsterType);
         }
     }
-    public static int combatMethod(int playerdmg, int playerhp, int monsterdmg, int monsterhp) {
+    public static int combatMethod(int playerdmg, int playerhp, int monsterdmg, int monsterhp, String monsterType) {
         Scanner input = new Scanner(System.in);
+        System.out.println("You have encountered a " + monsterType + ", it has " + monsterhp + " health and " + monsterdmg + " damage");
         System.out.println("--- Combat Menu ---");
         System.out.printf("%s%n%s%n", "1) Fight", "2) Flee");
         int combatChoice = input.nextInt();
@@ -85,16 +87,19 @@ public class Main {
 
                     if (attackChoice == 1) {
                         monsterhp -= playerdmg;
-                        System.out.println("Monster has " + monsterhp + " health left");
+                        if (monsterhp > playerdmg) {
+                            System.out.println( monsterType + " has " + monsterhp + " health left");
+                        }
 
                         if(monsterhp <= 0){
-                            System.out.println("Monster has died");
+                            System.out.println(monsterType + " has died");
                             break;
                         }
-                        System.out.println("The monster attacks for " + monsterdmg);
+                        System.out.println("The " + monsterType + " attacks for " + monsterdmg);
                         playerhp -= monsterdmg;
-                        System.out.println("You have " + playerhp + " health left \n");
-
+                        if (playerhp > monsterdmg) {
+                            System.out.println("You have " + playerhp + " health left \n");
+                        }
                         if (playerhp <= 0) {
                             System.out.println("The monster killed you. GAME OVER!");
                             break;
@@ -111,6 +116,7 @@ public class Main {
                 break;
             case 2:
                 System.out.println("You attempt to flee");
+                // roll for chance to flee
                 break;
         }
         return playerhp;
