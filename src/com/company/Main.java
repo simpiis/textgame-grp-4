@@ -31,21 +31,21 @@ public class Main {
         switch (choice) {
             case 1:
                 System.out.println("*************************");
-                rogue.rogue();
+                rogue.printRogue();
                 playerdmg=rogue.getDamage();
                 playerhp=rogue.getHp();
                 System.out.println("*************************");
                 break;
             case 2:
                 System.out.println("*************************");
-                warrior.warrior();
+                warrior.printWarrior();
                 playerdmg=warrior.getDamage();
                 playerhp=warrior.getHp();
                 System.out.println("*************************");
                 break;
             case 3:
                 System.out.println("*************************");
-                mage.mage();
+                mage.printMage();
                 playerdmg=mage.getDamage();
                 playerhp=mage.getHp();
                 System.out.println("*************************");
