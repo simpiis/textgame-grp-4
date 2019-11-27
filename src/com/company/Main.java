@@ -11,19 +11,13 @@ public class Main {
         int choice;
 
         do {
-
             System.out.println("*************************");
             System.out.println("*  Welcome to our game  *");
             System.out.println("*                       *");
-
             System.out.println("*   Choose your hero!   *\n" +
-
                     "*   1. Rogue            *\n" +
-
                     "*   2. Warrior          *\n" +
-
                     "*   3. Mage             *");
-
             System.out.println("*************************");
             System.out.print("> " );
 
@@ -32,7 +26,6 @@ public class Main {
         } while (choice != 1 && choice != 2 && choice != 3);
 
         int playerhp = 0;
-
         int playerdmg = 0;
 
         switch (choice) {
@@ -43,7 +36,6 @@ public class Main {
                 playerhp=rogue.getHp();
                 System.out.println("*************************");
                 break;
-
             case 2:
                 System.out.println("*************************");
                 warrior.warrior();
@@ -51,7 +43,6 @@ public class Main {
                 playerhp=warrior.getHp();
                 System.out.println("*************************");
                 break;
-
             case 3:
                 System.out.println("*************************");
                 mage.mage();
@@ -99,7 +90,6 @@ public class Main {
                             System.out.println("The monster killed you. GAME OVER!");
                             break;
                         }
-
                     } else {
                         //monster hp - special ability
 
