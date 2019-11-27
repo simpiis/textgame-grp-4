@@ -52,19 +52,21 @@ public class Main {
                 break;
         }
         //testvariabler
-        String monsterType="Monotaur";
-        int monsterdmg = 1;
-        int monsterhp = 15;
         int monsterlocation = 1;
         int playerlocation = 1;
 
         if (playerlocation == monsterlocation) {
-            playerhp= combatMethod(playerdmg, playerhp, monsterdmg, monsterhp, monsterType);
+            playerhp= combatMethod(playerdmg, playerhp);
         }
     }
-    public static int combatMethod(int playerdmg, int playerhp, int monsterdmg, int monsterhp, String monsterType) {
+    public static int combatMethod(int playerdmg, int playerhp) {
         Scanner input = new Scanner(System.in);
-        System.out.println("You have encountered a " + monsterType + ", it has " + monsterhp + " health and " + monsterdmg + " damage");
+        Monster monotaur = new Monster(20,10, "Monotaur");
+        String monsterType = monotaur.getName();
+        int monsterhp = monotaur.getHp();
+        int monsterdmg = monotaur.getDamage();
+
+        System.out.println("You have encountered a " + monsterType + ", it has " + monsterhp + " health and " + monsterdmg + " damage!");
         System.out.println("--- Combat Menu ---");
         System.out.printf("%s%n%s%n", "1) Fight", "2) Flee");
         int combatChoice = input.nextInt();
