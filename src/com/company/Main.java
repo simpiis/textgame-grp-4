@@ -68,14 +68,14 @@ public class Main {
 
         System.out.println("You have encountered a " + monsterType + ", it has " + monsterhp + " health and " + monsterdmg + " damage!");
         System.out.println("--- Combat Menu ---");
-        System.out.printf("%s%n%s%n", "1) Fight", "2) Flee");
+        System.out.printf("%s%n%s%n%s", "1) Fight", "2) Flee","> ");
         int combatChoice = input.nextInt();
 
         switch (combatChoice) {
             case 1:
                 while (monsterhp > 0 && playerhp > 0) {
                     System.out.println("Which attack would you like to use?");
-                    System.out.printf("%s%n%s%n", "1) Melee", "2) Special ability");
+                    System.out.printf("%s%n%s%n%s", "1) Melee", "2) Special ability","> ");
                     int attackChoice = input.nextInt();
 
                     if (attackChoice == 1) {
