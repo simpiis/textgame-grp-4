@@ -81,7 +81,7 @@ public class Main {
                     if (attackChoice == 1) {
                         monsterhp -= playerdmg;
                         System.out.println("You deal " + playerdmg + " damage to the " + monsterType);
-                        if (monsterhp > playerdmg) {
+                        if (monsterhp > 0) {
                             System.out.println( monsterType + " has " + monsterhp + " health left");
                         }
 
