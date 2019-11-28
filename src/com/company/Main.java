@@ -80,6 +80,7 @@ public class Main {
 
                     if (attackChoice == 1) {
                         monsterhp -= playerdmg;
+                        System.out.println("You deal " + playerdmg + " damage to the " + monsterType);
                         if (monsterhp > playerdmg) {
                             System.out.println( monsterType + " has " + monsterhp + " health left");
                         }
@@ -95,6 +96,7 @@ public class Main {
                         }
                         if (playerhp <= 0) {
                             System.out.println("The monster killed you. GAME OVER!");
+                            System.exit(0);
                             break;
                         }
                     } else {
