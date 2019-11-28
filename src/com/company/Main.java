@@ -84,7 +84,6 @@ public class Main {
                         if (monsterhp > 0) {
                             System.out.println( monsterType + " has " + monsterhp + " health left");
                         }
-
                         if(monsterhp <= 0){
                             System.out.println(monsterType + " has died");
                             break;
