@@ -1,14 +1,21 @@
 package com.company;
 
-import java.util.Scanner;
+import java.util.*;
+
+import java.lang.*;
 
 public class Main {
     public static void main(String[] args) {
+        Main runApps = new Main();
         Scanner input = new Scanner(System.in);
         Heroes rogue = new Heroes(110, 10);
         Heroes warrior = new Heroes(90, 30);
         Heroes mage = new Heroes(100, 20);
+        Monster monotaur = new Monster(20,10, "Monotaur");
         int choice;
+        int position = 0;
+        int round = 1;
+        Rooms[] rooms = runApps.createRooms(monotaur);
 
         do {
             System.out.println("*************************");
@@ -55,13 +62,19 @@ public class Main {
         int monsterlocation = 1;
         int playerlocation = 1;
 
-        if (playerlocation == monsterlocation) {
-            playerhp= combatMethod(playerdmg, playerhp);
+        while(round < 49){
+            if(rooms[position].getMonster()!= null){
+                playerhp= combatMethod(playerdmg, playerhp, monotaur);
+                rooms[position].setMonster(null);
+            }else {
+                position = runApps.move(position);
+            }
+            round+=1;
         }
     }
-    public static int combatMethod(int playerdmg, int playerhp) {
+    public static int combatMethod(int playerdmg, int playerhp, Monster monster) {
         Scanner input = new Scanner(System.in);
-        Monster monotaur = new Monster(20,10, "Monotaur");
+        Monster monotaur = monster;
         String monsterType = monotaur.getName();
         int monsterhp = monotaur.getHp();
         int monsterdmg = monotaur.getDamage();
@@ -113,6 +126,172 @@ public class Main {
                 break;
         }
         return playerhp;
+    }
+
+    Scanner input = new Scanner(System.in);
+
+    void printMap(int position){
+        for(int p = 0; p<49; p++){
+            if(p != position){
+                System.out.print("[ ]");
+            }else{
+                System.out.print("[*]");
+            }
+            if(p==6 || p > 6 && p % 7 == 6){
+                System.out.println("");
+            }
+        }
+    }
+
+    int move(int position){
+        printMap(position);
+        int direction = 0;
+        if(position == 0){
+            System.out.println("Choose where to move \n 1. Right\n 2. Down");
+            while(direction == 0) {
+                direction = input.nextInt();
+                if (direction == 1) {
+                    position += 1;
+                } else if (direction == 2) {
+                    position += 7;
+                } else {
+                    System.out.println("Not a valid option");
+                    direction = 0;
+                }
+            }
+        }else if(position == 6){
+            System.out.println("Choose where to move \n 1. Left\n 2. Down");
+            while(direction == 0) {
+                direction = input.nextInt();
+                if (direction == 1) {
+                    position -= 1;
+                } else if (direction == 2) {
+                    position += 7;
+                } else {
+                    System.out.println("Not a valid option");
+                    direction = 0;
+                }
+            }
+        }else if(position == 42){
+            System.out.println("Choose where to move \n 1. Right\n 2. upp");
+            while(direction == 0) {
+                direction = input.nextInt();
+                if (direction == 1) {
+                    position += 1;
+                }else if (direction == 2) {
+                    position -= 7;
+                } else {
+                    System.out.println("Not a valid option");
+                    direction = 0;
+                }
+            }
+        }else if(position == 48){
+            System.out.println("Choose where to move \n 1. left\n 2. Upp");
+            while(direction == 0) {
+                direction = input.nextInt();
+                if (direction == 1) {
+                    position -= 1;
+                } else if (direction == 2) {
+                    position -= 7;
+                } else {
+                    System.out.println("Not a valid option");
+                    direction = 0;
+                }
+            }
+        }else if(position > 0 && position < 42 && position%7 == 0){
+            System.out.println("Choose where to move \n1. Right\n 2. Upp\n3. Down");
+            while(direction == 0) {
+                direction = input.nextInt();
+                if (direction == 1) {
+                    position += 1;
+                }else if (direction == 2) {
+                    position -= 7;
+                }else if (direction == 3){
+                    position+=7;
+                }else{
+                    System.out.println("Not a valid option");
+                    direction = 0;
+                }
+            }
+        }else if(position > 0 && position < 6 ){
+            System.out.println("Choose where to move \n1. Right\n2. Left\n3. Down");
+            while(direction == 0) {
+                direction = input.nextInt();
+                if (direction == 1) {
+                    position += 1;
+                } else if (direction == 2) {
+                    position -= 1;
+                }else if(direction == 3){
+                    position +=7;
+                }else {
+                    System.out.println("Not a valid option");
+                    direction = 0;
+                }
+            }
+        }else if(position > 42 && position < 48){
+            System.out.println("Choose where to move \n1. Right\n2. Left\n3. upp");
+            while(direction == 0) {
+                direction = input.nextInt();
+                if (direction == 1) {
+                    position += 1;
+                } else if (direction == 2) {
+                    position -= 1;
+                }else if(direction == 3){
+                    position -=7;
+                }else {
+                    System.out.println("Not a valid option");
+                    direction = 0;
+                }
+            }
+        }else if(position < 48 && position > 6 && position % 7 == 6){
+            System.out.println("Choose where to move \n1. Left\n2. Upp\n3. Down");
+            while(direction == 0) {
+                direction = input.nextInt();
+                if (direction == 1) {
+                    position -= 1;
+                } else if (direction == 2) {
+                    position -= 7;
+                }else if(direction == 3){
+                    position +=7;
+                }else {
+                    System.out.println("Not a valid option");
+                    direction = 0;
+                }
+            }
+        }else{
+            System.out.println("Choose where to move \n1. Right\n2. Left\n3. Upp\n4. Down");
+            while(direction == 0) {
+                direction = input.nextInt();
+                if (direction == 1) {
+                    position += 1;
+                } else if (direction == 2) {
+                    position -= 1;
+                }else if(direction == 3){
+                    position -=7;
+                }else if(direction == 4){
+                    position+=7;
+                }else {
+                    System.out.println("Not a valid option");
+                    direction = 0;
+                }
+            }
+        }
+        return position;
+    }
+    Rooms[] createRooms(Monster monster){
+        Rooms[] roomlist = new Rooms[49];
+        Random rand = new Random();
+        int monsterroom = rand.nextInt(49);
+        for(int p = 0; p < 49; p++){
+            Rooms room1;
+            if (p == monsterroom) {
+                room1 = new Rooms(null, null, null, null, null, monster);
+            }else{
+                room1 = new Rooms(null, null, null, null, null, null);
+            }
+            roomlist[p] = room1;
+        }
+        return roomlist;
     }
 }
 
