@@ -1,5 +1,6 @@
 package com.company;
 
+import java.security.SecureRandom;
 import java.util.*;
 
 import java.lang.*;
@@ -16,6 +17,7 @@ public class Main {
         int position = 0;
         int round = 1;
         Rooms[] rooms = runApps.createRooms(minotaur);
+        ArrayList<String> playerInventory = new ArrayList<>();
 
         //System.out.println("--- Main Menu ---");
         //System.out.println("1. Start new game\n2. Load game\n3. Quit");
@@ -72,7 +74,7 @@ public class Main {
             }else {
                 position = runApps.move(position);
             }
-            round+=1;
+            round++;
         }
     }
     public static int combatMethod(int playerdmg, int playerhp, Monster monster) {
@@ -295,6 +297,26 @@ public class Main {
             roomlist[p] = room1;
         }
         return roomlist;
+    }
+    private Treasure treasureCreator(){
+        int itemCounter = 0;
+        int healthPotion = 0;
+        int manaPotion = 0;
+        SecureRandom rand = new SecureRandom();
+        //treasure contains
+            // random hp pot
+            int randomHP =rand.nextInt(2);
+            if (randomHP==0){
+                healthPotion =1;
+            }
+            int randomMana = rand.nextInt(2);
+            if (randomMana==0){
+                manaPotion = 1;
+            }
+           int coins = rand.nextInt(5);
+
+         Treasure randomTreasure = new Treasure(healthPotion,manaPotion,coins,0,0);
+         return randomTreasure;
     }
 }
 
