@@ -58,9 +58,6 @@ public class Main {
                 System.out.println("*************************");
                 break;
         }
-        //testvariabler
-        int monsterlocation = 1;
-        int playerlocation = 1;
 
         while(round < 49){
             if(rooms[position].getMonster()!= null){
@@ -173,7 +170,7 @@ public class Main {
                 }
             }
         }else if(position == 42){
-            System.out.println("Choose where to move \n 1. Right\n 2. upp");
+            System.out.println("Choose where to move \n 1. Right\n 2. up");
             while(direction == 0) {
                 direction = input.nextInt();
                 if (direction == 1) {
@@ -186,7 +183,7 @@ public class Main {
                 }
             }
         }else if(position == 48){
-            System.out.println("Choose where to move \n 1. left\n 2. Upp");
+            System.out.println("Choose where to move \n 1. left\n 2. Up");
             while(direction == 0) {
                 direction = input.nextInt();
                 if (direction == 1) {
@@ -199,7 +196,7 @@ public class Main {
                 }
             }
         }else if(position > 0 && position < 42 && position%7 == 0){
-            System.out.println("Choose where to move \n1. Right\n 2. Upp\n3. Down");
+            System.out.println("Choose where to move \n1. Right\n2. Up\n3. Down");
             while(direction == 0) {
                 direction = input.nextInt();
                 if (direction == 1) {
@@ -229,7 +226,7 @@ public class Main {
                 }
             }
         }else if(position > 42 && position < 48){
-            System.out.println("Choose where to move \n1. Right\n2. Left\n3. upp");
+            System.out.println("Choose where to move \n1. Right\n2. Left\n3. Up");
             while(direction == 0) {
                 direction = input.nextInt();
                 if (direction == 1) {
@@ -244,7 +241,7 @@ public class Main {
                 }
             }
         }else if(position < 48 && position > 6 && position % 7 == 6){
-            System.out.println("Choose where to move \n1. Left\n2. Upp\n3. Down");
+            System.out.println("Choose where to move \n1. Left\n2. Up\n3. Down");
             while(direction == 0) {
                 direction = input.nextInt();
                 if (direction == 1) {
@@ -259,7 +256,7 @@ public class Main {
                 }
             }
         }else{
-            System.out.println("Choose where to move \n1. Right\n2. Left\n3. Upp\n4. Down");
+            System.out.println("Choose where to move \n1. Right\n2. Left\n3. Up\n4. Down");
             while(direction == 0) {
                 direction = input.nextInt();
                 if (direction == 1) {
