@@ -11,11 +11,16 @@ public class Main {
         Heroes rogue = new Heroes(110, 10, "Rogue");
         Heroes warrior = new Heroes(90, 30, "Warrior");
         Heroes mage = new Heroes(100, 20, "Mage");
-        Monster monotaur = new Monster(20,10, "Monotaur");
+        Monster minotaur = new Monster(50,10, "Minotaur");
         int choice;
         int position = 0;
         int round = 1;
-        Rooms[] rooms = runApps.createRooms(monotaur);
+        Rooms[] rooms = runApps.createRooms(minotaur);
+
+        //System.out.println("--- Main Menu ---");
+        //System.out.println("1. Start new game\n2. Load game\n3. Quit");
+        //if(mainMenu==3){System.exit(0);}
+        //else if(mainMenu==2){ LOAD GAME}
 
         do {
             System.out.println("*************************");
@@ -60,8 +65,9 @@ public class Main {
         }
 
         while(round < 49){
+            System.out.println("Round: " + round);
             if(rooms[position].getMonster()!= null){
-                playerhp= combatMethod(playerdmg, playerhp, monotaur);
+                playerhp= combatMethod(playerdmg, playerhp, minotaur);
                 rooms[position].setMonster(null);
             }else {
                 position = runApps.move(position);
@@ -71,10 +77,10 @@ public class Main {
     }
     public static int combatMethod(int playerdmg, int playerhp, Monster monster) {
         Scanner input = new Scanner(System.in);
-        Monster monotaur = monster;
-        String monsterType = monotaur.getName();
-        int monsterhp = monotaur.getHp();
-        int monsterdmg = monotaur.getDamage();
+        Monster minotaur = monster;
+        String monsterType = minotaur.getName();
+        int monsterhp = minotaur.getHp();
+        int monsterdmg = minotaur.getDamage();
 
         System.out.println("You have encountered a " + monsterType + ", it has " + monsterhp + " health and " + monsterdmg + " damage!");
         System.out.println("--- Combat Menu ---");
