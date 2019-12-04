@@ -8,9 +8,9 @@ public class Main {
     public static void main(String[] args) {
         Main runApps = new Main();
         Scanner input = new Scanner(System.in);
-        Heroes rogue = new Heroes(110, 10);
-        Heroes warrior = new Heroes(90, 30);
-        Heroes mage = new Heroes(100, 20);
+        Heroes rogue = new Heroes(110, 10, "Rogue");
+        Heroes warrior = new Heroes(90, 30, "Warrior");
+        Heroes mage = new Heroes(100, 20, "Mage");
         Monster monotaur = new Monster(20,10, "Monotaur");
         int choice;
         int position = 0;
@@ -38,21 +38,21 @@ public class Main {
         switch (choice) {
             case 1:
                 System.out.println("*************************");
-                rogue.printRogue();
+                rogue.printHero();
                 playerdmg=rogue.getDamage();
                 playerhp=rogue.getHp();
                 System.out.println("*************************");
                 break;
             case 2:
                 System.out.println("*************************");
-                warrior.printWarrior();
+                warrior.printHero();
                 playerdmg=warrior.getDamage();
                 playerhp=warrior.getHp();
                 System.out.println("*************************");
                 break;
             case 3:
                 System.out.println("*************************");
-                mage.printMage();
+                mage.printHero();
                 playerdmg=mage.getDamage();
                 playerhp=mage.getHp();
                 System.out.println("*************************");

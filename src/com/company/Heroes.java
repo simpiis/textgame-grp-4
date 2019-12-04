@@ -2,29 +2,16 @@ package com.company;
 
 public class Heroes extends Creature {
 
-    public Heroes(int hp, int damage) {
-        super(hp, damage);
+    public Heroes(int hp, int damage, String name) {
+        super(hp, damage, name);
     }
-    public void printRogue() {
-        System.out.println("You choose Rogue!");
-        System.out.print("Rogues hp is: ");
+    public void printHero() {
+        System.out.println("You choose "+ getName() + "!");
+        System.out.print(getName() + "s hp is: ");
         System.out.println(getHp());
-        System.out.print("Rogues damage is: ");
+        System.out.print(getName() + "s damage is: ");
         System.out.println(getDamage());
-    }
-    public void printWarrior() {
-        System.out.println("You choose Warrior!");
-        System.out.print("Warriors hp is: ");
-        System.out.println(getHp());
-        System.out.print("Warriors damage is: ");
-        System.out.println(getDamage());
-    }
-    public void printMage() {
-        System.out.println("You choose Mage!");
-        System.out.print("Mages hp is: ");
-        System.out.println(getHp());
-        System.out.print("Mages damage is: ");
-        System.out.println(getDamage());
+
     }
 
 }
