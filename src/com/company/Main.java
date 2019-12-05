@@ -96,7 +96,7 @@ public class Main {
             case 1:
                 while (monsterhp > 0 && playerhp > 0) {
                     System.out.println("Which attack would you like to use?");
-                    System.out.printf("%s%n%s%n%s", "1) Melee", "2) Special ability","> ");
+                    System.out.printf("%s%n%s%n%s", "1) Melee", "2) Special ability (not implemented)","> ");
                     int attackChoice = input.nextInt();
 
                     if (attackChoice == 1) {
