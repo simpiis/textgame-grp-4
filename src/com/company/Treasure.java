@@ -1,56 +1,26 @@
 package com.company;
 
 public class Treasure {
+    Item item1;
+    Item item2;
+    int coins;
 
-    int healthPotion, manaPotion, coins, shinyWeapon, shinyArmor;
 
-
-    public int getHealthPotion() {
-        return healthPotion;
+    public Item getItem1() {
+        return item1;
     }
 
-    public void setHealthPotion(int healthPotion) {
-        this.healthPotion = healthPotion;
-    }
-
-    public int getManaPotion() {
-        return manaPotion;
-    }
-
-    public void setManaPotion(int manaPotion) {
-        this.manaPotion = manaPotion;
+    public Item getItem2() {
+        return item2;
     }
 
     public int getCoins() {
         return coins;
     }
 
-    public void setCoins(int coins) {
+    public Treasure(Item item1, Item item2, int coins){
+        this.item1 = item1;
+        this.item2 = item2;
         this.coins = coins;
     }
-
-    public int getShinyWeapon() {
-        return shinyWeapon;
-    }
-
-    public void setShinyWeapon(int shinyWeapon) {
-        this.shinyWeapon = shinyWeapon;
-    }
-
-    public int getShinyArmor() {
-        return shinyArmor;
-    }
-
-    public void setShinyArmor(int shinyArmor) {
-        this.shinyArmor = shinyArmor;
-    }
-
-    public Treasure(int healthPotion, int manaPotion, int coins, int shinyWeapon, int shinyArmor){
-        this.healthPotion = healthPotion;
-        this.manaPotion = manaPotion;
-        this.coins = coins;
-        this.shinyWeapon = shinyWeapon;
-        this.shinyArmor = shinyArmor;
-    }
-
 }

@@ -13,10 +13,11 @@ public class Main {
         Heroes warrior = new Heroes(90, 30, "Warrior");
         Heroes mage = new Heroes(100, 20, "Mage");
         Monster minotaur = new Monster(50,10, "Minotaur");
+        Treasure chest1 = new Treasure(runApps.createItem(),runApps.createItem(),5);
         int choice;
         int position = 0;
         int round = 1;
-        Rooms[] rooms = runApps.createRooms(minotaur);
+        Rooms[] rooms = runApps.createRooms(minotaur,chest1);
         ArrayList<String> playerInventory = new ArrayList<>();
 
         //System.out.println("--- Main Menu ---");
@@ -71,6 +72,8 @@ public class Main {
             if(rooms[position].getMonster()!= null){
                 playerhp= combatMethod(playerdmg, playerhp, minotaur);
                 rooms[position].setMonster(null);
+            }else if(rooms[position].getTreasure()!= null){
+                runApps.openTreasure(rooms,position,rooms[position].getTreasure());
             }else {
                 position = runApps.move(position);
             }
@@ -283,14 +286,20 @@ public class Main {
         }
         return position;
     }
-    Rooms[] createRooms(Monster monster){
+    Rooms[] createRooms(Monster monster, Treasure chest){
         Rooms[] roomlist = new Rooms[49];
         Random rand = new Random();
         int monsterroom = rand.nextInt(49);
+        int chestroom = rand.nextInt(49);
+        while(monsterroom == chestroom) {
+            chestroom = rand.nextInt(49);
+        }
         for(int p = 0; p < 49; p++){
             Rooms room1;
             if (p == monsterroom) {
                 room1 = new Rooms(null, null, null, null, null, monster);
+            }else if (p == chestroom){
+                room1 = new Rooms(null, null, null, null, chest, null);
             }else{
                 room1 = new Rooms(null, null, null, null, null, null);
             }
@@ -298,25 +307,31 @@ public class Main {
         }
         return roomlist;
     }
-    private Treasure treasureCreator(){
-        int itemCounter = 0;
-        int healthPotion = 0;
-        int manaPotion = 0;
-        SecureRandom rand = new SecureRandom();
-        //treasure contains
-            // random hp pot
-            int randomHP =rand.nextInt(2);
-            if (randomHP==0){
-                healthPotion =1;
-            }
-            int randomMana = rand.nextInt(2);
-            if (randomMana==0){
-                manaPotion = 1;
-            }
-           int coins = rand.nextInt(5);
 
-         Treasure randomTreasure = new Treasure(healthPotion,manaPotion,coins,0,0);
-         return randomTreasure;
+    public Item createItem(){
+        Random rand = new Random();
+        int potionType = rand.nextInt(2);
+        if (potionType == 0){
+            Potion potion = new Potion("Health potion", 2);
+            return potion;
+        }else{
+            Potion potion = new Potion("Mana potion", 2);
+            return potion;
+        }
     }
-}
+
+    void openTreasure(Rooms[] list , int position,Treasure chest){
+        System.out.println("You found a chest!");
+        System.out.println("Press 1 to open\nPress 2 to ignore chess and permanently remove it. ");
+        int choice = input.nextInt();
+        if (choice == 1) {
+            System.out.println("First item is a " + (((Item)chest.getItem1()).getName()));
+            System.out.println("Second item is a " + (((Item)chest.getItem2()).getName()));
+            System.out.println("You also found " + (chest.getCoins() + " gold"));
+            list[position].setTreasure(null);
+        }else{
+            list[position].setTreasure(null);
+        }
+    }
+}   
 
