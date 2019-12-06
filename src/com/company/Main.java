@@ -1,14 +1,29 @@
 package com.company;
 
-import java.util.Scanner;
+import java.security.SecureRandom;
+import java.util.*;
+
+import java.lang.*;
 
 public class Main {
     public static void main(String[] args) {
+        Main runApps = new Main();
         Scanner input = new Scanner(System.in);
-        Heroes rogue = new Heroes(110, 10);
-        Heroes warrior = new Heroes(90, 30);
-        Heroes mage = new Heroes(100, 20);
+        Heroes rogue = new Heroes(110, 10, "Rogue");
+        Heroes warrior = new Heroes(90, 30, "Warrior");
+        Heroes mage = new Heroes(100, 20, "Mage");
+        Monster minotaur = new Monster(50,10, "Minotaur");
+        Treasure chest1 = new Treasure(runApps.createItem(),runApps.createItem(),5);
         int choice;
+        int position = 0;
+        int round = 1;
+        Rooms[] rooms = runApps.createRooms(minotaur,chest1);
+        ArrayList<String> playerInventory = new ArrayList<>();
+
+        //System.out.println("--- Main Menu ---");
+        //System.out.println("1. Start new game\n2. Load game\n3. Quit");
+        //if(mainMenu==3){System.exit(0);}
+        //else if(mainMenu==2){ LOAD GAME}
 
         do {
             System.out.println("*************************");
@@ -31,40 +46,46 @@ public class Main {
         switch (choice) {
             case 1:
                 System.out.println("*************************");
-                rogue.printRogue();
+                rogue.printHero();
                 playerdmg=rogue.getDamage();
                 playerhp=rogue.getHp();
                 System.out.println("*************************");
                 break;
             case 2:
                 System.out.println("*************************");
-                warrior.printWarrior();
+                warrior.printHero();
                 playerdmg=warrior.getDamage();
                 playerhp=warrior.getHp();
                 System.out.println("*************************");
                 break;
             case 3:
                 System.out.println("*************************");
-                mage.printMage();
+                mage.printHero();
                 playerdmg=mage.getDamage();
                 playerhp=mage.getHp();
                 System.out.println("*************************");
                 break;
         }
-        //testvariabler
-        int monsterlocation = 1;
-        int playerlocation = 1;
 
-        if (playerlocation == monsterlocation) {
-            playerhp= combatMethod(playerdmg, playerhp);
+        while(round < 49){
+            System.out.println("Round: " + round);
+            if(rooms[position].getMonster()!= null){
+                playerhp= combatMethod(playerdmg, playerhp, minotaur);
+                rooms[position].setMonster(null);
+            }else if(rooms[position].getTreasure()!= null){
+                runApps.openTreasure(rooms,position,rooms[position].getTreasure());
+            }else {
+                position = runApps.move(position);
+            }
+            round++;
         }
     }
-    public static int combatMethod(int playerdmg, int playerhp) {
+    public static int combatMethod(int playerdmg, int playerhp, Monster monster) {
         Scanner input = new Scanner(System.in);
-        Monster monotaur = new Monster(20,10, "Monotaur");
-        String monsterType = monotaur.getName();
-        int monsterhp = monotaur.getHp();
-        int monsterdmg = monotaur.getDamage();
+        Monster minotaur = monster;
+        String monsterType = minotaur.getName();
+        int monsterhp = minotaur.getHp();
+        int monsterdmg = minotaur.getDamage();
 
         System.out.println("You have encountered a " + monsterType + ", it has " + monsterhp + " health and " + monsterdmg + " damage!");
         System.out.println("--- Combat Menu ---");
@@ -75,7 +96,7 @@ public class Main {
             case 1:
                 while (monsterhp > 0 && playerhp > 0) {
                     System.out.println("Which attack would you like to use?");
-                    System.out.printf("%s%n%s%n%s", "1) Melee", "2) Special ability","> ");
+                    System.out.printf("%s%n%s%n%s", "1) Melee", "2) Special ability (not implemented)","> ");
                     int attackChoice = input.nextInt();
 
                     if (attackChoice == 1) {
@@ -114,5 +135,203 @@ public class Main {
         }
         return playerhp;
     }
-}
+
+    Scanner input = new Scanner(System.in);
+
+    void printMap(int position){
+        for(int p = 0; p<49; p++){
+            if(p != position){
+                System.out.print("[ ]");
+            }else{
+                System.out.print("[*]");
+            }
+            if(p==6 || p > 6 && p % 7 == 6){
+                System.out.println("");
+            }
+        }
+    }
+
+    int move(int position){
+        printMap(position);
+        int direction = 0;
+        if(position == 0){
+            System.out.println("Choose where to move \n 1. Right\n 2. Down");
+            while(direction == 0) {
+                direction = input.nextInt();
+                if (direction == 1) {
+                    position += 1;
+                } else if (direction == 2) {
+                    position += 7;
+                } else {
+                    System.out.println("Not a valid option");
+                    direction = 0;
+                }
+            }
+        }else if(position == 6){
+            System.out.println("Choose where to move \n 1. Left\n 2. Down");
+            while(direction == 0) {
+                direction = input.nextInt();
+                if (direction == 1) {
+                    position -= 1;
+                } else if (direction == 2) {
+                    position += 7;
+                } else {
+                    System.out.println("Not a valid option");
+                    direction = 0;
+                }
+            }
+        }else if(position == 42){
+            System.out.println("Choose where to move \n 1. Right\n 2. up");
+            while(direction == 0) {
+                direction = input.nextInt();
+                if (direction == 1) {
+                    position += 1;
+                }else if (direction == 2) {
+                    position -= 7;
+                } else {
+                    System.out.println("Not a valid option");
+                    direction = 0;
+                }
+            }
+        }else if(position == 48){
+            System.out.println("Choose where to move \n 1. left\n 2. Up");
+            while(direction == 0) {
+                direction = input.nextInt();
+                if (direction == 1) {
+                    position -= 1;
+                } else if (direction == 2) {
+                    position -= 7;
+                } else {
+                    System.out.println("Not a valid option");
+                    direction = 0;
+                }
+            }
+        }else if(position > 0 && position < 42 && position%7 == 0){
+            System.out.println("Choose where to move \n1. Right\n2. Up\n3. Down");
+            while(direction == 0) {
+                direction = input.nextInt();
+                if (direction == 1) {
+                    position += 1;
+                }else if (direction == 2) {
+                    position -= 7;
+                }else if (direction == 3){
+                    position+=7;
+                }else{
+                    System.out.println("Not a valid option");
+                    direction = 0;
+                }
+            }
+        }else if(position > 0 && position < 6 ){
+            System.out.println("Choose where to move \n1. Right\n2. Left\n3. Down");
+            while(direction == 0) {
+                direction = input.nextInt();
+                if (direction == 1) {
+                    position += 1;
+                } else if (direction == 2) {
+                    position -= 1;
+                }else if(direction == 3){
+                    position +=7;
+                }else {
+                    System.out.println("Not a valid option");
+                    direction = 0;
+                }
+            }
+        }else if(position > 42 && position < 48){
+            System.out.println("Choose where to move \n1. Right\n2. Left\n3. Up");
+            while(direction == 0) {
+                direction = input.nextInt();
+                if (direction == 1) {
+                    position += 1;
+                } else if (direction == 2) {
+                    position -= 1;
+                }else if(direction == 3){
+                    position -=7;
+                }else {
+                    System.out.println("Not a valid option");
+                    direction = 0;
+                }
+            }
+        }else if(position < 48 && position > 6 && position % 7 == 6){
+            System.out.println("Choose where to move \n1. Left\n2. Up\n3. Down");
+            while(direction == 0) {
+                direction = input.nextInt();
+                if (direction == 1) {
+                    position -= 1;
+                } else if (direction == 2) {
+                    position -= 7;
+                }else if(direction == 3){
+                    position +=7;
+                }else {
+                    System.out.println("Not a valid option");
+                    direction = 0;
+                }
+            }
+        }else{
+            System.out.println("Choose where to move \n1. Right\n2. Left\n3. Up\n4. Down");
+            while(direction == 0) {
+                direction = input.nextInt();
+                if (direction == 1) {
+                    position += 1;
+                } else if (direction == 2) {
+                    position -= 1;
+                }else if(direction == 3){
+                    position -=7;
+                }else if(direction == 4){
+                    position+=7;
+                }else {
+                    System.out.println("Not a valid option");
+                    direction = 0;
+                }
+            }
+        }
+        return position;
+    }
+    Rooms[] createRooms(Monster monster, Treasure chest){
+        Rooms[] roomlist = new Rooms[49];
+        Random rand = new Random();
+        int monsterroom = rand.nextInt(49);
+        int chestroom = rand.nextInt(49);
+        while(monsterroom == chestroom) {
+            chestroom = rand.nextInt(49);
+        }
+        for(int p = 0; p < 49; p++){
+            Rooms room1;
+            if (p == monsterroom) {
+                room1 = new Rooms(null, null, null, null, null, monster);
+            }else if (p == chestroom){
+                room1 = new Rooms(null, null, null, null, chest, null);
+            }else{
+                room1 = new Rooms(null, null, null, null, null, null);
+            }
+            roomlist[p] = room1;
+        }
+        return roomlist;
+    }
+
+    public Item createItem(){
+        Random rand = new Random();
+        int potionType = rand.nextInt(2);
+        if (potionType == 0){
+            Potion potion = new Potion("Health potion", 2);
+            return potion;
+        }else{
+            Potion potion = new Potion("Mana potion", 2);
+            return potion;
+        }
+    }
+
+    void openTreasure(Rooms[] list , int position,Treasure chest){
+        System.out.println("You found a chest!");
+        System.out.println("Press 1 to open\nPress 2 to ignore chess and permanently remove it. ");
+        int choice = input.nextInt();
+        if (choice == 1) {
+            System.out.println("First item is a " + (((Item)chest.getItem1()).getName()));
+            System.out.println("Second item is a " + (((Item)chest.getItem2()).getName()));
+            System.out.println("You also found " + (chest.getCoins() + " gold"));
+            list[position].setTreasure(null);
+        }else{
+            list[position].setTreasure(null);
+        }
+    }
+}   
 
