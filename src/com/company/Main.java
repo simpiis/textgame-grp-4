@@ -103,7 +103,7 @@ public class Main {
 
                     if (attackChoice == 1) {
                         monsterhp -= playerdmg;
-                        System.out.println("You deal " + playerdmg + " damage to the " + monsterType);
+                        System.out.println("\nYou deal " + playerdmg + " damage to the " + monsterType);
                         if (monsterhp > 0) {
                             System.out.println("The " + monsterType + " has " + monsterhp + " health left");
                         }
