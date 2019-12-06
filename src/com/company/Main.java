@@ -131,13 +131,13 @@ public class Main {
                 }
                 break;
             case 2:
-                System.out.println("You attempt to flee");
+                flee = chanceToFlee.nextInt(2);
                 if (flee == 1){
                     System.out.println("Could not run away");
                 }
                 else{
                     System.out.println("You ran away");
-                    //move one square
+                    //move one square, seems to remove monster from map, or not enough steps to find it
                 break;}
         }
         return playerhp;
@@ -329,7 +329,7 @@ public class Main {
 
     void openTreasure(Rooms[] list , int position,Treasure chest){
         System.out.println("You found a chest!");
-        System.out.println("Press 1 to open\nPress 2 to ignore chess and permanently remove it. ");
+        System.out.println("Press 1 to open\nPress 2 to ignore chest and permanently remove it. ");
         int choice = input.nextInt();
         if (choice == 1) {
             System.out.println("First item is a " + (((Item)chest.getItem1()).getName()));
