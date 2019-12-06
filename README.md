@@ -1,1 +1,1 @@
-text based game for group 4 called WoWBorgen
+text based game for swedish group 4 called WoWBorgen
