@@ -74,7 +74,7 @@ public class Main {
         while(round <= 49){
             System.out.println("Round: " + round);
             if(rooms[position].getMonster()!= null){
-                playerhp = combatMethod(playerdmg, playerhp, minotaur);
+                playerhp = combatMethod(playerdmg, playerhp, minotaur, name);
                 rooms[position].setMonster(null);
             }else if(rooms[position].getTreasure()!= null){
                 runApps.openTreasure(rooms,position,rooms[position].getTreasure());
@@ -84,7 +84,7 @@ public class Main {
             round++;
         }
     }
-    public static int combatMethod(int playerdmg, int playerhp, Monster monster) {
+    public static int combatMethod(int playerdmg, int playerhp, Monster monster, String name) {
         SecureRandom chanceToFlee = new SecureRandom();
         int flee = 0;
         Scanner input = new Scanner(System.in);
@@ -126,10 +126,22 @@ public class Main {
                             break;
                         }
                     } else {
-                        //monster hp - special ability
-
-                        if(monsterhp <= 0){
-                            System.out.println("Monster has died");
+                        if (name.equals("Rogue")){
+                            System.out.println("The bomb does 50 damage!");
+                            int rougeSpecial = 50;
+                            monsterhp -= rougeSpecial;
+                            if (monsterhp > 0) {
+                                System.out.println("The " + monsterType + " has " + monsterhp + " health left");
+                            }
+                            if(monsterhp <= 0){
+                                System.out.println(monsterType + " has died");
+                                break;
+                            }
+                        } else if (name.equals("Warrior")){
+                            System.out.println("A Healing cure that heals you with 50hp");
+                            int warriorSpecial = 50;
+                            playerhp += warriorSpecial;
+                            System.out.println("You have now " + playerhp + "hp");
                         }
                     }
                 }
