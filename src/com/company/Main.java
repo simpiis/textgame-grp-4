@@ -42,6 +42,7 @@ public class Main {
 
         int playerhp = 0;
         int playerdmg = 0;
+        String name = "";
 
         switch (choice) {
             case 1:
@@ -49,6 +50,7 @@ public class Main {
                 rogue.printHero();
                 playerdmg=rogue.getDamage();
                 playerhp=rogue.getHp();
+                name=rogue.getName();
                 System.out.println("*************************");
                 break;
             case 2:
@@ -56,6 +58,7 @@ public class Main {
                 warrior.printHero();
                 playerdmg=warrior.getDamage();
                 playerhp=warrior.getHp();
+                name=warrior.getName();
                 System.out.println("*************************");
                 break;
             case 3:
@@ -63,6 +66,7 @@ public class Main {
                 mage.printHero();
                 playerdmg=mage.getDamage();
                 playerhp=mage.getHp();
+                name=mage.getName();
                 System.out.println("*************************");
                 break;
         }
@@ -75,7 +79,7 @@ public class Main {
             }else if(rooms[position].getTreasure()!= null){
                 runApps.openTreasure(rooms,position,rooms[position].getTreasure());
             }else {
-                position = runApps.move(position);
+                position = runApps.move(position, name);
             }
             round++;
         }
@@ -158,9 +162,23 @@ public class Main {
         }
     }
 
-    int move(int position){
+    int move(int position, String name){
         printMap(position);
         int direction = 0;
+        if (name.equals("Mage")){
+            int counter = 0;
+            for (int i = 3; i>counter; counter++){
+                System.out.println("Do you want to use your special ability?");
+                System.out.println("1.Yes \n2.No");
+                int choise = input.nextInt();
+                if (choise == 1) {
+                    position = mageSpeciell(position);
+                    printMap(position);
+                } else {
+                    break;
+                }
+            }
+        }
         if(position == 0){
             System.out.println("Choose where to move \n 1. Right\n 2. Down");
             while(direction == 0) {
@@ -339,6 +357,115 @@ public class Main {
         }else{
             list[position].setTreasure(null);
         }
+    }
+    public int mageSpeciell(int position) {
+        System.out.println("You can move to: ");
+        if (position >= 2 && position <= 46) {
+            int position1 = position - 2;
+            int position2 = position - 1;
+            int position3 = position + 1;
+            int position4 = position + 2;
+            System.out.print( "1. " + position1 +"\n2. " + position2 +"\n3. " + position3 +"\n4. " + position4+ "\n");
+            System.out.print("> ");
+            int choice = input.nextInt();
+            switch (choice){
+                case 1:
+                    position = position1;
+                    break;
+                case 2:
+                    position = position2;
+                    break;
+                case 3:
+                    position = position3;
+                    break;
+                case 4:
+                    position = position4;
+                    break;
+                default:
+                    break;
+            }
+            System.out.println("You moved to room: " + position);
+
+        } else if (position == 0){
+            int position1 = position + 1;
+            int position2 = position + 2;
+            System.out.print( "1. " + position1 +"\n2. " + position2 + "\n");
+            System.out.print("> ");
+            int choice = input.nextInt();
+            switch (choice){
+                case 1:
+                    position = position1;
+                    break;
+                case 2:
+                    position = position2;
+                    break;
+                default:
+                    break;
+            }
+            System.out.println("You moved to room: " + position);
+        }else if (position == 1){
+            int position1 = position - 1;
+            int position2 = position + 1;
+            int position3 = position + 2;
+            System.out.print( "1. " + position1 +"\n2. " + position2 +"\n3. " + position3+ "\n");
+            System.out.print("> ");
+            int choice = input.nextInt();
+            switch (choice){
+                case 1:
+                    position = position1;
+                    break;
+                case 2:
+                    position = position2;
+                    break;
+                case 3:
+                    position = position3;
+                    break;
+                default:
+                    break;
+            }
+            System.out.println("You moved to room: " + position);
+        } else if (position == 47){
+            int position1 = position + 1;
+            int position2 = position - 1;
+            int position3 = position - 2;
+            System.out.print( "1. " + position1 +"\n2. " + position2 +"\n3. " + position3+ "\n");
+            System.out.print("> ");
+            int choice = input.nextInt();
+            switch (choice){
+                case 1:
+                    position = position1;
+                    break;
+                case 2:
+                    position = position2;
+                    break;
+                case 3:
+                    position = position3;
+                    break;
+                default:
+                    break;
+            }
+            System.out.println("You moved to room: " + position);
+
+        } else if (position == 48){
+            int position1 = position - 1;
+            int position2 = position - 2;
+            System.out.print( "1. " + position1 +"\n2. " + position2+ "\n");
+            System.out.print("> ");
+            int choice = input.nextInt();
+            switch (choice){
+                case 1:
+                    position = position1;
+                    break;
+                case 2:
+                    position = position2;
+                    break;
+                default:
+                    break;
+            }
+            System.out.println("You moved to room: " + position);
+
+        }
+        return position;
     }
 }   
 
