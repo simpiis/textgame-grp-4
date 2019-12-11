@@ -218,7 +218,7 @@ public class Main {
                 }
             }
         }else if(position == 42){
-            System.out.println("Choose where to move \n 1. Right\n 2. up");
+            System.out.println("Choose where to move \n 1. Right\n 2. Up");
             while(direction == 0) {
                 direction = input.nextInt();
                 if (direction == 1) {
@@ -231,7 +231,7 @@ public class Main {
                 }
             }
         }else if(position == 48){
-            System.out.println("Choose where to move \n 1. left\n 2. Up");
+            System.out.println("Choose where to move \n 1. Left\n 2. Up");
             while(direction == 0) {
                 direction = input.nextInt();
                 if (direction == 1) {
