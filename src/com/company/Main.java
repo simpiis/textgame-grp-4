@@ -11,11 +11,13 @@ public class Main {
         Scanner input = new Scanner(System.in);
         Heroes hero = new Heroes(1, 1, "");
         Monster minotaur = new Monster(50,10, "Minotaur");
+        Monster typhone = new Monster(60,30, "Typhone");
+        Monster wampa = new Monster(100,20, "Wampa");
         Treasure chest1 = new Treasure(runApps.createItem(),runApps.createItem(), runApps.createKey(), 5 );
         int choice;
         int position = 0;
         int round = 1;
-        Rooms[] rooms = runApps.createRooms(minotaur,chest1);
+        Rooms[] rooms = runApps.createRooms(minotaur, typhone, wampa, chest1);
         ArrayList<String> playerInventory = new ArrayList<>();
 
         //System.out.println("--- Main Menu ---");
@@ -69,8 +71,18 @@ public class Main {
         while(round <= 49){
             System.out.println("Round: " + round);
             if(rooms[position].getMonster()!= null){
-                hero.setHp(combatMethod(hero, minotaur));
-                rooms[position].setMonster(null);
+                if ( rooms[position].getMonster() == minotaur) {
+                    hero.setHp(combatMethod(hero, minotaur));
+                    rooms[position].setMonster(null);
+                }
+                else if (rooms[position].getMonster() == typhone) {
+                    hero.setHp(combatMethod(hero, typhone));
+                    rooms[position].setMonster(null);
+                } else {
+                    hero.setHp(combatMethod(hero, wampa));
+                    rooms[position].setMonster(null);
+                }
+
             }else if(rooms[position].getTreasure()!= null){
                 runApps.openTreasure(rooms,position,rooms[position].getTreasure());
             }else {
@@ -216,7 +228,7 @@ public class Main {
             }
         }
         if(position == 0){
-            System.out.println("Choose where to move \n 1. Right\n 2. Down");
+            System.out.println("Choose where to move \n1. Right\n2. Down");
             while(direction == 0) {
                 direction = input.nextInt();
                 if (direction == 1) {
@@ -229,7 +241,7 @@ public class Main {
                 }
             }
         }else if(position == 6){
-            System.out.println("Choose where to move \n 1. Left\n 2. Down");
+            System.out.println("Choose where to move \n1. Left\n2. Down");
             while(direction == 0) {
                 direction = input.nextInt();
                 if (direction == 1) {
@@ -242,7 +254,7 @@ public class Main {
                 }
             }
         }else if(position == 42){
-            System.out.println("Choose where to move \n 1. Right\n 2. Up");
+            System.out.println("Choose where to move \n1. Right\n2. Up");
             while(direction == 0) {
                 direction = input.nextInt();
                 if (direction == 1) {
@@ -255,7 +267,7 @@ public class Main {
                 }
             }
         }else if(position == 48){
-            System.out.println("Choose where to move \n 1. Left\n 2. Up");
+            System.out.println("Choose where to move \n1. Left\n2. Up");
             while(direction == 0) {
                 direction = input.nextInt();
                 if (direction == 1) {
@@ -347,18 +359,28 @@ public class Main {
         }
         return position;
     }
-    Rooms[] createRooms(Monster monster, Treasure chest){
+    Rooms[] createRooms(Monster monster1, Monster monster2,Monster monster3, Treasure chest){
         Rooms[] roomlist = new Rooms[49];
         Random rand = new Random();
-        int monsterroom = rand.nextInt(49);
+        int monsterroom1 = rand.nextInt(49);
+        int monsterroom2 = rand.nextInt(49);
+        int monsterroom3 = rand.nextInt(49);
+        while (monsterroom1 == monsterroom2 || monsterroom1 == monsterroom3 || monsterroom2 == monsterroom3){
+            monsterroom2 = rand.nextInt(49);
+            monsterroom3 = rand.nextInt(49);
+        }
         int chestroom = rand.nextInt(49);
-        while(monsterroom == chestroom) {
+        while(monsterroom1 == chestroom) {
             chestroom = rand.nextInt(49);
         }
         for(int p = 0; p < 49; p++){
             Rooms room1;
-            if (p == monsterroom) {
-                room1 = new Rooms(null, null, null, null, null, monster);
+            if (p == monsterroom1) {
+                room1 = new Rooms(null, null, null, null, null, monster1);
+            }else if (p == monsterroom2){
+                room1 = new Rooms(null, null, null, null, null, monster2);
+            }else if (p == monsterroom3){
+                room1 = new Rooms(null, null, null, null, null, monster3);
             }else if (p == chestroom){
                 room1 = new Rooms(null, null, null, null, chest, null);
             }else{
