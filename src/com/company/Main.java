@@ -137,11 +137,34 @@ public class Main {
                                 System.out.println(monsterType + " has died");
                                 break;
                             }
+                            System.out.println("The " + monsterType + " attacks for " + monsterdmg);
+                            playerhp -= monsterdmg;
+                            if (playerhp > monsterdmg) {
+                                System.out.println("You have " + playerhp + " health left \n");
+                            }
+                            if (playerhp <= 0) {
+                                System.out.println("The " + monsterType + " killed you. GAME OVER!");
+                                System.exit(0);
+                                break;
+                            }
                         } else if (name.equals("Warrior")){
                             System.out.println("A Healing cure that heals you with 50hp");
                             int warriorSpecial = 50;
                             playerhp += warriorSpecial;
                             System.out.println("You have now " + playerhp + "hp");
+
+                            System.out.println("The " + monsterType + " has " + monsterhp + " health left");
+
+                            System.out.println("The " + monsterType + " attacks for " + monsterdmg);
+                            playerhp -= monsterdmg;
+                            if (playerhp > monsterdmg) {
+                                System.out.println("You have " + playerhp + " health left \n");
+                            }
+                            if (playerhp <= 0) {
+                                System.out.println("The " + monsterType + " killed you. GAME OVER!");
+                                System.exit(0);
+                                break;
+                            }
                         }
                     }
                 }
