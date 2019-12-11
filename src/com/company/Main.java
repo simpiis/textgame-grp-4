@@ -13,7 +13,7 @@ public class Main {
         Heroes warrior = new Heroes(90, 30, "Warrior");
         Heroes mage = new Heroes(100, 20, "Mage");
         Monster minotaur = new Monster(50,10, "Minotaur");
-        Treasure chest1 = new Treasure(runApps.createItem(),runApps.createItem(),5);
+        Treasure chest1 = new Treasure(runApps.createItem(),runApps.createItem(), runApps.createKey(), 5 );
         int choice;
         int position = 0;
         int round = 1;
@@ -355,10 +355,10 @@ public class Main {
             Potion potion = new Potion("Mana potion", 2);
             return potion;
         }
-        /*if (potionType == 0){
-            Keys key = new Keys("Brass key",1);
+    }
+    public Keys createKey(){
+            Keys key = new Keys("rusty old key",1);
             return key;
-        } */
     }
 
     void openTreasure(Rooms[] list , int position,Treasure chest){
@@ -368,6 +368,7 @@ public class Main {
         if (choice == 1) {
             System.out.println("First item is a " + (((Item)chest.getItem1()).getName()));
             System.out.println("Second item is a " + (((Item)chest.getItem2()).getName()));
+            System.out.println("Third item is a " + (((Item)chest.getItem3()).getName()));
             System.out.println("You also found " + (chest.getCoins() + " gold"));
             list[position].setTreasure(null);
         }else{
