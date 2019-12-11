@@ -355,6 +355,10 @@ public class Main {
             Potion potion = new Potion("Mana potion", 2);
             return potion;
         }
+        /*if (potionType == 0){
+            Keys key = new Keys("Brass key",1);
+            return key;
+        } */
     }
 
     void openTreasure(Rooms[] list , int position,Treasure chest){
