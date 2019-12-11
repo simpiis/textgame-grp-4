@@ -92,6 +92,7 @@ public class Main {
         }
     }
     public static int combatMethod(Heroes hero, Monster monster) {
+        int count = 0;
         int submenu = 0;
         SecureRandom chanceToFlee = new SecureRandom();
         int flee = 0;
@@ -107,9 +108,13 @@ public class Main {
                 while (monster.getHp() > 0 && hero.getHp() > 0) {
                     System.out.println("Which attack would you like to use?");
                     System.out.println("1) Melee");
-                    if ( hero.getName().equals("Rogue") || hero.getName().equals("Warrior")){
-                System.out.println("2) Special ability\n> ");
+                    if ( hero.getName().equals("Rogue")){
+                        System.out.println("2) Special ability ");
                     }
+                    if ( hero.getName().equals("Warrior") && count < 3){
+                        System.out.println("2) Special ability (You can only use this ability 3 times, use it wisely");
+                    }
+                    System.out.println(">");
                     int attackChoice = input.nextInt();
 
                     if (attackChoice == 1) {
@@ -148,6 +153,11 @@ public class Main {
                             }
                             if(monster.getHp() <= 0){
                                 System.out.println(monster.getName() + " has died");
+                                System.out.println("Do you want to use an item before leaving? \n1. Yes\n2. No");
+                                submenu = input.nextInt();
+                                if(submenu == 1) {
+                                    //open inventory
+                                }
                                 break;
                             }
                             System.out.println("The " + monster.getName() + " attacks for " + monster.getDamage());
@@ -161,9 +171,14 @@ public class Main {
                                 break;
                             }
                         } else if (hero.getName().equals("Warrior")){
-                            System.out.println("A Healing cure that heals you with 50hp");
+                            count += 1;
+                            System.out.println("A Healing cure that heals you with 50hp (200hp is max)");
                             int warriorSpecial = 50;
-                            hero.setHp(hero.getHp() + warriorSpecial);
+                            if (hero.getHp() <= 150){
+                                hero.setHp(hero.getHp() + warriorSpecial);
+                            } else {
+                                hero.setHp(200);
+                            }
                             System.out.println("You have now " + hero.getHp() + "hp");
 
                             System.out.println("The " + monster.getName() + " has " + monster.getHp() + " health left");
