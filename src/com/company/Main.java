@@ -9,9 +9,7 @@ public class Main {
     public static void main(String[] args) {
         Main runApps = new Main();
         Scanner input = new Scanner(System.in);
-        Heroes rogue = new Heroes(110, 10, "Rogue");
-        Heroes warrior = new Heroes(90, 30, "Warrior");
-        Heroes mage = new Heroes(100, 20, "Mage");
+        Heroes hero = new Heroes(1, 1, "");
         Monster minotaur = new Monster(50,10, "Minotaur");
         Treasure chest1 = new Treasure(runApps.createItem(),runApps.createItem(),5);
         int choice;
@@ -40,33 +38,30 @@ public class Main {
 
         } while (choice != 1 && choice != 2 && choice != 3);
 
-        int playerhp = 0;
-        int playerdmg = 0;
-        String name = "";
-
         switch (choice) {
             case 1:
                 System.out.println("*************************");
-                rogue.printHero();
-                playerdmg=rogue.getDamage();
-                playerhp=rogue.getHp();
-                name=rogue.getName();
+                hero.setHp(110);
+                hero.setDamage(10);
+                hero.setName("Rogue");
+                hero.printHero();
                 System.out.println("*************************");
+
                 break;
             case 2:
                 System.out.println("*************************");
-                warrior.printHero();
-                playerdmg=warrior.getDamage();
-                playerhp=warrior.getHp();
-                name=warrior.getName();
+                hero.setHp(90);
+                hero.setDamage(30);
+                hero.setName("Warrior");
+                hero.printHero();
                 System.out.println("*************************");
                 break;
             case 3:
                 System.out.println("*************************");
-                mage.printHero();
-                playerdmg=mage.getDamage();
-                playerhp=mage.getHp();
-                name=mage.getName();
+                hero.setHp(100);
+                hero.setDamage(20);
+                hero.setName("Mage");
+                hero.printHero();
                 System.out.println("*************************");
                 break;
         }
@@ -74,94 +69,100 @@ public class Main {
         while(round <= 49){
             System.out.println("Round: " + round);
             if(rooms[position].getMonster()!= null){
-                playerhp = combatMethod(playerdmg, playerhp, minotaur, name);
+                hero.setHp(combatMethod(hero, minotaur));
                 rooms[position].setMonster(null);
             }else if(rooms[position].getTreasure()!= null){
                 runApps.openTreasure(rooms,position,rooms[position].getTreasure());
             }else {
-                position = runApps.move(position, name);
+                position = runApps.move(position, hero);
             }
             round++;
         }
     }
-    public static int combatMethod(int playerdmg, int playerhp, Monster monster, String name) {
+    public static int combatMethod(Heroes hero, Monster monster) {
+        int submenu = 0;
         SecureRandom chanceToFlee = new SecureRandom();
         int flee = 0;
         Scanner input = new Scanner(System.in);
-        Monster minotaur = monster;
-        String monsterType = minotaur.getName();
-        int monsterhp = minotaur.getHp();
-        int monsterdmg = minotaur.getDamage();
 
-        System.out.println("You have encountered a " + monsterType + ", it has " + monsterhp + " health and " + monsterdmg + " damage!");
+        System.out.println("You have encountered a " + monster.getName() + ", it has " + monster.getHp() + " health and " + monster.getDamage() + " damage!");
         System.out.println("--- Combat Menu ---");
         System.out.printf("%s%n%s%n%s", "1) Fight", "2) Flee (not fully implemented)","> ");
         int combatChoice = input.nextInt();
 
         switch (combatChoice) {
             case 1:
-                while (monsterhp > 0 && playerhp > 0) {
+                while (monster.getHp() > 0 && hero.getHp() > 0) {
                     System.out.println("Which attack would you like to use?");
-                    System.out.printf("%s%n%s%n%s", "1) Melee", "2) Special ability (not implemented)","> ");
+                    System.out.println("1) Melee");
+                    if ( hero.getName().equals("Rogue") || hero.getName().equals("Warrior")){
+                System.out.println("2) Special ability\n> ");
+                    }
                     int attackChoice = input.nextInt();
 
                     if (attackChoice == 1) {
-                        monsterhp -= playerdmg;
-                        System.out.println("\nYou deal " + playerdmg + " damage to the " + monsterType);
-                        if (monsterhp > 0) {
-                            System.out.println("The " + monsterType + " has " + monsterhp + " health left");
+                        monster.setHp(monster.getHp()-hero.getDamage());
+                        System.out.println("\nYou deal " + hero.getDamage() + " damage to the " + monster.getName());
+                        if (monster.getHp() > 0) {
+                            System.out.println("The " + monster.getName() + " has " + monster.getHp() + " health left");
                         }
-                        if(monsterhp <= 0){
-                            System.out.println(monsterType + " has died");
+                        if(monster.getHp() <= 0){
+                            System.out.println(monster.getName() + " has died");
+                            System.out.println("You have " + hero.getHp() + " health left.");
+                            System.out.println("Do you want to use an item before leaving? \n1. Yes\n2. No");
+                            submenu = input.nextInt();
+                            if(submenu == 1) {
+                                //open inventory
+                            }
                             break;
                         }
-                        System.out.println("The " + monsterType + " attacks for " + monsterdmg);
-                        playerhp -= monsterdmg;
-                        if (playerhp > monsterdmg) {
-                            System.out.println("You have " + playerhp + " health left \n");
+                        System.out.println("The " + monster.getName() + " attacks for " + monster.getDamage());
+                        hero.setHp(hero.getHp() - monster.getDamage());
+                        if (hero.getHp() > monster.getDamage()) {
+                            System.out.println("You have " + hero.getHp() + " health left \n");
                         }
-                        if (playerhp <= 0) {
-                            System.out.println("The " + monsterType + " killed you. GAME OVER!");
+                        if (hero.getHp() <= 0) {
+                            System.out.println("The " + monster.getName() + " killed you. GAME OVER!");
                             System.exit(0);
                             break;
                         }
                     } else {
-                        if (name.equals("Rogue")){
+                        if (hero.getName().equals("Rogue")){
                             System.out.println("The bomb does 50 damage!");
                             int rougeSpecial = 50;
-                            monsterhp -= rougeSpecial;
-                            if (monsterhp > 0) {
-                                System.out.println("The " + monsterType + " has " + monsterhp + " health left");
+                            monster.setHp(monster.getHp()-rougeSpecial);
+                            if (monster.getHp() > 0) {
+                                System.out.println("The " + monster.getName() + " has " + monster.getHp() + " health left");
                             }
-                            if(monsterhp <= 0){
-                                System.out.println(monsterType + " has died");
+                            if(monster.getHp() <= 0){
+                                System.out.println(monster.getName() + " has died");
                                 break;
                             }
-                            System.out.println("The " + monsterType + " attacks for " + monsterdmg);
-                            playerhp -= monsterdmg;
-                            if (playerhp > monsterdmg) {
-                                System.out.println("You have " + playerhp + " health left \n");
+                            System.out.println("The " + monster.getName() + " attacks for " + monster.getDamage());
+                            hero.setHp(hero.getHp() - monster.getDamage());
+                            if (hero.getHp() > monster.getDamage()) {
+                                System.out.println("You have " + hero.getHp() + " health left \n");
                             }
-                            if (playerhp <= 0) {
-                                System.out.println("The " + monsterType + " killed you. GAME OVER!");
+                            if (hero.getHp() <= 0) {
+                                System.out.println("The " + monster.getName() + " killed you. GAME OVER!");
                                 System.exit(0);
                                 break;
                             }
-                        } else if (name.equals("Warrior")){
+                        } else if (hero.getName().equals("Warrior")){
                             System.out.println("A Healing cure that heals you with 50hp");
                             int warriorSpecial = 50;
-                            playerhp += warriorSpecial;
-                            System.out.println("You have now " + playerhp + "hp");
+                            hero.setHp(hero.getHp() + warriorSpecial);
+                            System.out.println("You have now " + hero.getHp() + "hp");
 
-                            System.out.println("The " + monsterType + " has " + monsterhp + " health left");
+                            System.out.println("The " + monster.getName() + " has " + monster.getHp() + " health left");
 
-                            System.out.println("The " + monsterType + " attacks for " + monsterdmg);
-                            playerhp -= monsterdmg;
-                            if (playerhp > monsterdmg) {
-                                System.out.println("You have " + playerhp + " health left \n");
+                            System.out.println("The " + monster.getName() + " attacks for " + monster.getDamage());
+                            hero.setHp(hero.getHp()-monster.getDamage());
+                            if (hero.getHp() > monster.getDamage()) {
+                                System.out.println("You have " + hero.getHp() + " health left \n");
                             }
-                            if (playerhp <= 0) {
-                                System.out.println("The " + monsterType + " killed you. GAME OVER!");
+                            if (hero.getHp() <= 0) {
+                                System.out.println("The " + monster.getName() + " killed you. GAME OVER!");
                                 System.exit(0);
                                 break;
                             }
@@ -179,7 +180,7 @@ public class Main {
                     //move one square, seems to remove monster from map, or not enough steps to find it
                 break;}
         }
-        return playerhp;
+        return hero.getHp();
     }
 
     Scanner input = new Scanner(System.in);
@@ -197,17 +198,17 @@ public class Main {
         }
     }
 
-    int move(int position, String name){
+    int move(int position, Heroes hero){
         printMap(position);
         int direction = 0;
-        if (name.equals("Mage")){
+        if (hero.getName().equals("Mage")){
             int counter = 0;
             for (int i = 3; i>counter; counter++){
                 System.out.println("Do you want to use your special ability?");
                 System.out.println("1.Yes \n2.No");
-                int choise = input.nextInt();
-                if (choise == 1) {
-                    position = mageSpeciell(position);
+                int choice = input.nextInt();
+                if (choice == 1) {
+                    position = magespecial(position);
                     printMap(position);
                 } else {
                     break;
@@ -397,7 +398,7 @@ public class Main {
             list[position].setTreasure(null);
         }
     }
-    public int mageSpeciell(int position) {
+    public int magespecial(int position) {
         System.out.println("You can move to: ");
         if (position >= 2 && position <= 46) {
             int position1 = position - 2;
