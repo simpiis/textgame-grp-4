@@ -8,6 +8,7 @@ import java.lang.*;
 public class Main {
     public static void main(String[] args) {
         Main runApps = new Main();
+        int mainMenu = 0;
         Scanner input = new Scanner(System.in);
         Heroes hero = new Heroes(1, 1, "");
         Monster minotaur = new Monster(50,10, "Minotaur");
@@ -18,12 +19,12 @@ public class Main {
         int position = 0;
         int round = 1;
         Rooms[] rooms = runApps.createRooms(minotaur, typhone, wampa, chest1);
-        ArrayList<String> playerInventory = new ArrayList<>();
+        ArrayList<Item> playerInventory = new ArrayList<>();
 
-        //System.out.println("--- Main Menu ---");
-        //System.out.println("1. Start new game\n2. Load game\n3. Quit");
-        //if(mainMenu==3){System.exit(0);}
-        //else if(mainMenu==2){ LOAD GAME}
+        System.out.println("--- Main Menu ---");
+        System.out.println("1. Start new game\n2. Load game(not implemented)\n3. Quit");
+        if(mainMenu==3){System.exit(0);}
+        else if(mainMenu==2){ }
 
         do {
             System.out.println("*************************");
@@ -84,7 +85,7 @@ public class Main {
                 }
 
             }else if(rooms[position].getTreasure()!= null){
-                runApps.openTreasure(rooms,position,rooms[position].getTreasure());
+                playerInventory=runApps.openTreasure(rooms,position,rooms[position].getTreasure(), playerInventory);
             }else {
                 position = runApps.move(position, hero);
             }
@@ -422,7 +423,7 @@ public class Main {
             return key;
     }
 
-    void openTreasure(Rooms[] list , int position,Treasure chest){
+    ArrayList openTreasure(Rooms[] list , int position,Treasure chest, ArrayList inventory){
         System.out.println("You found a chest!");
         System.out.println("Press 1 to open\nPress 2 to ignore chest and permanently remove it. ");
         int choice = input.nextInt();
@@ -431,10 +432,14 @@ public class Main {
             System.out.println("Second item is a " + (((Item)chest.getItem2()).getName()));
             System.out.println("Third item is a " + (((Item)chest.getItem3()).getName()));
             System.out.println("You also found " + (chest.getCoins() + " gold"));
+            inventory.add(chest.getItem1());
+            inventory.add(chest.getItem2());
+            inventory.add(chest.getItem3());
             list[position].setTreasure(null);
         }else{
             list[position].setTreasure(null);
         }
+        return inventory;
     }
     public int magespecial(int position) {
         System.out.println("You can move to: ");
