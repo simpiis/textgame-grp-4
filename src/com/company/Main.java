@@ -23,6 +23,7 @@ public class Main {
 
         System.out.println("--- Main Menu ---");
         System.out.println("1. Start new game\n2. Load game(not implemented)\n3. Quit");
+        mainMenu = input.nextInt();
         if(mainMenu==3){System.exit(0);}
         else if(mainMenu==2){ }
 
@@ -73,14 +74,14 @@ public class Main {
             System.out.println("Round: " + round);
             if(rooms[position].getMonster()!= null){
                 if ( rooms[position].getMonster() == minotaur) {
-                    hero.setHp(combatMethod(hero, minotaur));
+                    hero.setHp(combatMethod(hero, minotaur, playerInventory));
                     rooms[position].setMonster(null);
                 }
                 else if (rooms[position].getMonster() == typhone) {
-                    hero.setHp(combatMethod(hero, typhone));
+                    hero.setHp(combatMethod(hero, typhone, playerInventory));
                     rooms[position].setMonster(null);
                 } else {
-                    hero.setHp(combatMethod(hero, wampa));
+                    hero.setHp(combatMethod(hero, wampa, playerInventory));
                     rooms[position].setMonster(null);
                 }
 
@@ -92,7 +93,7 @@ public class Main {
             round++;
         }
     }
-    public static int combatMethod(Heroes hero, Monster monster) {
+    public static int combatMethod(Heroes hero, Monster monster, ArrayList inventory) {
         int count = 0;
         int submenu = 0;
         SecureRandom chanceToFlee = new SecureRandom();
@@ -103,21 +104,31 @@ public class Main {
         System.out.println("--- Combat Menu ---");
         System.out.printf("%s%n%s%n%s", "1) Fight", "2) Flee (not fully implemented)","> ");
         int combatChoice = input.nextInt();
-
         switch (combatChoice) {
             case 1:
                 while (monster.getHp() > 0 && hero.getHp() > 0) {
                     System.out.println("Which attack would you like to use?");
                     System.out.println("1) Melee");
-                    if ( hero.getName().equals("Rogue")){
+                    if (hero.getName().equals("Rogue")){
                         System.out.println("2) Special ability ");
                     }
-                    if ( hero.getName().equals("Warrior") && count < 3){
+                    if (hero.getName().equals("Warrior") && count < 3){
                         System.out.println("2) Special ability (You can only use this ability 3 times, use it wisely");
                     }
+                    System.out.println("3) Inventory");
                     System.out.println(">");
                     int attackChoice = input.nextInt();
+                    if (attackChoice == 3){
+                        System.out.println("--- Inventory ---");
+                        if (inventory.size() == 0){
+                            System.out.println("No items in inventory");
+                        }
+                        for (int i = 0; i <inventory.size() ; i++) {
+                            System.out.println(inventory.get(i).toString());
 
+                        }
+
+                    }
                     if (attackChoice == 1) {
                         monster.setHp(monster.getHp()-hero.getDamage());
                         System.out.println("\nYou deal " + hero.getDamage() + " damage to the " + monster.getName());
@@ -130,7 +141,14 @@ public class Main {
                             System.out.println("Do you want to use an item before leaving? \n1. Yes\n2. No");
                             submenu = input.nextInt();
                             if(submenu == 1) {
-                                //open inventory
+                                System.out.println("--- Inventory ---");
+                                if (inventory.size() == 0){
+                                    System.out.println("No items in inventory");
+                                }
+                                for (int i = 0; i <inventory.size() ; i++) {
+                                    System.out.println(inventory.get(i).toString());
+
+                                }
                             }
                             break;
                         }
@@ -144,7 +162,7 @@ public class Main {
                             System.exit(0);
                             break;
                         }
-                    } else {
+                    } else if (attackChoice == 2) {
                         if (hero.getName().equals("Rogue")){
                             System.out.println("The bomb does 50 damage!");
                             int rougeSpecial = 50;
@@ -157,7 +175,7 @@ public class Main {
                                 System.out.println("Do you want to use an item before leaving? \n1. Yes\n2. No");
                                 submenu = input.nextInt();
                                 if(submenu == 1) {
-                                    //open inventory
+                                    System.out.println("--- Inventory ---");
                                 }
                                 break;
                             }
