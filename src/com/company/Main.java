@@ -642,21 +642,18 @@ public class Main {
             }
             System.out.println("You moved to room: " + position);
         }else if (position == 1){
-            int position1 = position - 1;
-            int position2 = position + 1;
-            int position3 = position + 2;
             System.out.print( "1. 1 left\n 2. 1 right\n3. 2 left\n");
             System.out.print("> ");
             int choice = input.nextInt();
             switch (choice){
                 case 1:
-                    position = position1;
+                    position -= 1;
                     break;
                 case 2:
-                    position = position2;
+                    position += 1;
                     break;
                 case 3:
-                    position = position3;
+                    position += 2;
                     break;
                 default:
                     break;
