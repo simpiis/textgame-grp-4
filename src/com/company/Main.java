@@ -131,6 +131,14 @@ public class Main {
                             System.out.println("Enter the number corresponding to the item you want to use");
                             inventorySelection = input.nextInt();
                             System.out.println("You consumed " + inventory.get(inventorySelection-1) + " and gained (PLACEHOLDER)");
+                            if (inventory.get(inventorySelection-1).equals("Health potion")){
+                                hero.setHp(hero.getHp()+2);
+                            }
+                            else if (inventory.get(inventorySelection-1).equals("Mana potion")){
+                                if (hero.getName().equals("Mage")){
+                                    //hero.setMana(hero.getMana()+2);
+                                }
+                            }
                             inventory.remove(inventorySelection-1);
                         }
 
@@ -156,6 +164,14 @@ public class Main {
                                     System.out.println("Enter the number corresponding to the item you want to use");
                                     inventorySelection = input.nextInt();
                                     System.out.println("You consumed " + inventory.get(inventorySelection-1) + " and gained (PLACEHOLDER)");
+                                    if (inventory.get(inventorySelection-1).equals("Health potion")){
+                                        hero.setHp(hero.getHp()+2);
+                                    }
+                                    else if (inventory.get(inventorySelection-1).equals("Mana potion")){
+                                        if (hero.getName().equals("Mage")){
+                                            //hero.setMana(hero.getMana()+2);
+                                        }
+                                    }
                                     inventory.remove(inventorySelection-1);
 
                                 } else {
@@ -196,6 +212,14 @@ public class Main {
                                         System.out.println("Enter the number corresponding to the item you want to use");
                                         inventorySelection = input.nextInt();
                                         System.out.println("You consumed " + inventory.get(inventorySelection-1) + " and gained (PLACEHOLDER)");
+                                        if (inventory.get(inventorySelection-1).equals("Health potion")){
+                                            hero.setHp(hero.getHp()+2);
+                                        }
+                                        else if (inventory.get(inventorySelection-1).equals("Mana potion")){
+                                            if (hero.getName().equals("Mage")){
+                                                //hero.setMana(hero.getMana()+2);
+                                            }
+                                        }
                                         inventory.remove(inventorySelection-1);
                                     } else {
                                         System.out.println("No items in inventory");
@@ -461,7 +485,7 @@ public class Main {
         }
     }
     public Keys createKey(){
-            Keys key = new Keys("rusty old key",1);
+            Keys key = new Keys("Rusty old key",1);
             return key;
     }
 
