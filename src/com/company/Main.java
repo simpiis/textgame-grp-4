@@ -128,11 +128,10 @@ public class Main {
                                 System.out.println((i+1)+") " + inventory.get(i).toString());
 
                             }
-                            System.out.println("Enter the corresponding number for the item you want to use");
+                            System.out.println("Enter the number corresponding to the item you want to use");
                             inventorySelection = input.nextInt();
-                            if (inventorySelection == 1){
-                                // consume item index 0
-                            }
+                            System.out.println("You consumed " + inventory.get(inventorySelection-1) + " and gained (PLACEHOLDER)");
+                            inventory.remove(inventorySelection-1);
                         }
 
                     }
@@ -154,10 +153,10 @@ public class Main {
                                         System.out.println((i+1) + ") " + inventory.get(i).toString());
 
                                     }
+                                    System.out.println("Enter the number corresponding to the item you want to use");
                                     inventorySelection = input.nextInt();
-                                    if (inventorySelection == 1){
-                                        //consume item index 0
-                                    }
+                                    System.out.println("You consumed " + inventory.get(inventorySelection-1) + " and gained (PLACEHOLDER)");
+                                    inventory.remove(inventorySelection-1);
 
                                 } else {
                                     System.out.println("No items in inventory");
@@ -191,9 +190,13 @@ public class Main {
                                     System.out.println("--- Inventory ---");
                                     if (inventory.size() != 0){
                                         for (int i = 0; i <inventory.size() ; i++) {
-                                            System.out.println(inventory.get(i).toString());
+                                            System.out.println((1+i) + ") " + inventory.get(i).toString());
 
                                         }
+                                        System.out.println("Enter the number corresponding to the item you want to use");
+                                        inventorySelection = input.nextInt();
+                                        System.out.println("You consumed " + inventory.get(inventorySelection-1) + " and gained (PLACEHOLDER)");
+                                        inventory.remove(inventorySelection-1);
                                     } else {
                                         System.out.println("No items in inventory");
                                     }
