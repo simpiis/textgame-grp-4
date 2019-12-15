@@ -94,6 +94,7 @@ public class Main {
         }
     }
     public static int combatMethod(Heroes hero, Monster monster, ArrayList inventory) {
+        int inventorySelection = 0;
         int count = 0;
         int submenu = 0;
         SecureRandom chanceToFlee = new SecureRandom();
@@ -122,10 +123,16 @@ public class Main {
                         System.out.println("--- Inventory ---");
                         if (inventory.size() == 0){
                             System.out.println("No items in inventory");
-                        }
-                        for (int i = 0; i <inventory.size() ; i++) {
-                            System.out.println(inventory.get(i).toString());
+                        }else {
+                            for (int i = 0; i < inventory.size(); i++) {
+                                System.out.println((i+1)+") " + inventory.get(i).toString());
 
+                            }
+                            System.out.println("Enter the corresponding number for the item you want to use");
+                            inventorySelection = input.nextInt();
+                            if (inventorySelection == 1){
+                                // consume item index 0
+                            }
                         }
 
                     }
@@ -142,12 +149,18 @@ public class Main {
                             submenu = input.nextInt();
                             if(submenu == 1) {
                                 System.out.println("--- Inventory ---");
-                                if (inventory.size() == 0){
-                                    System.out.println("No items in inventory");
-                                }
-                                for (int i = 0; i <inventory.size() ; i++) {
-                                    System.out.println(inventory.get(i).toString());
+                                if (inventory.size() != 0){
+                                    for (int i = 0; i < inventory.size(); i++) {
+                                        System.out.println((i+1) + ") " + inventory.get(i).toString());
 
+                                    }
+                                    inventorySelection = input.nextInt();
+                                    if (inventorySelection == 1){
+                                        //consume item index 0
+                                    }
+
+                                } else {
+                                    System.out.println("No items in inventory");
                                 }
                             }
                             break;
@@ -176,6 +189,14 @@ public class Main {
                                 submenu = input.nextInt();
                                 if(submenu == 1) {
                                     System.out.println("--- Inventory ---");
+                                    if (inventory.size() != 0){
+                                        for (int i = 0; i <inventory.size() ; i++) {
+                                            System.out.println(inventory.get(i).toString());
+
+                                        }
+                                    } else {
+                                        System.out.println("No items in inventory");
+                                    }
                                 }
                                 break;
                             }
@@ -450,9 +471,9 @@ public class Main {
             System.out.println("Second item is a " + (((Item)chest.getItem2()).getName()));
             System.out.println("Third item is a " + (((Item)chest.getItem3()).getName()));
             System.out.println("You also found " + (chest.getCoins() + " gold"));
-            inventory.add(chest.getItem1());
-            inventory.add(chest.getItem2());
-            inventory.add(chest.getItem3());
+            inventory.add(chest.getItem1().getName());
+            inventory.add(chest.getItem2().getName());
+            inventory.add(chest.getItem3().getName());
             list[position].setTreasure(null);
         }else{
             list[position].setTreasure(null);
