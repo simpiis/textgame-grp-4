@@ -605,25 +605,21 @@ public class Main {
     public int magespecial(int position) {
         System.out.println("You can move to: ");
         if (position >= 2 && position <= 46) {
-            int position1 = position - 2;
-            int position2 = position - 1;
-            int position3 = position + 1;
-            int position4 = position + 2;
-            System.out.print( "1. " + position1 +"\n2. " + position2 +"\n3. " + position3 +"\n4. " + position4+ "\n");
+            System.out.print( "1. 1 left\n2. 2 left\n3. 1 right \n4. 2 right\n");
             System.out.print("> ");
             int choice = input.nextInt();
             switch (choice){
                 case 1:
-                    position = position1;
+                    position -= 1;
                     break;
                 case 2:
-                    position = position2;
+                    position -= 2;
                     break;
                 case 3:
-                    position = position3;
+                    position += 1;
                     break;
                 case 4:
-                    position = position4;
+                    position += 2;
                     break;
                 default:
                     break;
@@ -631,17 +627,15 @@ public class Main {
             System.out.println("You moved to room: " + position);
 
         } else if (position == 0){
-            int position1 = position + 1;
-            int position2 = position + 2;
-            System.out.print( "1. " + position1 +"\n2. " + position2 + "\n");
+            System.out.print( "1. 1 right \n2. 2 right\n");
             System.out.print("> ");
             int choice = input.nextInt();
             switch (choice){
                 case 1:
-                    position = position1;
+                    position += 1;
                     break;
                 case 2:
-                    position = position2;
+                    position += 2;
                     break;
                 default:
                     break;
@@ -651,7 +645,7 @@ public class Main {
             int position1 = position - 1;
             int position2 = position + 1;
             int position3 = position + 2;
-            System.out.print( "1. " + position1 +"\n2. " + position2 +"\n3. " + position3+ "\n");
+            System.out.print( "1. 1 left\n 2. 1 right\n3. 2 left\n");
             System.out.print("> ");
             int choice = input.nextInt();
             switch (choice){
@@ -669,21 +663,18 @@ public class Main {
             }
             System.out.println("You moved to room: " + position);
         } else if (position == 47){
-            int position1 = position + 1;
-            int position2 = position - 1;
-            int position3 = position - 2;
-            System.out.print( "1. " + position1 +"\n2. " + position2 +"\n3. " + position3+ "\n");
+            System.out.print( "1. 1 right\n2. 1 left \n3. left\n");
             System.out.print("> ");
             int choice = input.nextInt();
             switch (choice){
                 case 1:
-                    position = position1;
+                    position +=1;
                     break;
                 case 2:
-                    position = position2;
+                    position -= 1;
                     break;
                 case 3:
-                    position = position3;
+                    position -= 2;
                     break;
                 default:
                     break;
@@ -691,17 +682,15 @@ public class Main {
             System.out.println("You moved to room: " + position);
 
         } else if (position == 48){
-            int position1 = position - 1;
-            int position2 = position - 2;
-            System.out.print( "1. " + position1 +"\n2. " + position2+ "\n");
+            System.out.print( "1. 1 left\n2. 2 left\n");
             System.out.print("> ");
             int choice = input.nextInt();
             switch (choice){
                 case 1:
-                    position = position1;
+                    position -=1;
                     break;
                 case 2:
-                    position = position2;
+                    position -=2;
                     break;
                 default:
                     break;
