@@ -75,7 +75,7 @@ public class Main {
             }else if(rooms[position].getTreasure()!= null){
                 runApps.openTreasure(rooms,position,rooms[position].getTreasure());
             }else {
-                position = runApps.move(position);
+                position = runApps.move(position, rooms);
             }
             round++;
         }
@@ -151,16 +151,23 @@ public class Main {
         }
     }
 
-    int move(int position){
+    int move(int position, Rooms[] roomlist){
         printMap(position);
         int direction = 0;
+        int opendoors = 0;
         if(position == 0){
             System.out.println("Choose where to move \n 1. Right\n 2. Down");
             while(direction == 0) {
                 direction = input.nextInt();
                 if (direction == 1) {
+                    if(roomlist[position].getDoor1()!= null){
+                        System.out.println((((Doors) roomlist[position].getDoor1()).getTypeOfDoor()) + " Door");
+                    }
                     position += 1;
-                } else if (direction == 2) {
+                } else if (direction == 2){
+                    if(roomlist[position].getDoor2()!= null) {
+                        System.out.println((((Doors) roomlist[position].getDoor2()).getTypeOfDoor()) + " Door");
+                    }
                     position += 7;
                 } else {
                     System.out.println("Not a valid option");
@@ -172,8 +179,14 @@ public class Main {
             while(direction == 0) {
                 direction = input.nextInt();
                 if (direction == 1) {
+                    if(roomlist[position].getDoor1()!= null) {
+                        System.out.println((((Doors) roomlist[position].getDoor1()).getTypeOfDoor()) + " Door");
+                    }
                     position -= 1;
                 } else if (direction == 2) {
+                    if(roomlist[position].getDoor2()!= null) {
+                        System.out.println((((Doors) roomlist[position].getDoor2()).getTypeOfDoor()) + " Door");
+                    }
                     position += 7;
                 } else {
                     System.out.println("Not a valid option");
@@ -185,8 +198,14 @@ public class Main {
             while(direction == 0) {
                 direction = input.nextInt();
                 if (direction == 1) {
+                    if(roomlist[position].getDoor1()!= null) {
+                        System.out.println((((Doors) roomlist[position].getDoor1()).getTypeOfDoor()) + " Door");
+                    }
                     position += 1;
                 }else if (direction == 2) {
+                    if(roomlist[position].getDoor2()!= null) {
+                        System.out.println((((Doors) roomlist[position].getDoor2()).getTypeOfDoor()) + " Door");
+                    }
                     position -= 7;
                 } else {
                     System.out.println("Not a valid option");
@@ -195,11 +214,17 @@ public class Main {
             }
         }else if(position == 48){
             System.out.println("Choose where to move \n 1. left\n 2. Up");
-            while(direction == 0) {
+            while(direction == 0){
                 direction = input.nextInt();
                 if (direction == 1) {
+                    if(roomlist[position].getDoor1()!= null) {
+                        System.out.println((((Doors) roomlist[position].getDoor1()).getTypeOfDoor()) + " Door");
+                    }
                     position -= 1;
-                } else if (direction == 2) {
+                } else if (direction == 2){
+                    if(roomlist[position].getDoor2()!= null) {
+                        System.out.println((((Doors) roomlist[position].getDoor2()).getTypeOfDoor()) + " Door");
+                    }
                     position -= 7;
                 } else {
                     System.out.println("Not a valid option");
@@ -211,10 +236,19 @@ public class Main {
             while(direction == 0) {
                 direction = input.nextInt();
                 if (direction == 1) {
+                    if(roomlist[position].getDoor1()!= null) {
+                        System.out.println((((Doors) roomlist[position].getDoor1()).getTypeOfDoor()) + " Door");
+                    }
                     position += 1;
                 }else if (direction == 2) {
+                    if(roomlist[position].getDoor2()!= null) {
+                        System.out.println((((Doors) roomlist[position].getDoor2()).getTypeOfDoor()) + " Door");
+                    }
                     position -= 7;
                 }else if (direction == 3){
+                    if(roomlist[position].getDoor3()!= null) {
+                        System.out.println((((Doors) roomlist[position].getDoor3()).getTypeOfDoor()) + " Door");
+                    }
                     position+=7;
                 }else{
                     System.out.println("Not a valid option");
@@ -226,10 +260,19 @@ public class Main {
             while(direction == 0) {
                 direction = input.nextInt();
                 if (direction == 1) {
+                    if(roomlist[position].getDoor1()!= null) {
+                        System.out.println((((Doors) roomlist[position].getDoor1()).getTypeOfDoor()) + " Door");
+                    }
                     position += 1;
                 } else if (direction == 2) {
+                    if(roomlist[position].getDoor2()!= null) {
+                        System.out.println((((Doors) roomlist[position].getDoor2()).getTypeOfDoor()) + " Door");
+                    }
                     position -= 1;
                 }else if(direction == 3){
+                    if(roomlist[position].getDoor3()!= null) {
+                        System.out.println((((Doors) roomlist[position].getDoor3()).getTypeOfDoor()) + " Door");
+                    }
                     position +=7;
                 }else {
                     System.out.println("Not a valid option");
@@ -241,10 +284,19 @@ public class Main {
             while(direction == 0) {
                 direction = input.nextInt();
                 if (direction == 1) {
+                    if(roomlist[position].getDoor1()!= null) {
+                        System.out.println((((Doors) roomlist[position].getDoor1()).getTypeOfDoor()) + " Door");
+                    }
                     position += 1;
                 } else if (direction == 2) {
+                    if(roomlist[position].getDoor2()!= null) {
+                        System.out.println((((Doors) roomlist[position].getDoor2()).getTypeOfDoor()) + " Door");
+                    }
                     position -= 1;
                 }else if(direction == 3){
+                    if(roomlist[position].getDoor3()!= null) {
+                        System.out.println((((Doors) roomlist[position].getDoor3()).getTypeOfDoor()) + " Door");
+                    }
                     position -=7;
                 }else {
                     System.out.println("Not a valid option");
@@ -256,10 +308,19 @@ public class Main {
             while(direction == 0) {
                 direction = input.nextInt();
                 if (direction == 1) {
+                    if(roomlist[position].getDoor1()!= null) {
+                        System.out.println((((Doors) roomlist[position].getDoor1()).getTypeOfDoor()) + " Door");
+                    }
                     position -= 1;
                 } else if (direction == 2) {
+                    if(roomlist[position].getDoor2()!= null) {
+                        System.out.println((((Doors) roomlist[position].getDoor2()).getTypeOfDoor()) + " Door");
+                    }
                     position -= 7;
                 }else if(direction == 3){
+                    if(roomlist[position].getDoor3()!= null) {
+                        System.out.println((((Doors) roomlist[position].getDoor3()).getTypeOfDoor()) + " Door");
+                    }
                     position +=7;
                 }else {
                     System.out.println("Not a valid option");
@@ -271,12 +332,24 @@ public class Main {
             while(direction == 0) {
                 direction = input.nextInt();
                 if (direction == 1) {
+                    if(roomlist[position].getDoor1()!= null) {
+                        System.out.println((((Doors) roomlist[position].getDoor1()).getTypeOfDoor()) + " Door");
+                    }
                     position += 1;
                 } else if (direction == 2) {
+                    if(roomlist[position].getDoor2()!= null) {
+                        System.out.println((((Doors) roomlist[position].getDoor2()).getTypeOfDoor()) + " Door");
+                    }
                     position -= 1;
                 }else if(direction == 3){
+                    if(roomlist[position].getDoor3()!= null) {
+                        System.out.println((((Doors) roomlist[position].getDoor3()).getTypeOfDoor()) + " Door");
+                    }
                     position -=7;
                 }else if(direction == 4){
+                    if(roomlist[position].getDoor4()!= null) {
+                        System.out.println((((Doors) roomlist[position].getDoor4()).getTypeOfDoor()) + " Door");
+                    }
                     position+=7;
                 }else {
                     System.out.println("Not a valid option");
@@ -296,15 +369,39 @@ public class Main {
         }
         for(int p = 0; p < 49; p++){
             Rooms room1;
-            if (p == monsterroom) {
-                room1 = new Rooms(null, null, null, null, null, monster);
-            }else if (p == chestroom){
-                room1 = new Rooms(null, null, null, null, chest, null);
+            if(p == 0 || p== 6 || p == 42 ||p == 48){
+                int choice = rand.nextInt(2);
+                if(choice == 0){
+                    room1 = new Rooms(createDoor(), null, null, null, null, null);
+                }else{
+                    room1 = new Rooms(null, createDoor(), null, null, null, null);
+                }
+
+            }else if(p < 48 && p > 6 && p % 7 == 6 || p > 42 && p < 48 || p > 0 && p < 6 || p > 0 && p < 42 && p%7 == 0){
+                int choice = rand.nextInt(3);
+                if(choice == 0){
+                    room1 = new Rooms(createDoor(), createDoor(), null, null, null, null);
+                }else if(choice == 1){
+                    room1 = new Rooms(null, createDoor(), createDoor(), null, null, null);
+                }else{
+                    room1 = new Rooms(createDoor(), null, createDoor(), null, null, null);
+                }
             }else{
-                room1 = new Rooms(null, null, null, null, null, null);
+                int choice = rand.nextInt(4);
+                if(choice == 0){
+                    room1 = new Rooms(createDoor(), createDoor(), createDoor(), null, null, null);
+                }else if(choice == 1){
+                    room1 = new Rooms(null, createDoor(), createDoor(), createDoor(), null, null);
+                }else if (choice ==2){
+                    room1 = new Rooms(createDoor(), null, createDoor(), createDoor(), null, null);
+                }else{
+                    room1 = new Rooms(createDoor(), createDoor(), null, createDoor(), null, null);
+                }
             }
             roomlist[p] = room1;
         }
+        roomlist[monsterroom].setMonster(monster);
+        roomlist[chestroom].setTreasure(chest);
         return roomlist;
     }
 
@@ -333,5 +430,13 @@ public class Main {
             list[position].setTreasure(null);
         }
     }
-}   
+    Doors createDoor(){
+        String[] doortypes = new String[]{"Wind", "fire", "ocean", "dirt"};
+        Random rand = new Random();
+        int number = rand.nextInt(4);
+        Doors thisdoor = new Doors(doortypes[number]);
+        return thisdoor;
+    }
+
+}
 
