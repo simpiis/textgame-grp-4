@@ -311,15 +311,15 @@ public class Main {
             }
         }
         if(position == 0){
-            System.out.println("Choose where to move \n1. Right\n2. Down");
+            System.out.println("Choose where to move \n2. Right\n3. Down");
             while(direction == 0) {
                 direction = input.nextInt();
-                if (direction == 1) {
+                if (direction == 2) {
                     if(roomlist[position].getDoor1()!= null){
                         System.out.println((((Doors) roomlist[position].getDoor1()).getTypeOfDoor()) + " Door");
                     }
                     position += 1;
-                } else if (direction == 2){
+                } else if (direction == 3){
                     if(roomlist[position].getDoor2()!= null) {
                         System.out.println((((Doors) roomlist[position].getDoor2()).getTypeOfDoor()) + " Door");
                     }
@@ -330,7 +330,7 @@ public class Main {
                 }
             }
         }else if(position == 6){
-            System.out.println("Choose where to move \n1. Left\n2. Down");
+            System.out.println("Choose where to move \n1. Left\n3. Down");
             while(direction == 0) {
                 direction = input.nextInt();
                 if (direction == 1) {
@@ -338,7 +338,7 @@ public class Main {
                         System.out.println((((Doors) roomlist[position].getDoor1()).getTypeOfDoor()) + " Door");
                     }
                     position -= 1;
-                } else if (direction == 2) {
+                } else if (direction == 3) {
                     if(roomlist[position].getDoor2()!= null) {
                         System.out.println((((Doors) roomlist[position].getDoor2()).getTypeOfDoor()) + " Door");
                     }
@@ -349,15 +349,15 @@ public class Main {
                 }
             }
         }else if(position == 42){
-            System.out.println("Choose where to move \n1. Right\n2. Up");
+            System.out.println("Choose where to move \n2. Right\n4. Up");
             while(direction == 0) {
                 direction = input.nextInt();
-                if (direction == 1) {
+                if (direction == 2) {
                     if(roomlist[position].getDoor1()!= null) {
                         System.out.println((((Doors) roomlist[position].getDoor1()).getTypeOfDoor()) + " Door");
                     }
                     position += 1;
-                }else if (direction == 2) {
+                }else if (direction == 4) {
                     if(roomlist[position].getDoor2()!= null) {
                         System.out.println((((Doors) roomlist[position].getDoor2()).getTypeOfDoor()) + " Door");
                     }
@@ -368,7 +368,7 @@ public class Main {
                 }
             }
         }else if(position == 48){
-            System.out.println("Choose where to move \n1. Left\n2. Up");
+            System.out.println("Choose where to move \n1. Left\n4. Up");
             while(direction == 0) {
                 direction = input.nextInt();
                 if (direction == 1) {
@@ -376,7 +376,7 @@ public class Main {
                         System.out.println((((Doors) roomlist[position].getDoor1()).getTypeOfDoor()) + " Door");
                     }
                     position -= 1;
-                } else if (direction == 2){
+                } else if (direction == 4){
                     if(roomlist[position].getDoor2()!= null) {
                         System.out.println((((Doors) roomlist[position].getDoor2()).getTypeOfDoor()) + " Door");
                     }
@@ -387,15 +387,15 @@ public class Main {
                 }
             }
         }else if(position > 0 && position < 42 && position%7 == 0){
-            System.out.println("Choose where to move \n1. Right\n2. Up\n3. Down");
+            System.out.println("Choose where to move \n2. Right\n3. Down\n4. Up");
             while(direction == 0) {
                 direction = input.nextInt();
-                if (direction == 1) {
+                if (direction == 2) {
                     if(roomlist[position].getDoor1()!= null) {
                         System.out.println((((Doors) roomlist[position].getDoor1()).getTypeOfDoor()) + " Door");
                     }
                     position += 1;
-                }else if (direction == 2) {
+                }else if (direction == 4) {
                     if(roomlist[position].getDoor2()!= null) {
                         System.out.println((((Doors) roomlist[position].getDoor2()).getTypeOfDoor()) + " Door");
                     }
@@ -411,15 +411,15 @@ public class Main {
                 }
             }
         }else if(position > 0 && position < 6 ){
-            System.out.println("Choose where to move \n1. Right\n2. Left\n3. Down");
+            System.out.println("Choose where to move \n1. Left\n2. Right\n3. Down");
             while(direction == 0) {
                 direction = input.nextInt();
-                if (direction == 1) {
+                if (direction == 2) {
                     if(roomlist[position].getDoor1()!= null) {
                         System.out.println((((Doors) roomlist[position].getDoor1()).getTypeOfDoor()) + " Door");
                     }
                     position += 1;
-                } else if (direction == 2) {
+                } else if (direction == 1) {
                     if(roomlist[position].getDoor2()!= null) {
                         System.out.println((((Doors) roomlist[position].getDoor2()).getTypeOfDoor()) + " Door");
                     }
@@ -435,20 +435,20 @@ public class Main {
                 }
             }
         }else if(position > 42 && position < 48){
-            System.out.println("Choose where to move \n1. Right\n2. Left\n3. Up");
+            System.out.println("Choose where to move \n1. Left\n2. Right\n4. Up");
             while(direction == 0) {
                 direction = input.nextInt();
-                if (direction == 1) {
+                if (direction == 2) {
                     if(roomlist[position].getDoor1()!= null) {
                         System.out.println((((Doors) roomlist[position].getDoor1()).getTypeOfDoor()) + " Door");
                     }
                     position += 1;
-                } else if (direction == 2) {
+                } else if (direction == 1) {
                     if(roomlist[position].getDoor2()!= null) {
                         System.out.println((((Doors) roomlist[position].getDoor2()).getTypeOfDoor()) + " Door");
                     }
                     position -= 1;
-                }else if(direction == 3){
+                }else if(direction == 4){
                     if(roomlist[position].getDoor3()!= null) {
                         System.out.println((((Doors) roomlist[position].getDoor3()).getTypeOfDoor()) + " Door");
                     }
@@ -459,7 +459,7 @@ public class Main {
                 }
             }
         }else if(position < 48 && position > 6 && position % 7 == 6){
-            System.out.println("Choose where to move \n1. Left\n2. Up\n3. Down");
+            System.out.println("Choose where to move \n1. Left\n3. Down\n4. Up");
             while(direction == 0) {
                 direction = input.nextInt();
                 if (direction == 1) {
@@ -467,7 +467,7 @@ public class Main {
                         System.out.println((((Doors) roomlist[position].getDoor1()).getTypeOfDoor()) + " Door");
                     }
                     position -= 1;
-                } else if (direction == 2) {
+                } else if (direction == 4) {
                     if(roomlist[position].getDoor2()!= null) {
                         System.out.println((((Doors) roomlist[position].getDoor2()).getTypeOfDoor()) + " Door");
                     }
@@ -483,25 +483,25 @@ public class Main {
                 }
             }
         }else{
-            System.out.println("Choose where to move \n1. Right\n2. Left\n3. Up\n4. Down");
+            System.out.println("Choose where to move \n1. Left\n2. Right\n3. Down\n4. Up");
             while(direction == 0) {
                 direction = input.nextInt();
-                if (direction == 1) {
+                if (direction == 2) {
                     if(roomlist[position].getDoor1()!= null) {
                         System.out.println((((Doors) roomlist[position].getDoor1()).getTypeOfDoor()) + " Door");
                     }
                     position += 1;
-                } else if (direction == 2) {
+                } else if (direction == 1) {
                     if(roomlist[position].getDoor2()!= null) {
                         System.out.println((((Doors) roomlist[position].getDoor2()).getTypeOfDoor()) + " Door");
                     }
                     position -= 1;
-                }else if(direction == 3){
+                }else if(direction == 4){
                     if(roomlist[position].getDoor3()!= null) {
                         System.out.println((((Doors) roomlist[position].getDoor3()).getTypeOfDoor()) + " Door");
                     }
                     position -=7;
-                }else if(direction == 4){
+                }else if(direction == 3){
                     if(roomlist[position].getDoor4()!= null) {
                         System.out.println((((Doors) roomlist[position].getDoor4()).getTypeOfDoor()) + " Door");
                     }
@@ -698,7 +698,7 @@ public class Main {
         return position;
     }
     Doors createDoor(){
-        String[] doortypes = new String[]{"Wind", "fire", "ocean", "dirt"};
+        String[] doortypes = new String[]{"Wind", "Fire", "Ocean", "Dirt"};
         Random rand = new Random();
         int number = rand.nextInt(4);
         Doors thisdoor = new Doors(doortypes[number]);
