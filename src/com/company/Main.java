@@ -642,7 +642,7 @@ public class Main {
             }
             System.out.println("You moved to room: " + position);
         }else if (position == 1){
-            System.out.print( "1. 1 left\n 2. 1 right\n3. 2 left\n");
+            System.out.print( "1. 1 left\n2. 1 right\n3. 2 right\n");
             System.out.print("> ");
             int choice = input.nextInt();
             switch (choice){
@@ -660,7 +660,7 @@ public class Main {
             }
             System.out.println("You moved to room: " + position);
         } else if (position == 47){
-            System.out.print( "1. 1 right\n2. 1 left \n3. left\n");
+            System.out.print( "1. 1 right\n2. 1 left \n3. 2 left\n");
             System.out.print("> ");
             int choice = input.nextInt();
             switch (choice){
