@@ -48,6 +48,7 @@ public class Main {
                 hero.setHp(110);
                 hero.setDamage(10);
                 hero.setName("Rogue");
+                hero.setRogueMana(50);
                 hero.printHero();
                 System.out.println("*************************");
 
@@ -110,23 +111,24 @@ public class Main {
                 while (monster.getHp() > 0 && hero.getHp() > 0) {
                     System.out.println("Which attack would you like to use?");
                     System.out.println("1) Melee");
+                    System.out.println("2) Inventory");
                     if (hero.getName().equals("Rogue")){
-                        System.out.println("2) Special ability ");
+                        if (hero.getRogueMana() >= 25){
+                            System.out.println("3) Special ability ");
+                        }
                     }
                     if (hero.getName().equals("Warrior") && count < 3){
-                        System.out.println("2) Special ability (You can only use this ability 3 times, use it wisely");
+                        System.out.println("3) Special ability (You can only use this ability 1 for 1 Monster");
                     }
-                    System.out.println("3) Inventory");
-                    System.out.println(">");
+                    System.out.print(">");
                     int attackChoice = input.nextInt();
-                    if (attackChoice == 3){
+                    if (attackChoice == 2){
                         System.out.println("--- Inventory ---");
                         if (inventory.size() == 0){
                             System.out.println("No items in inventory");
                         }else {
                             for (int i = 0; i < inventory.size(); i++) {
                                 System.out.println((i+1)+") " + inventory.get(i).toString());
-
                             }
                             System.out.println("Enter the number corresponding to the item you want to use");
                             inventorySelection = input.nextInt();
@@ -135,8 +137,8 @@ public class Main {
                                 hero.setHp(hero.getHp()+2);
                             }
                             else if (inventory.get(inventorySelection-1).equals("Mana potion")){
-                                if (hero.getName().equals("Mage")){
-                                    //hero.setMana(hero.getMana()+2);
+                                if (hero.getName().equals("Rogue")){
+                                    hero.setRogueMana(hero.getRogueMana()+2);
                                 }
                             }
                             inventory.remove(inventorySelection-1);
@@ -190,10 +192,12 @@ public class Main {
                             System.exit(0);
                             break;
                         }
-                    } else if (attackChoice == 2) {
+                    } else if (attackChoice == 3) {
                         if (hero.getName().equals("Rogue")){
-                            System.out.println("The bomb does 50 damage!");
+                            int mana = hero.getRogueMana() - 25;
+                            hero.setRogueMana(mana);
                             int rougeSpecial = 50;
+                            System.out.println("The bomb does " + rougeSpecial +" damage!");
                             monster.setHp(monster.getHp()-rougeSpecial);
                             if (monster.getHp() > 0) {
                                 System.out.println("The " + monster.getName() + " has " + monster.getHp() + " health left");
@@ -239,26 +243,12 @@ public class Main {
                             }
                         } else if (hero.getName().equals("Warrior")){
                             count += 1;
-                            System.out.println("A Healing cure that heals you with 50hp (200hp is max)");
+                            System.out.println("A Healing cure that heals you with 50hp");
                             int warriorSpecial = 50;
                             if (hero.getHp() <= 150){
                                 hero.setHp(hero.getHp() + warriorSpecial);
                             } else {
                                 hero.setHp(200);
-                            }
-                            System.out.println("You have now " + hero.getHp() + "hp");
-
-                            System.out.println("The " + monster.getName() + " has " + monster.getHp() + " health left");
-
-                            System.out.println("The " + monster.getName() + " attacks for " + monster.getDamage());
-                            hero.setHp(hero.getHp()-monster.getDamage());
-                            if (hero.getHp() > monster.getDamage()) {
-                                System.out.println("You have " + hero.getHp() + " health left \n");
-                            }
-                            if (hero.getHp() <= 0) {
-                                System.out.println("The " + monster.getName() + " killed you. GAME OVER!");
-                                System.exit(0);
-                                break;
                             }
                         }
                     }
@@ -291,21 +281,23 @@ public class Main {
             }
         }
     }
-
-
     int move(int position, Heroes hero, Rooms[] roomlist){
         printMap(position);
         int direction = 0;
+        int counter = 3;
         if (hero.getName().equals("Mage")){
-            int counter = 0;
-            for (int i = 3; i>counter; counter++){
+            while (counter > hero.getMageCounter()){
                 System.out.println("Do you want to use your special ability?");
-                System.out.println("1.Yes \n2.No");
+                System.out.println("1. Yes \n2. No");
                 int choice = input.nextInt();
                 if (choice == 1) {
                     position = magespecial(position);
                     printMap(position);
+                    int mage = hero.getMageCounter();
+                    mage += 1;
+                    hero.setMageCounter(mage);
                 } else {
+                    printMap(position);
                     break;
                 }
             }
