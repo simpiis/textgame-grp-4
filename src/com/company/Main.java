@@ -117,7 +117,7 @@ public class Main {
                             System.out.println("3) Special ability ");
                         }
                     }
-                    if (hero.getName().equals("Warrior") && count < 3){
+                    if (hero.getName().equals("Warrior") && count < 1){
                         System.out.println("3) Special ability (You can only use this ability 1 for 1 Monster");
                     }
                     System.out.print(">");
