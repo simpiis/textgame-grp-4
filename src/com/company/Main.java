@@ -1,12 +1,17 @@
 package com.company;
 
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.Writer;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.security.SecureRandom;
 import java.util.*;
 
 import java.lang.*;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         Main runApps = new Main();
         int mainMenu = 0;
         Scanner input = new Scanner(System.in);
@@ -14,18 +19,42 @@ public class Main {
         Monster minotaur = new Monster(50,10, "Minotaur");
         Monster typhone = new Monster(60,30, "Typhone");
         Monster wampa = new Monster(100,20, "Wampa");
-        Treasure chest1 = new Treasure(runApps.createItem(),runApps.createItem(), runApps.createKey(), 5 );
+        Score score = new Score();
+        Treasure chest1 = new Treasure(runApps.createItem(),runApps.createItem(), runApps.createKey());
         int choice;
         int position = 0;
         int round = 1;
+        int highscore = 0;
         Rooms[] rooms = runApps.createRooms(minotaur, typhone, wampa, chest1);
         ArrayList<Item> playerInventory = new ArrayList<>();
+        boolean cont = true;
 
-        System.out.println("--- Main Menu ---");
-        System.out.println("1. Start new game\n2. Load game(not implemented)\n3. Quit");
-        mainMenu = input.nextInt();
-        if(mainMenu==3){System.exit(0);}
-        else if(mainMenu==2){ }
+        Path filePath = Paths.get("HighScore");
+        Scanner scanner = new Scanner(filePath);
+        while (scanner.hasNext()) {
+            if (scanner.hasNextInt()) {
+                highscore = scanner.nextInt();
+            } else {
+                scanner.next();
+            }
+        }
+
+        while (cont) {
+            System.out.println("--- Main Menu ---");
+            System.out.println("1. Start new game\n2. Load game(not implemented)\n3. Quit\n4. Scoreboard");
+            mainMenu = input.nextInt();
+            if(mainMenu==3){
+                System.exit(0);}
+            else if(mainMenu==2){
+            }
+            else if (mainMenu == 4) {
+                System.out.println("Current High Score is: " + highscore);
+                System.out.println("Press '1' to go back to Main Menu");
+                input.nextInt();
+            } else {
+                cont = false;
+            }
+        }
 
         do {
             System.out.println("*************************");
@@ -73,28 +102,42 @@ public class Main {
 
         while(round <= 49){
             System.out.println("Round: " + round);
+            System.out.println("Score: " + score.getScore());
             if(rooms[position].getMonster()!= null){
                 if ( rooms[position].getMonster() == minotaur) {
-                    hero.setHp(combatMethod(hero, minotaur, playerInventory));
+                    hero.setHp(combatMethod(hero, minotaur, playerInventory, score));
                     rooms[position].setMonster(null);
                 }
                 else if (rooms[position].getMonster() == typhone) {
-                    hero.setHp(combatMethod(hero, typhone, playerInventory));
+                    hero.setHp(combatMethod(hero, typhone, playerInventory, score));
                     rooms[position].setMonster(null);
                 } else {
-                    hero.setHp(combatMethod(hero, wampa, playerInventory));
+                    hero.setHp(combatMethod(hero, wampa, playerInventory, score));
                     rooms[position].setMonster(null);
                 }
 
             }else if(rooms[position].getTreasure()!= null){
-                playerInventory=runApps.openTreasure(rooms,position,rooms[position].getTreasure(), playerInventory);
+                playerInventory=runApps.openTreasure(rooms,position,rooms[position].getTreasure(), playerInventory, score);
             }else {
                 position = runApps.move(position, hero,rooms);
             }
             round++;
         }
+        if (round > 5) {
+            if (score.getScore() > highscore) {
+                Writer fileWriter = new FileWriter("HighScore", false);
+                int finalScore = score.getScore();
+                fileWriter.write(finalScore + "");
+                fileWriter.close();
+
+                System.out.println("Your final score is: " + finalScore);
+                System.out.println("You have now the High Score!");
+            } else {
+                System.out.println("Your final score is: " + score.getScore() + "\nWell Played!");
+            }
+        }
     }
-    public static int combatMethod(Heroes hero, Monster monster, ArrayList inventory) {
+    public static int combatMethod(Heroes hero, Monster monster, ArrayList inventory, Score score) {
         int inventorySelection = 0;
         int count = 0;
         int submenu = 0;
@@ -132,13 +175,14 @@ public class Main {
                             }
                             System.out.println("Enter the number corresponding to the item you want to use");
                             inventorySelection = input.nextInt();
-                            System.out.println("You consumed " + inventory.get(inventorySelection-1) + " and gained (PLACEHOLDER)");
                             if (inventory.get(inventorySelection-1).equals("Health potion")){
-                                hero.setHp(hero.getHp()+2);
+                                System.out.println("You consumed " + inventory.get(inventorySelection-1) + " and gained 10 hp");
+                                hero.setHp(hero.getHp()+10);
                             }
                             else if (inventory.get(inventorySelection-1).equals("Mana potion")){
                                 if (hero.getName().equals("Rogue")){
-                                    hero.setRogueMana(hero.getRogueMana()+2);
+                                    System.out.println("You consumed " + inventory.get(inventorySelection-1) + " and gained 25 mana");
+                                    hero.setRogueMana(hero.getRogueMana()+25);
                                 }
                             }
                             inventory.remove(inventorySelection-1);
@@ -152,6 +196,7 @@ public class Main {
                             System.out.println("The " + monster.getName() + " has " + monster.getHp() + " health left");
                         }
                         if(monster.getHp() <= 0){
+                            score.setScore(score.getScore() + 5);
                             System.out.println(monster.getName() + " has died");
                             System.out.println("You have " + hero.getHp() + " health left.");
                             System.out.println("Do you want to use an item before leaving? \n1. Yes\n2. No");
@@ -165,13 +210,14 @@ public class Main {
                                     }
                                     System.out.println("Enter the number corresponding to the item you want to use");
                                     inventorySelection = input.nextInt();
-                                    System.out.println("You consumed " + inventory.get(inventorySelection-1) + " and gained (PLACEHOLDER)");
+                                    System.out.println("You consumed " + inventory.get(inventorySelection-1) + " and gained 10hp");
                                     if (inventory.get(inventorySelection-1).equals("Health potion")){
-                                        hero.setHp(hero.getHp()+2);
+                                        hero.setHp(hero.getHp()+10);
                                     }
                                     else if (inventory.get(inventorySelection-1).equals("Mana potion")){
-                                        if (hero.getName().equals("Mage")){
-                                            //hero.setMana(hero.getMana()+2);
+                                        if (hero.getName().equals("Rogue")){
+                                            System.out.println("You consumed " + inventory.get(inventorySelection-1) + " and gained 25 mana");
+                                            hero.setRogueMana(hero.getRogueMana()+25);
                                         }
                                     }
                                     inventory.remove(inventorySelection-1);
@@ -203,6 +249,7 @@ public class Main {
                                 System.out.println("The " + monster.getName() + " has " + monster.getHp() + " health left");
                             }
                             if(monster.getHp() <= 0){
+                                score.setScore(score.getScore() + 5);
                                 System.out.println(monster.getName() + " has died");
                                 System.out.println("Do you want to use an item before leaving? \n1. Yes\n2. No");
                                 submenu = input.nextInt();
@@ -215,13 +262,14 @@ public class Main {
                                         }
                                         System.out.println("Enter the number corresponding to the item you want to use");
                                         inventorySelection = input.nextInt();
-                                        System.out.println("You consumed " + inventory.get(inventorySelection-1) + " and gained (PLACEHOLDER)");
+                                        System.out.println("You consumed " + inventory.get(inventorySelection-1) + " and gained 10hp");
                                         if (inventory.get(inventorySelection-1).equals("Health potion")){
-                                            hero.setHp(hero.getHp()+2);
+                                            hero.setHp(hero.getHp()+10);
                                         }
                                         else if (inventory.get(inventorySelection-1).equals("Mana potion")){
-                                            if (hero.getName().equals("Mage")){
-                                                //hero.setMana(hero.getMana()+2);
+                                            if (hero.getName().equals("Rogue")){
+                                                System.out.println("You consumed " + inventory.get(inventorySelection-1) + " and gained 25 mana");
+                                                hero.setRogueMana(hero.getRogueMana()+25);
                                             }
                                         }
                                         inventory.remove(inventorySelection-1);
@@ -576,7 +624,7 @@ public class Main {
             return key;
     }
 
-    ArrayList openTreasure(Rooms[] list , int position,Treasure chest, ArrayList inventory){
+    ArrayList openTreasure(Rooms[] list , int position,Treasure chest, ArrayList inventory, Score score){
         System.out.println("You found a chest!");
         System.out.println("Press 1 to open\nPress 2 to ignore chest and permanently remove it. ");
         int choice = input.nextInt();
@@ -584,10 +632,12 @@ public class Main {
             System.out.println("First item is a " + (((Item)chest.getItem1()).getName()));
             System.out.println("Second item is a " + (((Item)chest.getItem2()).getName()));
             System.out.println("Third item is a " + (((Item)chest.getItem3()).getName()));
-            System.out.println("You also found " + (chest.getCoins() + " gold"));
             inventory.add(chest.getItem1().getName());
             inventory.add(chest.getItem2().getName());
             inventory.add(chest.getItem3().getName());
+            int sum = chest.coinsGenerator();
+            sum += score.getScore();
+            score.setScore(sum);
             list[position].setTreasure(null);
         }else{
             list[position].setTreasure(null);

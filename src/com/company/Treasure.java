@@ -1,10 +1,11 @@
 package com.company;
 
+import java.util.Random;
+
 public class Treasure {
     Item item1;
     Item item2;
     Item item3;
-    int coins;
 
 
     public Item getItem1() {
@@ -15,14 +16,19 @@ public class Treasure {
 
     public Item getItem3() { return item3; }
 
-    public int getCoins() {
-        return coins;
-    }
-
-    public Treasure(Item item1, Item item2, Item item3, int coins){
+    public Treasure(Item item1, Item item2, Item item3){
         this.item1 = item1;
         this.item2 = item2;
         this.item3 = item3;
-        this.coins = coins;
     }
+    public int coinsGenerator (){
+        Random rand = new Random();
+        int coins = 0;
+        while (coins < 2){
+            coins =rand.nextInt(10);
+        }
+        System.out.println("You found also found: " + coins + " coins");
+        return coins;
+    }
+
 }
