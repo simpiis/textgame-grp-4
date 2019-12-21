@@ -123,7 +123,7 @@ public class Main {
             }
             round++;
         }
-        if (round > 5) {
+        if (round > 49) {
             if (score.getScore() > highscore) {
                 Writer fileWriter = new FileWriter("HighScore", false);
                 int finalScore = score.getScore();
