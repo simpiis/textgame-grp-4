@@ -370,8 +370,8 @@ public class Main {
             while (counter > hero.getMageCounter()){
                 System.out.println("Do you want to use your special ability?");
                 System.out.println("1. Yes \n2. No");
-                int choice = input.nextInt();
-                if (choice == 1) {
+                String choice = input.nextLine();
+                if (choice.equals("1")) {
                     position = magespecial(position);
                     printMap(position);
                     int mage = hero.getMageCounter();
@@ -597,7 +597,7 @@ public class Main {
             monsterroom2 = rand.nextInt(49);
             monsterroom3 = rand.nextInt(49);
         }
-        int chestroom = rand.nextInt(49);
+        int chestroom = rand.nextInt(2);
         while(monsterroom1 == chestroom) {
             chestroom = rand.nextInt(49);
         }
@@ -660,8 +660,8 @@ public class Main {
     ArrayList openTreasure(Rooms[] list , int position,Treasure chest, ArrayList inventory, Score score){
         System.out.println("You found a chest!");
         System.out.println("Press 1 to open\nPress 2 to ignore chest and permanently remove it. ");
-        int choice = input.nextInt();
-        if (choice == 1) {
+        String choice = input.nextLine();
+        if (choice.equals("1")) {
             System.out.println("First item is a " + (((Item)chest.getItem1()).getName()));
             System.out.println("Second item is a " + (((Item)chest.getItem2()).getName()));
             System.out.println("Third item is a " + (((Item)chest.getItem3()).getName()));
@@ -682,93 +682,73 @@ public class Main {
         if (position >= 2 && position <= 46) {
             System.out.print( "1. 1 left\n2. 2 left\n3. 1 right \n4. 2 right\n");
             System.out.print("> ");
-            int choice = input.nextInt();
-            switch (choice){
-                case 1:
-                    position -= 1;
-                    break;
-                case 2:
-                    position -= 2;
-                    break;
-                case 3:
-                    position += 1;
-                    break;
-                case 4:
-                    position += 2;
-                    break;
-                default:
-                    break;
+            String choice = input.nextLine();
+            if (choice.equals("1")){
+                position -= 1;
+            } else if (choice.equals("2")) {
+                position -= 2;
+            } else if (choice.equals("3")) {
+                position += 1;
+            } else if (choice.equals("4")) {
+                position += 2;
+            } else {
+                System.out.println("Invalid number");
             }
             System.out.println("You moved to room: " + position);
 
         } else if (position == 0){
             System.out.print( "1. 1 right \n2. 2 right\n");
             System.out.print("> ");
-            int choice = input.nextInt();
-            switch (choice){
-                case 1:
-                    position += 1;
-                    break;
-                case 2:
-                    position += 2;
-                    break;
-                default:
-                    break;
+            String choice = input.nextLine();
+            if (choice.equals("1")){
+                position += 1;
+            } else if (choice.equals("2")) {
+                position += 2;
+            } else {
+                System.out.println("Invalid number");
             }
             System.out.println("You moved to room: " + position);
         }else if (position == 1){
             System.out.print( "1. 1 left\n2. 1 right\n3. 2 right\n");
             System.out.print("> ");
-            int choice = input.nextInt();
-            switch (choice){
-                case 1:
-                    position -= 1;
-                    break;
-                case 2:
-                    position += 1;
-                    break;
-                case 3:
-                    position += 2;
-                    break;
-                default:
-                    break;
+            String choice = input.nextLine();
+            if (choice.equals("1")){
+                position -= 1;
+            } else if (choice.equals("2")) {
+                position += 1;
+            } else if (choice.equals("3")) {
+                position += 2;
+            } else {
+                System.out.println("Invalid number");
             }
             System.out.println("You moved to room: " + position);
         } else if (position == 47){
             System.out.print( "1. 1 right\n2. 1 left \n3. 2 left\n");
             System.out.print("> ");
-            int choice = input.nextInt();
-            switch (choice){
-                case 1:
-                    position +=1;
-                    break;
-                case 2:
-                    position -= 1;
-                    break;
-                case 3:
-                    position -= 2;
-                    break;
-                default:
-                    break;
+            String choice = input.nextLine();
+            if (choice.equals("1")){
+                position += 1;
+            } else if (choice.equals("2")) {
+                position -= 1;
+            } else if (choice.equals("3")) {
+                position -= 2;
+            } else {
+                System.out.println("Invalid number");
             }
             System.out.println("You moved to room: " + position);
 
         } else if (position == 48){
             System.out.print( "1. 1 left\n2. 2 left\n");
             System.out.print("> ");
-            int choice = input.nextInt();
-            switch (choice){
-                case 1:
-                    position -=1;
-                    break;
-                case 2:
-                    position -=2;
-                    break;
-                default:
-                    break;
+            String choice = input.nextLine();
+            if (choice.equals("1")){
+                position -= 1;
+            } else if (choice.equals("2")) {
+                position -= 2;
+            } else {
+                System.out.println("Invalid number");
             }
             System.out.println("You moved to room: " + position);
-
         }
         return position;
     }
@@ -786,22 +766,22 @@ public class Main {
             System.out.println("1. Show Instructions(Don't Work)\n" + "2. Load Game(Don't Work)\n"
                     + "3. Save Game (Don't Work)\n" + "4. Show keyboard commands\n" + "5. Change keyboard commands\n"
                     + "6. Back to game\n" + "7. Quit Game");
-            int choice = input.nextInt();
-            if (choice == 1) {
-            } else if (choice == 2) {
+            String choice = input.nextLine();
+            if (choice.equals("1")) {
 
-            } else if (choice == 3) {
+            } else if (choice.equals("2")) {
 
-            } else if (choice == 4) {
+            } else if (choice.equals("3")) {
+
+            } else if (choice.equals("4")) {
                 System.out.println("Left : " + keyboard.getLeft());
                 System.out.println("Right : " + keyboard.getRight());
                 System.out.println("Down : " + keyboard.getDown());
                 System.out.println("Up : " + keyboard.getUp());
                 System.out.println("Press '1' to go back to sub menu");
-                input.nextInt();
-            } else if (choice == 5) {
-                System.out.print("Change Left from (" + keyboard.getLeft() + ") to : ");
                 input.nextLine();
+            } else if (choice.equals("5")) {
+                System.out.print("Change Left from (" + keyboard.getLeft() + ") to : ");
                 String left = input.nextLine();
                 keyboard.setLeft(left);
                 System.out.print("\nChange Right from (" + keyboard.getRight() + ") to : ");
@@ -814,13 +794,13 @@ public class Main {
                 String up = input.nextLine();
                 keyboard.setUp(up);
                 System.out.print("\nPress '1' to go back to Sub Menu ");
-                input.nextInt();
-            } else if (choice == 6) {
+                input.nextLine();
+            } else if (choice.equals("6")) {
                 break;
-            } else if (choice == 7) {
+            } else if (choice.equals("7")) {
                 System.out.println("Are you sure you want to quit?\n1. Yes\n2. No");
-                int optionChoice = input.nextInt();
-                if (optionChoice == 1){
+                String optionChoice = input.nextLine();
+                if (optionChoice.equals("1")){
                     System.out.println("Goodbye");
                     System.exit(0);
                 } else {
