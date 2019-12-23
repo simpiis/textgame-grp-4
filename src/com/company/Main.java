@@ -112,7 +112,7 @@ public class Main {
                         round-=1;
                     }
                     position = combatMethod(hero, minotaur, playerInventory, score, keyboard, position);
-                    if(positionCombat == position && typhone.getHp() <=0) {
+                    if(positionCombat == position && minotaur.getHp() <=0) {
                         rooms[position].setMonster(null);
                     }
                 }
