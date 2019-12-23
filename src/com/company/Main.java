@@ -309,6 +309,7 @@ public class Main {
                 }
                 else{
                     System.out.println("You ran away");
+
                     //move one square, seems to remove monster from map, or not enough steps to find it
                 break;}
         }
