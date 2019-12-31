@@ -51,7 +51,7 @@ public class Rooms {
     public void setTreasure(Treasure treasure) {
         this.treasure = treasure;
     }
-    public static  Rooms[] createRooms(Monster monster1, Monster monster2,Monster monster3, Treasure chest){
+    public static  Rooms[] createRooms(Monster monster1, Monster monster2,Monster monster3, Treasure chest1, Treasure chest2, Treasure chest3){
         Rooms[] roomlist = new Rooms[49];
         Random rand = new Random();
         int monsterroom1 = rand.nextInt(49);
@@ -61,9 +61,17 @@ public class Rooms {
             monsterroom2 = rand.nextInt(49);
             monsterroom3 = rand.nextInt(49);
         }
-        int chestroom = rand.nextInt(49);
-        while(monsterroom1 == chestroom) {
-            chestroom = rand.nextInt(49);
+        int chestroom1 = rand.nextInt(49);
+        int chestroom2 = rand.nextInt(49);
+        int chestroom3 = rand.nextInt(49);
+        while(monsterroom1 == chestroom1 || monsterroom2 == chestroom1 || monsterroom3 == chestroom1 ) {
+            chestroom1 = rand.nextInt(49);
+        }
+        while(monsterroom1 == chestroom2 || monsterroom2 == chestroom2 || monsterroom3 == chestroom2 || chestroom1 == chestroom2 ) {
+            chestroom2 = rand.nextInt(49);
+        }
+        while(monsterroom1 == chestroom3 || monsterroom2 == chestroom3 || monsterroom3 == chestroom3 || chestroom1 == chestroom3 || chestroom2 == chestroom3 ) {
+            chestroom3 = rand.nextInt(49);
         }
         for(int p = 0; p < 49; p++){
             Rooms room1;
@@ -101,7 +109,9 @@ public class Rooms {
         roomlist[monsterroom1].setMonster(monster1);
         roomlist[monsterroom2].setMonster(monster2);
         roomlist[monsterroom3].setMonster(monster3);
-        roomlist[chestroom].setTreasure(chest);
+        roomlist[chestroom1].setTreasure(chest1);
+        roomlist[chestroom2].setTreasure(chest2);
+        roomlist[chestroom3].setTreasure(chest3);
         return roomlist;
     }
     public static Doors createDoor(){

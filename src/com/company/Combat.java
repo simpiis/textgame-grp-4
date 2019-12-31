@@ -7,10 +7,9 @@ import java.util.Scanner;
 public class Combat {
 
     public static int combatMethod(Heroes hero, Monster monster, ArrayList inventory, Score score, Keyboard keyboard, int position) {
-        Main runApp = new Main();
         int inventorySelection = 0;
         int count = 0;
-        int submenu = 0;
+        String submenu = "0";
         SecureRandom chanceToFlee = new SecureRandom();
         int flee = 0;
         boolean cont = true;
@@ -19,13 +18,14 @@ public class Combat {
         System.out.println("You have encountered a " + monster.getName() + ", it has " + monster.getHp() + " health and " + monster.getDamage() + " damage!");
         while (cont){
             System.out.println("--- Combat Menu ---");
-            System.out.printf("%s%n%s%n%s%n%s", "1) Fight", "2) Flee ", "3) Sub Menu", "> ");
-            int combatChoice = input.nextInt();
+            System.out.printf("%s%n%s%n%s%n%s", "1) Fight", "2) Flee ", "3) Options", "> ");
+            String combatChoice = input.nextLine();
             switch (combatChoice) {
-                case 3:
+
+                case "3":
                     SubMenu.subMenu(keyboard);
                     break;
-                case 1:
+                case "1":
                     cont = false;
                     while (monster.getHp() > 0 && hero.getHp() > 0) {
                         System.out.println("Which attack would you like to use?");
@@ -40,8 +40,8 @@ public class Combat {
                             System.out.println("3) Special ability (You can only use this ability once for each Monster");
                         }
                         System.out.print(">");
-                        int attackChoice = input.nextInt();
-                        if (attackChoice == 2) {
+                        String attackChoice = input.nextLine();
+                        if (attackChoice.equals("2")) {
                             System.out.println("--- Inventory ---");
                             if (inventory.size() == 0) {
                                 System.out.println("No items in inventory");
@@ -64,7 +64,7 @@ public class Combat {
                             }
 
                         }
-                        if (attackChoice == 1) {
+                        if (attackChoice.equals("1")) {
                             monster.setHp(monster.getHp() - hero.getDamage());
                             System.out.println("\nYou deal " + hero.getDamage() + " damage to the " + monster.getName());
                             if (monster.getHp() > 0) {
@@ -75,8 +75,8 @@ public class Combat {
                                 System.out.println(monster.getName() + " has died");
                                 System.out.println("You have " + hero.getHp() + " health left.");
                                 System.out.println("Do you want to use an item before leaving? \n1. Yes\n2. No");
-                                submenu = input.nextInt();
-                                if (submenu == 1) {
+                                submenu = input.nextLine();
+                                if (submenu.equals("1")) {
                                     System.out.println("--- Inventory ---");
                                     if (inventory.size() != 0) {
                                         for (int i = 0; i < inventory.size(); i++) {
@@ -112,7 +112,7 @@ public class Combat {
                                 System.exit(0);
                                 break;
                             }
-                        } else if (attackChoice == 3) {
+                        } else if (attackChoice.equals("3")) {
                             if (hero.getName().equals("Rogue")) {
                                 int mana = hero.getRogueMana() - 25;
                                 hero.setRogueMana(mana);
@@ -127,8 +127,8 @@ public class Combat {
                                     System.out.println(monster.getName() + " has died");
 
                                     System.out.println("Do you want to use an item before leaving? \n1. Yes\n2. No");
-                                    submenu = input.nextInt();
-                                    if (submenu == 1) {
+                                    submenu = input.nextLine();
+                                    if (submenu.equals("1")) {
                                         System.out.println("--- Inventory ---");
                                         if (inventory.size() != 0) {
                                             for (int i = 0; i < inventory.size(); i++) {
@@ -175,8 +175,9 @@ public class Combat {
                             }
                         }
                     }
+                    break;
 
-                case 2:
+                case "2":
                     cont = false;
                     flee = chanceToFlee.nextInt(2);
                     if (flee == 1) {

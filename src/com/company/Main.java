@@ -13,7 +13,6 @@ import java.lang.*;
 public class Main {
     public static void main(String[] args) throws IOException {
         Doors.createDoor();
-        Main runApps = new Main();
         int mainMenu = 0;
         Scanner input = new Scanner(System.in);
         Heroes hero = new Heroes(1, 1, "");
@@ -21,13 +20,18 @@ public class Main {
         Monster typhone = new Monster(60,30, "Typhone");
         Monster wampa = new Monster(100,20, "Wampa");
         Score score = new Score();
-        Treasure chest1 = new Treasure(Item.createItem(),Item.createItem(),Keys.createKey());
+
+        Treasure chest1 = new Treasure(Item.createItem(),Item.createItem(), Keys.createKey());
+        Treasure chest2 = new Treasure(Item.createItem(),Item.createItem(), Keys.createKey());
+        Treasure chest3 = new Treasure(Item.createItem(),Item.createItem(), Keys.createKey());
         Keyboard keyboard = new Keyboard("2","1", "3", "4");
         int choice;
         int position = 0;
         int round = 1;
         int highscore = 0;
-        Rooms[] rooms = Rooms.createRooms(minotaur, typhone, wampa, chest1);
+
+        Rooms[] rooms = Rooms.createRooms(minotaur, typhone, wampa, chest1, chest2, chest3);
+
         ArrayList<Item> playerInventory = new ArrayList<>();
         boolean cont = true;
 
