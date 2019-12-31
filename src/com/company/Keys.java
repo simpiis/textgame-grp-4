@@ -7,4 +7,8 @@ public class Keys extends Item {
         super (name);
         this.uses = uses;
     }
+    public static Keys createKey(){
+        Keys key = new Keys("Rusty old key",1);
+        return key;
+    }
 }

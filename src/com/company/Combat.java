@@ -23,7 +23,7 @@ public class Combat {
             int combatChoice = input.nextInt();
             switch (combatChoice) {
                 case 3:
-                    runApp.subMenu(keyboard);
+                    SubMenu.subMenu(keyboard);
                     break;
                 case 1:
                     cont = false;
@@ -190,6 +190,7 @@ public class Combat {
                             position += 7;
                         }
                     }
+                    break;
             }
         }
         return position;
