@@ -76,35 +76,7 @@ public class Main {
             choice = input.nextInt();
 
         } while (choice != 1 && choice != 2 && choice != 3);
-
-        switch (choice) {
-            case 1:
-                System.out.println("*************************");
-                hero.setHp(110);
-                hero.setDamage(10);
-                hero.setName("Rogue");
-                hero.setRogueMana(50);
-                hero.printHero();
-                System.out.println("*************************");
-
-                break;
-            case 2:
-                System.out.println("*************************");
-                hero.setHp(90);
-                hero.setDamage(30);
-                hero.setName("Warrior");
-                hero.printHero();
-                System.out.println("*************************");
-                break;
-            case 3:
-                System.out.println("*************************");
-                hero.setHp(100);
-                hero.setDamage(20);
-                hero.setName("Mage");
-                hero.printHero();
-                System.out.println("*************************");
-                break;
-        }
+        hero.choiceHero(choice);
 
         while(round <= 49){
             System.out.println("Round: " + round);
@@ -166,6 +138,5 @@ public class Main {
             }
         }
     }
-
 }
 

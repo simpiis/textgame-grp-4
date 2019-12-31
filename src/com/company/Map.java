@@ -52,7 +52,7 @@ public class Map {
                         System.out.println((((Doors) roomlist[position].getDoor2()).getTypeOfDoor()) + " Door");
                     }
                     position += 7;
-                } else if (direction.equals(9)){
+                } else if (direction.equals("9")){
                     SubMenu.subMenu(keyboard);
                 } else {
                     System.out.println("Not a valid option");
@@ -73,7 +73,7 @@ public class Map {
                         System.out.println((((Doors) roomlist[position].getDoor2()).getTypeOfDoor()) + " Door");
                     }
                     position += 7;
-                } else if (direction.equals(9)){
+                } else if (direction.equals("9")){
                     SubMenu.subMenu(keyboard);
                 }else {
                     System.out.println("Not a valid option");
@@ -94,7 +94,7 @@ public class Map {
                         System.out.println((((Doors) roomlist[position].getDoor2()).getTypeOfDoor()) + " Door");
                     }
                     position -= 7;
-                } else if (direction.equals(9)){
+                } else if (direction.equals("9")){
                     SubMenu.subMenu(keyboard);
                 }else {
                     System.out.println("Not a valid option");
@@ -115,7 +115,7 @@ public class Map {
                         System.out.println((((Doors) roomlist[position].getDoor2()).getTypeOfDoor()) + " Door");
                     }
                     position -= 7;
-                } else if (direction.equals(9)){
+                } else if (direction.equals("9")){
                     SubMenu.subMenu(keyboard);
                 }else {
                     System.out.println("Not a valid option");
@@ -141,7 +141,7 @@ public class Map {
                         System.out.println((((Doors) roomlist[position].getDoor3()).getTypeOfDoor()) + " Door");
                     }
                     position+=7;
-                } else if (direction.equals(9)){
+                } else if (direction.equals("9")){
                     SubMenu.subMenu(keyboard);
                 } else{
                     System.out.println("Not a valid option");
@@ -167,7 +167,7 @@ public class Map {
                         System.out.println((((Doors) roomlist[position].getDoor3()).getTypeOfDoor()) + " Door");
                     }
                     position +=7;
-                } else if (direction.equals(9)){
+                } else if (direction.equals("9")){
                     SubMenu.subMenu(keyboard);
                 } else {
                     System.out.println("Not a valid option");
@@ -193,7 +193,7 @@ public class Map {
                         System.out.println((((Doors) roomlist[position].getDoor3()).getTypeOfDoor()) + " Door");
                     }
                     position -=7;
-                }else if (direction.equals(9)){
+                }else if (direction.equals("9")){
                     SubMenu.subMenu(keyboard);
                 }else {
                     System.out.println("Not a valid option");
@@ -219,7 +219,7 @@ public class Map {
                         System.out.println((((Doors) roomlist[position].getDoor3()).getTypeOfDoor()) + " Door");
                     }
                     position +=7;
-                }else if (direction.equals(9)){
+                }else if (direction.equals("9")){
                     SubMenu.subMenu(keyboard);
                 }else {
                     System.out.println("Not a valid option");
@@ -250,7 +250,7 @@ public class Map {
                         System.out.println((((Doors) roomlist[position].getDoor4()).getTypeOfDoor()) + " Door");
                     }
                     position+=7;
-                }else if (direction.equals(9)){
+                }else if (direction.equals("9")){
                     SubMenu.subMenu(keyboard);
                 }else {
                     System.out.println("Not a valid option");
