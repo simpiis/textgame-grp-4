@@ -21,12 +21,14 @@ public class Main {
         Monster wampa = new Monster(100,20, "Wampa");
         Score score = new Score();
         Treasure chest1 = new Treasure(runApps.createItem(),runApps.createItem(), runApps.createKey());
+        Treasure chest2 = new Treasure(runApps.createItem(),runApps.createItem(), runApps.createKey());
+        Treasure chest3 = new Treasure(runApps.createItem(),runApps.createItem(), runApps.createKey());
         Keyboard keyboard = new Keyboard("2","1", "3", "4");
         int choice;
         int position = 0;
         int round = 1;
         int highscore = 0;
-        Rooms[] rooms = Rooms.createRooms(minotaur, typhone, wampa, chest1);
+        Rooms[] rooms = Rooms.createRooms(minotaur, typhone, wampa, chest1, chest2, chest3);
         //runApps.createRooms(minotaur, typhone, wampa, chest1);
         ArrayList<Item> playerInventory = new ArrayList<>();
         boolean cont = true;
