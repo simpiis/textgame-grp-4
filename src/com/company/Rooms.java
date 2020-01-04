@@ -61,17 +61,17 @@ public class Rooms {
             monsterroom2 = rand.nextInt(49);
             monsterroom3 = rand.nextInt(49);
         }
-        int chestroom1 = rand.nextInt(2);
-        int chestroom2 = rand.nextInt(5);
-        int chestroom3 = rand.nextInt(5);
+        int chestroom1 = rand.nextInt(49);
+        int chestroom2 = rand.nextInt(49);
+        int chestroom3 = rand.nextInt(49);
         while(monsterroom1 == chestroom1 || monsterroom2 == chestroom1 || monsterroom3 == chestroom1 ) {
-            chestroom1 = rand.nextInt(5);
+            chestroom1 = rand.nextInt(49);
         }
         while(monsterroom1 == chestroom2 || monsterroom2 == chestroom2 || monsterroom3 == chestroom2 || chestroom1 == chestroom2 ) {
-            chestroom2 = rand.nextInt(5);
+            chestroom2 = rand.nextInt(49);
         }
         while(monsterroom1 == chestroom3 || monsterroom2 == chestroom3 || monsterroom3 == chestroom3 || chestroom1 == chestroom3 || chestroom2 == chestroom3 ) {
-            chestroom3 = rand.nextInt(5);
+            chestroom3 = rand.nextInt(49);
         }
         for(int p = 0; p < 49; p++){
             Rooms room1;
