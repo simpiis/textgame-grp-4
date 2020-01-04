@@ -20,11 +20,10 @@ public class Main {
         Monster typhone = new Monster(60,30, "Typhone");
         Monster wampa = new Monster(100,20, "Wampa");
         Score score = new Score();
-
         Treasure chest1 = new Treasure(Item.createItem(),Item.createItem(), Keys.createKey());
         Treasure chest2 = new Treasure(Item.createItem(),Item.createItem(), Keys.createKey());
         Treasure chest3 = new Treasure(Item.createItem(),Item.createItem(), Keys.createKey());
-        Keyboard keyboard = new Keyboard("2","1", "3", "4");
+        Keyboard keyboard = new Keyboard("2","1", "3", "4", "9");
         int choice;
         int position = 0;
         int round = 1;
@@ -111,14 +110,14 @@ public class Main {
         }
 
         do {
-            System.out.println("*************************");
+            System.out.println("***************************");
             System.out.println("*  Welcome to WoW Borgen  *");
-            System.out.println("*                       *");
-            System.out.println("*   Choose your hero!   *\n" +
-                    "*   1. Rogue            *\n" +
-                    "*   2. Warrior          *\n" +
-                    "*   3. Mage             *");
-            System.out.println("*************************");
+            System.out.println("*                         *");
+            System.out.println("*    Choose your hero!    *\n" +
+                    "*    1. Rogue             *\n" +
+                    "*    2. Warrior           *\n" +
+                    "*    3. Mage              *");
+            System.out.println("***************************");
             System.out.print("> " );
 
             choice = input.nextInt();

@@ -39,7 +39,7 @@ public class Map {
             }
         }
         if(position == 0){
-            System.out.println("Choose where to move \n" + keyboard.getRight() + ". Right\n" + keyboard.getDown() + ". Down\n" + "9. Options");
+            System.out.println("Choose where to move \n" + keyboard.getRight() + ". Right\n" + keyboard.getDown() + ". Down\n" + keyboard.getOption() + ". Options");
             while(direction.equals("0")) {
                 direction = input.nextLine();
                 if (direction.equals(keyboard.getRight())) {
@@ -52,7 +52,7 @@ public class Map {
                         System.out.println((((Doors) roomlist[position].getDoor2()).getTypeOfDoor()) + " Door");
                     }
                     position += 7;
-                } else if (direction.equals("9")){
+                } else if (direction.equals(keyboard.getOption())){
                     SubMenu.subMenu(keyboard);
                 } else {
                     System.out.println("Not a valid option");
@@ -60,7 +60,7 @@ public class Map {
                 }
             }
         }else if(position == 6){
-            System.out.println("Choose where to move \n" + keyboard.getLeft() + ". Left\n" + keyboard.getDown() + ". Down\n" + "9. Options");
+            System.out.println("Choose where to move \n" + keyboard.getLeft() + ". Left\n" + keyboard.getDown() + ". Down\n" + keyboard.getOption() + ". Options");
             while(direction.equals("0")) {
                 direction = input.nextLine();
                 if (direction.equals(keyboard.getLeft())) {
@@ -73,7 +73,7 @@ public class Map {
                         System.out.println((((Doors) roomlist[position].getDoor2()).getTypeOfDoor()) + " Door");
                     }
                     position += 7;
-                } else if (direction.equals("9")){
+                } else if (direction.equals(keyboard.getOption())){
                     SubMenu.subMenu(keyboard);
                 }else {
                     System.out.println("Not a valid option");
@@ -81,7 +81,7 @@ public class Map {
                 }
             }
         }else if(position == 42){
-            System.out.println("Choose where to move \n" + keyboard.getRight() + ". Right\n" + keyboard.getUp() + ". Up\n" + "9. Options");
+            System.out.println("Choose where to move \n" + keyboard.getRight() + ". Right\n" + keyboard.getUp() + ". Up\n" + keyboard.getOption() + ". Options");
             while(direction.equals("0")) {
                 direction = input.nextLine();
                 if (direction.equals(keyboard.getRight())) {
@@ -94,7 +94,7 @@ public class Map {
                         System.out.println((((Doors) roomlist[position].getDoor2()).getTypeOfDoor()) + " Door");
                     }
                     position -= 7;
-                } else if (direction.equals("9")){
+                } else if (direction.equals(keyboard.getOption())){
                     SubMenu.subMenu(keyboard);
                 }else {
                     System.out.println("Not a valid option");
@@ -102,7 +102,7 @@ public class Map {
                 }
             }
         }else if(position == 48){
-            System.out.println("Choose where to move \n" + keyboard.getLeft() + ". Left\n" + keyboard.getUp() + ". Up\n" + "9. Options");
+            System.out.println("Choose where to move \n" + keyboard.getLeft() + ". Left\n" + keyboard.getUp() + ". Up\n" + keyboard.getOption() + ". Options");
             while(direction.equals("0")) {
                 direction = input.nextLine();
                 if (direction.equals(keyboard.getLeft())) {
@@ -115,7 +115,7 @@ public class Map {
                         System.out.println((((Doors) roomlist[position].getDoor2()).getTypeOfDoor()) + " Door");
                     }
                     position -= 7;
-                } else if (direction.equals("9")){
+                } else if (direction.equals(keyboard.getOption())){
                     SubMenu.subMenu(keyboard);
                 }else {
                     System.out.println("Not a valid option");
@@ -123,7 +123,7 @@ public class Map {
                 }
             }
         }else if(position > 0 && position < 42 && position%7 == 0){
-            System.out.println("Choose where to move \n" + keyboard.getRight() + ". Right\n" + keyboard.getDown() + ". Down\n" + keyboard.getUp() + ". Up\n" + "9, Options");
+            System.out.println("Choose where to move \n" + keyboard.getRight() + ". Right\n" + keyboard.getDown() + ". Down\n" + keyboard.getUp() + ". Up\n" + keyboard.getOption() + ". Options");
             while(direction.equals("0")) {
                 direction = input.nextLine();
                 if (direction.equals(keyboard.getRight())) {
@@ -141,7 +141,7 @@ public class Map {
                         System.out.println((((Doors) roomlist[position].getDoor3()).getTypeOfDoor()) + " Door");
                     }
                     position+=7;
-                } else if (direction.equals("9")){
+                } else if (direction.equals(keyboard.getOption())){
                     SubMenu.subMenu(keyboard);
                 } else{
                     System.out.println("Not a valid option");
@@ -149,7 +149,7 @@ public class Map {
                 }
             }
         }else if(position > 0 && position < 6 ){
-            System.out.println("Choose where to move \n" + keyboard.getLeft() + ". Left\n" + keyboard.getRight() + ". Right\n" + keyboard.getDown() + ". Down\n" + "9, Options");
+            System.out.println("Choose where to move \n" + keyboard.getLeft() + ". Left\n" + keyboard.getRight() + ". Right\n" + keyboard.getDown() + ". Down\n" + keyboard.getOption() + ". Options");
             while(direction.equals("0")) {
                 direction = input.nextLine();
                 if (direction.equals(keyboard.getRight())) {
@@ -167,7 +167,7 @@ public class Map {
                         System.out.println((((Doors) roomlist[position].getDoor3()).getTypeOfDoor()) + " Door");
                     }
                     position +=7;
-                } else if (direction.equals("9")){
+                } else if (direction.equals(keyboard.getOption())){
                     SubMenu.subMenu(keyboard);
                 } else {
                     System.out.println("Not a valid option");
@@ -175,7 +175,7 @@ public class Map {
                 }
             }
         }else if(position > 42 && position < 48){
-            System.out.println("Choose where to move \n" + keyboard.getLeft() + ". Left\n" + keyboard.getRight() + ". Right\n" + keyboard.getUp() + ". Up\n" + "9. Options");
+            System.out.println("Choose where to move \n" + keyboard.getLeft() + ". Left\n" + keyboard.getRight() + ". Right\n" + keyboard.getUp() + ". Up\n" + keyboard.getOption() + ". Options");
             while(direction.equals("0")) {
                 direction = input.nextLine();
                 if (direction.equals(keyboard.getRight())) {
@@ -193,7 +193,7 @@ public class Map {
                         System.out.println((((Doors) roomlist[position].getDoor3()).getTypeOfDoor()) + " Door");
                     }
                     position -=7;
-                }else if (direction.equals("9")){
+                }else if (direction.equals(keyboard.getOption())){
                     SubMenu.subMenu(keyboard);
                 }else {
                     System.out.println("Not a valid option");
@@ -201,7 +201,7 @@ public class Map {
                 }
             }
         }else if(position < 48 && position > 6 && position % 7 == 6){
-            System.out.println("Choose where to move \n" + keyboard.getLeft() + ". Left\n" + keyboard.getDown() + ". Down\n" + keyboard.getUp() + ". Up\n" + "9. Options");
+            System.out.println("Choose where to move \n" + keyboard.getLeft() + ". Left\n" + keyboard.getDown() + ". Down\n" + keyboard.getUp() + ". Up\n" + keyboard.getOption() + ". Options");
             while(direction.equals("0")) {
                 direction = input.nextLine();
                 if (direction.equals(keyboard.getLeft())) {
@@ -219,7 +219,7 @@ public class Map {
                         System.out.println((((Doors) roomlist[position].getDoor3()).getTypeOfDoor()) + " Door");
                     }
                     position +=7;
-                }else if (direction.equals("9")){
+                }else if (direction.equals(keyboard.getOption())){
                     SubMenu.subMenu(keyboard);
                 }else {
                     System.out.println("Not a valid option");
@@ -227,7 +227,7 @@ public class Map {
                 }
             }
         }else{
-            System.out.println("Choose where to move \n" + keyboard.getLeft() + ". Left\n" + keyboard.getRight() + ". Right\n" + keyboard.getDown() + ". Down\n" + keyboard.getUp() + ". Up\n" + "9. Options");
+            System.out.println("Choose where to move \n" + keyboard.getLeft() + ". Left\n" + keyboard.getRight() + ". Right\n" + keyboard.getDown() + ". Down\n" + keyboard.getUp() + ". Up\n" + keyboard.getOption() + ". Options");
             while(direction.equals("0")) {
                 direction = input.nextLine();
                 if (direction.equals(keyboard.getRight())) {
@@ -250,7 +250,7 @@ public class Map {
                         System.out.println((((Doors) roomlist[position].getDoor4()).getTypeOfDoor()) + " Door");
                     }
                     position+=7;
-                }else if (direction.equals("9")){
+                }else if (direction.equals(keyboard.getOption())){
                     SubMenu.subMenu(keyboard);
                 }else {
                     System.out.println("Not a valid option");
