@@ -1,9 +1,12 @@
 package com.company;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Scanner;
 
 public class SubMenu {
-    public static void subMenu(Keyboard keyboard){
+    public static void subMenu(Keyboard keyboard, int position){
 
         Scanner input = new Scanner(System.in);
         boolean cont = true;
@@ -18,6 +21,18 @@ public class SubMenu {
             } else if (choice.equals("2")) {
 
             } else if (choice.equals("3")) {
+                try {
+                File posFile = new File("position.txt");
+
+                if (!posFile.exists()){
+                        posFile.createNewFile();
+                    }
+                    PrintWriter pw = new PrintWriter(posFile);
+                pw.println(position);
+                pw.close();
+                }catch (IOException e) {
+                    e.printStackTrace();
+                }
 
             } else if (choice.equals("4")) {
                 System.out.println("Left   : " + keyboard.getLeft());

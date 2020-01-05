@@ -9,9 +9,12 @@ import java.security.SecureRandom;
 import java.util.*;
 
 import java.lang.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
 
 public class Main {
     public static void main(String[] args) throws IOException {
+        BufferedReader br = null;
         int firekeys = 0;
         int oceankeys = 0;
         int dirtkeys = 0;
@@ -55,6 +58,13 @@ public class Main {
             if(mainMenu==3){
                 System.exit(0);}
             else if(mainMenu==2){
+                String pos;
+                br = new BufferedReader(new FileReader("position.txt"));
+                while((pos = br.readLine())!=null) {
+                    position = Integer.parseInt(pos);
+
+                }
+                cont= false;
             }
             else if (mainMenu == 4) {
                 System.out.println("Current High Score is: " + highscore);

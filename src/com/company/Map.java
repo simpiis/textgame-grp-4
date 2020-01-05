@@ -94,7 +94,7 @@ public class Map {
                         position+=7;
                     }
                 } else if (direction.equals(keyboard.getOption())){
-                    SubMenu.subMenu(keyboard);
+                    SubMenu.subMenu(keyboard, position);
                 } else {
                     System.out.println("Not a valid option");
                     direction = "0";
@@ -119,7 +119,7 @@ public class Map {
                         position+=7;
                     }
                 } else if (direction.equals(keyboard.getOption())){
-                    SubMenu.subMenu(keyboard);
+                    SubMenu.subMenu(keyboard, position);
                 }else {
                     System.out.println("Not a valid option");
                     direction = "0";
@@ -144,7 +144,7 @@ public class Map {
                         position-=7;
                     }
                 } else if (direction.equals(keyboard.getOption())){
-                    SubMenu.subMenu(keyboard);
+                    SubMenu.subMenu(keyboard, position);
                 }else {
                     System.out.println("Not a valid option");
                     direction = "0";
@@ -169,7 +169,7 @@ public class Map {
                         position-=7;
                     }
                 } else if (direction.equals(keyboard.getOption())){
-                    SubMenu.subMenu(keyboard);
+                    SubMenu.subMenu(keyboard, position);
                 }else {
                     System.out.println("Not a valid option");
                     direction = "0";
@@ -201,7 +201,7 @@ public class Map {
                         position+=7;
                     }
                 } else if (direction.equals(keyboard.getOption())){
-                    SubMenu.subMenu(keyboard);
+                    SubMenu.subMenu(keyboard, position);
                 } else{
                     System.out.println("Not a valid option");
                     direction = "0";
@@ -233,7 +233,7 @@ public class Map {
                         position+=7;
                     }
                 } else if (direction.equals(keyboard.getOption())){
-                    SubMenu.subMenu(keyboard);
+                    SubMenu.subMenu(keyboard, position);
                 } else {
                     System.out.println("Not a valid option");
                     direction = "0";
@@ -265,7 +265,7 @@ public class Map {
                         position-=7;
                     }
                 }else if (direction.equals(keyboard.getOption())){
-                    SubMenu.subMenu(keyboard);
+                    SubMenu.subMenu(keyboard, position);
                 }else {
                     System.out.println("Not a valid option");
                     direction = "0";
@@ -297,7 +297,7 @@ public class Map {
                         position+=7;
                     }
                 }else if (direction.equals(keyboard.getOption())){
-                    SubMenu.subMenu(keyboard);
+                    SubMenu.subMenu(keyboard, position);
                 }else {
                     System.out.println("Not a valid option");
                     direction = "0";
@@ -336,7 +336,7 @@ public class Map {
                         position+=7;
                     }
                 }else if (direction.equals(keyboard.getOption())){
-                    SubMenu.subMenu(keyboard);
+                    SubMenu.subMenu(keyboard, position);
                 }else {
                     System.out.println("Not a valid option");
                     direction = "0";
