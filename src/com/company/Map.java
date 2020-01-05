@@ -16,7 +16,43 @@ public class Map {
             }
         }
     }
-    public static int move(int position, Heroes hero, Rooms[] roomlist, Keyboard keyboard){
+    public static void openDoor(String doorname, int position, int position2, int firekeys, int oceankeys, int dirtkeys, int windkeys){
+        if(doorname == "Ocean"){
+            if(oceankeys > 0){
+                oceankeys-=1;
+                System.out.println("Door opened");
+                position = position2;
+            }else{
+                System.out.println("You cant open that door");
+            }
+        }else if(doorname == "Wind"){
+            if(windkeys > 0){
+                windkeys-=1;
+                System.out.println("Door opened");
+                position = position2;
+            }else{
+                System.out.println("You cant open that door");
+            }
+        }else if(doorname == "Dirt"){
+            if(dirtkeys > 0){
+                dirtkeys-=1;
+                System.out.println("Door opened");
+                position = position2;
+            }else{
+                System.out.println("You cant open that door");
+            }
+        }else{
+            if(firekeys > 0){
+                firekeys-=1;
+                System.out.println("Door opened");
+                position = position2;
+            }else{
+                System.out.println("You cant open that door");
+            }
+        }
+    }
+
+    public static int move(int position, Heroes hero, Rooms[] roomlist, Keyboard keyboard, int firekeys, int oceankeys, int dirtkeys, int windkeys){
         Scanner input = new Scanner(System.in);
         Map.printMap(position);
         String direction = "0";
@@ -45,13 +81,18 @@ public class Map {
                 if (direction.equals(keyboard.getRight())) {
                     if(roomlist[position].getDoor1()!= null){
                         System.out.println((((Doors) roomlist[position].getDoor1()).getTypeOfDoor()) + " Door");
+                        Map.openDoor((((Doors) roomlist[position].getDoor1()).getTypeOfDoor()),position,position+1,firekeys,oceankeys,dirtkeys,windkeys);
+
+                    }else{
+                        position+=1;
                     }
-                    position += 1;
                 } else if (direction.equals(keyboard.getDown())){
                     if(roomlist[position].getDoor2()!= null) {
                         System.out.println((((Doors) roomlist[position].getDoor2()).getTypeOfDoor()) + " Door");
+                        Map.openDoor((((Doors) roomlist[position].getDoor2()).getTypeOfDoor()),position,position+7,firekeys,oceankeys,dirtkeys,windkeys);
+                    }else{
+                        position+=7;
                     }
-                    position += 7;
                 } else if (direction.equals(keyboard.getOption())){
                     SubMenu.subMenu(keyboard);
                 } else {
@@ -66,13 +107,17 @@ public class Map {
                 if (direction.equals(keyboard.getLeft())) {
                     if(roomlist[position].getDoor1()!= null) {
                         System.out.println((((Doors) roomlist[position].getDoor1()).getTypeOfDoor()) + " Door");
+                        Map.openDoor((((Doors) roomlist[position].getDoor1()).getTypeOfDoor()),position,position-1,firekeys,oceankeys,dirtkeys,windkeys);
+                    }else{
+                        position-=1;
                     }
-                    position -= 1;
                 } else if (direction.equals(keyboard.getDown())) {
                     if(roomlist[position].getDoor2()!= null) {
                         System.out.println((((Doors) roomlist[position].getDoor2()).getTypeOfDoor()) + " Door");
+                        Map.openDoor((((Doors) roomlist[position].getDoor2()).getTypeOfDoor()),position,position+7,firekeys,oceankeys,dirtkeys,windkeys);
+                    }else{
+                        position+=7;
                     }
-                    position += 7;
                 } else if (direction.equals(keyboard.getOption())){
                     SubMenu.subMenu(keyboard);
                 }else {
@@ -87,13 +132,17 @@ public class Map {
                 if (direction.equals(keyboard.getRight())) {
                     if(roomlist[position].getDoor1()!= null) {
                         System.out.println((((Doors) roomlist[position].getDoor1()).getTypeOfDoor()) + " Door");
+                        Map.openDoor((((Doors) roomlist[position].getDoor1()).getTypeOfDoor()),position,position+1,firekeys,oceankeys,dirtkeys,windkeys);
+                    }else{
+                        position+=1;
                     }
-                    position += 1;
                 }else if (direction.equals(keyboard.getUp())) {
                     if(roomlist[position].getDoor2()!= null) {
                         System.out.println((((Doors) roomlist[position].getDoor2()).getTypeOfDoor()) + " Door");
+                        Map.openDoor((((Doors) roomlist[position].getDoor2()).getTypeOfDoor()),position,position-7,firekeys,oceankeys,dirtkeys,windkeys);
+                    }else{
+                        position-=7;
                     }
-                    position -= 7;
                 } else if (direction.equals(keyboard.getOption())){
                     SubMenu.subMenu(keyboard);
                 }else {
@@ -108,13 +157,17 @@ public class Map {
                 if (direction.equals(keyboard.getLeft())) {
                     if(roomlist[position].getDoor1()!= null) {
                         System.out.println((((Doors) roomlist[position].getDoor1()).getTypeOfDoor()) + " Door");
+                        Map.openDoor((((Doors) roomlist[position].getDoor1()).getTypeOfDoor()),position,position-1,firekeys,oceankeys,dirtkeys,windkeys);
+                    }else{
+                        position-=1;
                     }
-                    position -= 1;
                 } else if (direction.equals(keyboard.getUp())){
                     if(roomlist[position].getDoor2()!= null) {
                         System.out.println((((Doors) roomlist[position].getDoor2()).getTypeOfDoor()) + " Door");
+                        Map.openDoor((((Doors) roomlist[position].getDoor2()).getTypeOfDoor()),position,position-7,firekeys,oceankeys,dirtkeys,windkeys);
+                    }else{
+                        position-=7;
                     }
-                    position -= 7;
                 } else if (direction.equals(keyboard.getOption())){
                     SubMenu.subMenu(keyboard);
                 }else {
@@ -129,18 +182,24 @@ public class Map {
                 if (direction.equals(keyboard.getRight())) {
                     if(roomlist[position].getDoor1()!= null) {
                         System.out.println((((Doors) roomlist[position].getDoor1()).getTypeOfDoor()) + " Door");
+                        Map.openDoor((((Doors) roomlist[position].getDoor1()).getTypeOfDoor()),position,position+1,firekeys,oceankeys,dirtkeys,windkeys);
+                    }else{
+                        position+=1;
                     }
-                    position += 1;
                 }else if (direction.equals(keyboard.getUp())) {
                     if(roomlist[position].getDoor2()!= null) {
                         System.out.println((((Doors) roomlist[position].getDoor2()).getTypeOfDoor()) + " Door");
+                        Map.openDoor((((Doors) roomlist[position].getDoor2()).getTypeOfDoor()),position,position-7,firekeys,oceankeys,dirtkeys,windkeys);
+                    }else{
+                        position-=7;
                     }
-                    position -= 7;
                 }else if (direction.equals(keyboard.getDown())){
                     if(roomlist[position].getDoor3()!= null) {
                         System.out.println((((Doors) roomlist[position].getDoor3()).getTypeOfDoor()) + " Door");
+                        Map.openDoor((((Doors) roomlist[position].getDoor3()).getTypeOfDoor()),position,position+7,firekeys,oceankeys,dirtkeys,windkeys);
+                    }else{
+                        position+=7;
                     }
-                    position+=7;
                 } else if (direction.equals(keyboard.getOption())){
                     SubMenu.subMenu(keyboard);
                 } else{
@@ -155,18 +214,24 @@ public class Map {
                 if (direction.equals(keyboard.getRight())) {
                     if(roomlist[position].getDoor1()!= null) {
                         System.out.println((((Doors) roomlist[position].getDoor1()).getTypeOfDoor()) + " Door");
+                        Map.openDoor((((Doors) roomlist[position].getDoor1()).getTypeOfDoor()),position,position+1,firekeys,oceankeys,dirtkeys,windkeys);
+                    }else{
+                        position+=1;
                     }
-                    position += 1;
                 } else if (direction.equals(keyboard.getLeft())) {
                     if(roomlist[position].getDoor2()!= null) {
                         System.out.println((((Doors) roomlist[position].getDoor2()).getTypeOfDoor()) + " Door");
+                        Map.openDoor((((Doors) roomlist[position].getDoor2()).getTypeOfDoor()),position,position-1,firekeys,oceankeys,dirtkeys,windkeys);
+                    }else{
+                        position-=1;
                     }
-                    position -= 1;
                 }else if(direction.equals(keyboard.getDown())){
                     if(roomlist[position].getDoor3()!= null) {
                         System.out.println((((Doors) roomlist[position].getDoor3()).getTypeOfDoor()) + " Door");
+                        Map.openDoor((((Doors) roomlist[position].getDoor3()).getTypeOfDoor()),position,position+7,firekeys,oceankeys,dirtkeys,windkeys);
+                    }else{
+                        position+=7;
                     }
-                    position +=7;
                 } else if (direction.equals(keyboard.getOption())){
                     SubMenu.subMenu(keyboard);
                 } else {
@@ -181,18 +246,24 @@ public class Map {
                 if (direction.equals(keyboard.getRight())) {
                     if(roomlist[position].getDoor1()!= null) {
                         System.out.println((((Doors) roomlist[position].getDoor1()).getTypeOfDoor()) + " Door");
+                        Map.openDoor((((Doors) roomlist[position].getDoor1()).getTypeOfDoor()),position,position+1,firekeys,oceankeys,dirtkeys,windkeys);
+                    }else{
+                        position+=1;
                     }
-                    position += 1;
                 } else if (direction.equals(keyboard.getLeft())) {
                     if(roomlist[position].getDoor2()!= null) {
                         System.out.println((((Doors) roomlist[position].getDoor2()).getTypeOfDoor()) + " Door");
+                        Map.openDoor((((Doors) roomlist[position].getDoor2()).getTypeOfDoor()),position,position-1,firekeys,oceankeys,dirtkeys,windkeys);
+                    }else{
+                        position-=1;
                     }
-                    position -= 1;
                 }else if(direction.equals(keyboard.getUp())){
                     if(roomlist[position].getDoor3()!= null) {
                         System.out.println((((Doors) roomlist[position].getDoor3()).getTypeOfDoor()) + " Door");
+                        Map.openDoor((((Doors) roomlist[position].getDoor3()).getTypeOfDoor()),position,position-7,firekeys,oceankeys,dirtkeys,windkeys);
+                    }else{
+                        position-=7;
                     }
-                    position -=7;
                 }else if (direction.equals(keyboard.getOption())){
                     SubMenu.subMenu(keyboard);
                 }else {
@@ -207,18 +278,24 @@ public class Map {
                 if (direction.equals(keyboard.getLeft())) {
                     if(roomlist[position].getDoor1()!= null) {
                         System.out.println((((Doors) roomlist[position].getDoor1()).getTypeOfDoor()) + " Door");
+                        Map.openDoor((((Doors) roomlist[position].getDoor1()).getTypeOfDoor()),position,position-1,firekeys,oceankeys,dirtkeys,windkeys);
+                    }else{
+                        position-=1;
                     }
-                    position -= 1;
                 } else if (direction.equals(keyboard.getUp())) {
                     if(roomlist[position].getDoor2()!= null) {
                         System.out.println((((Doors) roomlist[position].getDoor2()).getTypeOfDoor()) + " Door");
+                        Map.openDoor((((Doors) roomlist[position].getDoor2()).getTypeOfDoor()),position,position-7,firekeys,oceankeys,dirtkeys,windkeys);
+                    }else{
+                        position-=7;
                     }
-                    position -= 7;
                 }else if(direction.equals(keyboard.getDown())){
                     if(roomlist[position].getDoor3()!= null) {
                         System.out.println((((Doors) roomlist[position].getDoor3()).getTypeOfDoor()) + " Door");
+                        Map.openDoor((((Doors) roomlist[position].getDoor3()).getTypeOfDoor()),position,position+7,firekeys,oceankeys,dirtkeys,windkeys);
+                    }else{
+                        position+=7;
                     }
-                    position +=7;
                 }else if (direction.equals(keyboard.getOption())){
                     SubMenu.subMenu(keyboard);
                 }else {
@@ -233,23 +310,31 @@ public class Map {
                 if (direction.equals(keyboard.getRight())) {
                     if(roomlist[position].getDoor1()!= null) {
                         System.out.println((((Doors) roomlist[position].getDoor1()).getTypeOfDoor()) + " Door");
+                        Map.openDoor((((Doors) roomlist[position].getDoor1()).getTypeOfDoor()),position,position+1,firekeys,oceankeys,dirtkeys,windkeys);
+                    }else{
+                        position+=1;
                     }
-                    position += 1;
                 } else if (direction.equals(keyboard.getLeft())) {
                     if(roomlist[position].getDoor2()!= null) {
                         System.out.println((((Doors) roomlist[position].getDoor2()).getTypeOfDoor()) + " Door");
+                        Map.openDoor((((Doors) roomlist[position].getDoor2()).getTypeOfDoor()),position,position-1,firekeys,oceankeys,dirtkeys,windkeys);
+                    }else{
+                        position-=1;
                     }
-                    position -= 1;
                 }else if(direction.equals(keyboard.getUp())){
                     if(roomlist[position].getDoor3()!= null) {
                         System.out.println((((Doors) roomlist[position].getDoor3()).getTypeOfDoor()) + " Door");
+                        Map.openDoor((((Doors) roomlist[position].getDoor3()).getTypeOfDoor()),position,position-7,firekeys,oceankeys,dirtkeys,windkeys);
+                    }else{
+                        position-=7;
                     }
-                    position -=7;
                 }else if(direction.equals(keyboard.getDown())){
                     if(roomlist[position].getDoor4()!= null) {
                         System.out.println((((Doors) roomlist[position].getDoor4()).getTypeOfDoor()) + " Door");
+                        Map.openDoor((((Doors) roomlist[position].getDoor4()).getTypeOfDoor()),position,position+7,firekeys,oceankeys,dirtkeys,windkeys);
+                    }else{
+                        position+=7;
                     }
-                    position+=7;
                 }else if (direction.equals(keyboard.getOption())){
                     SubMenu.subMenu(keyboard);
                 }else {
@@ -261,3 +346,4 @@ public class Map {
         return position;
     }
 }
+
