@@ -20,25 +20,24 @@ public class SubMenu {
             } else if (choice.equals("3")) {
 
             } else if (choice.equals("4")) {
-                System.out.println("Left : " + keyboard.getLeft());
-                System.out.println("Right : " + keyboard.getRight());
-                System.out.println("Down : " + keyboard.getDown());
-                System.out.println("Up : " + keyboard.getUp());
+                System.out.println("Left   : " + keyboard.getLeft());
+                System.out.println("Right  : " + keyboard.getRight());
+                System.out.println("Down   : " + keyboard.getDown());
+                System.out.println("Up     : " + keyboard.getUp());
+                System.out.println("Option : " + keyboard.getOption());
                 System.out.println("Press '1' to go back to sub menu");
                 input.nextLine();
             } else if (choice.equals("5")) {
                 System.out.print("Change Left from (" + keyboard.getLeft() + ") to : ");
-                String left = input.nextLine();
-                keyboard.setLeft(left);
+                keyboard.setLeft(input.nextLine());
                 System.out.print("\nChange Right from (" + keyboard.getRight() + ") to : ");
-                String right = input.nextLine();
-                keyboard.setRight(right);
+                keyboard.setRight(input.nextLine());
                 System.out.print("\nChange Down from (" + keyboard.getDown() + ") to : ");
-                String down = input.nextLine();
-                keyboard.setDown(down);
+                keyboard.setDown(input.nextLine());
                 System.out.print("\nChange Up from (" + keyboard.getUp() + ") to : ");
-                String up = input.nextLine();
-                keyboard.setUp(up);
+                keyboard.setUp(input.nextLine());
+                System.out.print("\nChange Option from (" + keyboard.getOption() + ") to : ");
+                keyboard.setOption(input.nextLine());
                 System.out.print("\nPress '1' to go back to Sub Menu ");
                 input.nextLine();
             } else if (choice.equals("6")) {

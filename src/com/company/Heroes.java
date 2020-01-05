@@ -10,12 +10,44 @@ public class Heroes extends Creature {
     public Heroes(int hp, int damage, String name) {
         super(hp, damage, name);
     }
+    public void choiceHero(int choice) {
+        switch (choice) {
+            case 1:
+                setHp(110);
+                setDamage(10);
+                setName("Rogue");
+                setRogueMana(50);
+                printHero();
+                break;
+            case 2:
+                setHp(90);
+                setDamage(30);
+                setName("Warrior");
+                printHero();
+                break;
+            case 3:
+                setHp(100);
+                setDamage(20);
+                setName("Mage");
+                printHero();
+                break;
+        }
+    }
     public void printHero() {
+        System.out.println("*************************");
         System.out.println("You choose "+ getName() + "!");
         System.out.print(getName() + "s hp is: ");
         System.out.println(getHp());
         System.out.print(getName() + "s damage is: ");
         System.out.println(getDamage());
+        if (getName() == "Rogue"){
+            System.out.println("Special ability: 50 damage bomb, takes 25 mana");
+        } else if (getName() == "Warrior"){
+            System.out.println("Special ability: Healing cure, 1 time for 1 Monster");
+        } else {
+            System.out.println("Special ability: Jump between rooms, Only 3 times");
+        }
+        System.out.println("*************************");
 
     }
     public int getMageCounter() {
