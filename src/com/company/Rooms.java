@@ -61,7 +61,7 @@ public class Rooms {
             monsterroom2 = rand.nextInt(49);
             monsterroom3 = rand.nextInt(49);
         }
-        int chestroom1 = 0; // rand.nextInt(49);
+        int chestroom1 = rand.nextInt(49);
         int chestroom2 = rand.nextInt(49);
         int chestroom3 = rand.nextInt(49);
         while(monsterroom1 == chestroom1 || monsterroom2 == chestroom1 || monsterroom3 == chestroom1 ) {
