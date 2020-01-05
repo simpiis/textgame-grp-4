@@ -12,6 +12,10 @@ import java.lang.*;
 
 public class Main {
     public static void main(String[] args) throws IOException {
+        int firekeys = 0;
+        int oceankeys = 0;
+        int dirtkeys = 0;
+        int windkeys = 0;
         Doors.createDoor();
         int mainMenu = 0;
         Scanner input = new Scanner(System.in);
@@ -91,7 +95,7 @@ public class Main {
                     catchEnter = input.nextLine();
                     System.out.println("This is a text-based game, if you have not yet realised.");
                     catchEnter = input.nextLine();
-                    System.out.println("So to maneuver around you will not use anything other than your keyboard.");
+                    System.out.println("So to manoeuvre around you will not use anything other than your keyboard.");
                     catchEnter = input.nextLine();
                     System.out.println("A map of possible rooms to explore will appear once the game has started.");
                     catchEnter = input.nextLine();
@@ -165,9 +169,9 @@ public class Main {
                 }
 
             }else if(rooms[position].getTreasure()!= null){
-                playerInventory = Treasure.openTreasure(rooms,position,rooms[position].getTreasure(), playerInventory, score);
+                playerInventory = Treasure.openTreasure(rooms,position,rooms[position].getTreasure(), playerInventory, score, firekeys, oceankeys, dirtkeys, windkeys);
             }else {
-                position=Map.move(position, hero, rooms, keyboard);
+                position=Map.move(position, hero, rooms, keyboard, firekeys, oceankeys, dirtkeys, windkeys);
             }
             round++;
         }
@@ -186,4 +190,7 @@ public class Main {
         }
     }
 }
+
+
+
 
