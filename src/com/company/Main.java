@@ -1,21 +1,19 @@
 package com.company;
 
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.Writer;
+import java.io.*;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.security.SecureRandom;
 import java.util.*;
 
 import java.lang.*;
 
 public class Main {
-    public static void main(String[] args) throws IOException {
-        int firekeys = 5;
-        int oceankeys = 6;
-        int dirtkeys = 5;
-        int windkeys = 5;
+    public static void main(String[] args) throws IOException, ClassNotFoundException {
+        BufferedReader br = null;
+        int firekeys = 0;
+        int oceankeys = 0;
+        int dirtkeys = 0;
+        int windkeys = 0;
         Doors.createDoor();
         int mainMenu = 0;
         Scanner input = new Scanner(System.in);
@@ -28,7 +26,7 @@ public class Main {
         Treasure chest2 = new Treasure(Item.createItem(),Item.createItem(), Item.createItem());
         Treasure chest3 = new Treasure(Item.createItem(),Item.createItem(), Item.createItem());
         Keyboard keyboard = new Keyboard("2","1", "3", "4", "9");
-        int choice;
+        int choice = 4;
         int position = 0;
         int round = 1;
         int highscore = 0;
@@ -55,6 +53,40 @@ public class Main {
             if(mainMenu==3){
                 System.exit(0);}
             else if(mainMenu==2){
+                String pos;
+                br = new BufferedReader(new FileReader("position.txt"));
+                while((pos = br.readLine())!=null) {
+                    position = Integer.parseInt(pos);
+                }
+                br = new BufferedReader(new FileReader("hero.txt")); //måste läsa 3 värden, idk hur man får tag i dem separat.
+                while((pos = br.readLine())!=null) {
+                    if (pos.equals("Rogue")){
+                        choice = 1;
+                    }
+                }
+                FileInputStream fis = new FileInputStream("inventory.txt");
+                ObjectInputStream ois = new ObjectInputStream(fis);
+                playerInventory = (ArrayList<Item>) ois.readObject();
+                ois.close();
+
+                br = new BufferedReader(new FileReader("wampa.txt"));
+                while((pos = br.readLine())!=null) {
+                    wampa.setHp( Integer.parseInt(pos));
+                }
+                br = new BufferedReader(new FileReader("typhone.txt"));
+                while((pos = br.readLine())!=null) {
+                    typhone.setHp(Integer.parseInt(pos));
+                }
+                br = new BufferedReader(new FileReader("minotaur.txt"));
+                while((pos = br.readLine())!=null) {
+                   minotaur.setHp(Integer.parseInt(pos));
+                }
+                br = new BufferedReader(new FileReader("score.txt"));
+                while ((pos = br.readLine())!=null) {
+                    score.setScore(Integer.parseInt(pos));
+                }
+
+                cont= false;
             }
             else if (mainMenu == 4) {
                 System.out.println("Current High Score is: " + highscore);
@@ -62,58 +94,14 @@ public class Main {
                 input.nextInt();
             }
             else if (mainMenu == 5) {
-                int decision;
-
-                System.out.println("1) What is this game about?");
-                System.out.println("2) How do I play\n");
-                System.out.println("What would you like to know?");
-                decision = input.nextInt();
-
-                if (decision == 1) {
-
-                    System.out.println("[Press Enter to continue]\n");
-                    System.out.println("Welcome to the greatest text-based game of 2020!\n\nThe goal of this game is to collect as many coins\nas possible and slay all foes that may appear.");
-                    String catchEnter = input.nextLine();
-                    String catchEnterz = input.nextLine();
-                    System.out.println("There are 49 rooms to explore and\nyou have 49 turns to explore them.");
-                    catchEnter = input.nextLine();
-                    System.out.println("Pick a hero that suits you to take on this adventure\nand use your special attacks when needed.");
-                    catchEnter = input.nextLine();
-                    System.out.println("If you are lucky you might find a\ntreasure chest full of goodies and a key.");
-                    catchEnter = input.nextLine();
-                    System.out.println("but what is it for?");
-                    catchEnter = input.nextLine();
-                    System.out.print("  ____\n" +
-                            " /  ..\\\n" +
-                            "|    o | boo\n" +
-                            "| v   v|  \n" +
-                            "|/\\/\\/\\|\n\n");
-                }else {
-                    System.out.println("[Press Enter to continue]\n");
-                    System.out.println("To play this awesome game there are some things you need to know..");
-                    String catchEnter = input.nextLine();
-                    catchEnter = input.nextLine();
-                    System.out.println("This is a text-based game, if you have not yet realised.");
-                    catchEnter = input.nextLine();
-                    System.out.println("So to manoeuvre around you will not use anything other than your keyboard.");
-                    catchEnter = input.nextLine();
-                    System.out.println("A map of possible rooms to explore will appear once the game has started.");
-                    catchEnter = input.nextLine();
-                    System.out.println("A star '*' resembles your position.");
-                    catchEnter = input.nextLine();
-                    System.out.println("To move around, your will use either 1, 2, 3 or 4.");
-                    catchEnter = input.nextLine();
-                    System.out.println("These will also be the controls that you use in combat and when using items that you collect on your way");
-                    catchEnter = input.nextLine();
-                    System.out.println("And this is all you need to know to play this amazing game!\n");
-                }
+                Info.info();
             }
             else {
                 cont = false;
             }
         }
 
-        do {
+        while (choice != 1 && choice != 2 && choice != 3) {
             System.out.println("***************************");
             System.out.println("*  Welcome to WoW Borgen  *");
             System.out.println("*                         *");
@@ -126,7 +114,7 @@ public class Main {
 
             choice = input.nextInt();
 
-        } while (choice != 1 && choice != 2 && choice != 3);
+        }
         hero.choiceHero(choice);
 
         while(round <= 49){
@@ -171,7 +159,7 @@ public class Main {
             }else if(rooms[position].getTreasure()!= null){
                 playerInventory = Treasure.openTreasure(rooms,position,rooms[position].getTreasure(), playerInventory, score, firekeys, oceankeys, dirtkeys, windkeys);
             }else {
-                position=Map.move(position, hero, rooms, keyboard, firekeys, oceankeys, dirtkeys, windkeys);
+                position=Map.move(position, hero, rooms, keyboard, firekeys, oceankeys, dirtkeys, windkeys, playerInventory, wampa, typhone, minotaur, score);
             }
             round++;
         }

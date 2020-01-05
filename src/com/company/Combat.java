@@ -23,7 +23,7 @@ public class Combat {
             switch (combatChoice) {
 
                 case "3":
-                    SubMenu.subMenu(keyboard);
+                    SubMenu.subMenu(keyboard, position, hero, inventory, monster, monster, monster, score);
                     break;
                 case "1":
                     cont = false;

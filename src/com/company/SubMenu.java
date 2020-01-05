@@ -1,23 +1,86 @@
 package com.company;
 
+import java.io.*;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class SubMenu {
-    public static void subMenu(Keyboard keyboard){
+    public static void subMenu(Keyboard keyboard, int position, Heroes hero, ArrayList<Item> playerInventory, Monster wampa, Monster typhone, Monster minotaur, Score score){
 
         Scanner input = new Scanner(System.in);
         boolean cont = true;
         while (cont) {
             System.out.println("--- Sub Menu ---");
-            System.out.println("1. Show Instructions(Don't Work)\n" + "2. Load Game(Don't Work)\n"
+            System.out.println("1. Show Instructions\n" + "2. Load Game(Don't Work)\n"
                     + "3. Save Game (Don't Work)\n" + "4. Show keyboard commands\n" + "5. Change keyboard commands\n"
                     + "6. Back to game\n" + "7. Quit Game");
             String choice = input.nextLine();
             if (choice.equals("1")) {
-
+                Info.info();
             } else if (choice.equals("2")) {
 
             } else if (choice.equals("3")) {
+                try {
+                File posFile = new File("position.txt");
+                File heroFile = new File("hero.txt");
+                File inventoryFile = new File("inventory.txt");
+                File wampaFile = new File("wampa.txt");
+                File typhoneFile = new File("typhone.txt");
+                File minotaurFile = new File("minotaur.txt");
+                File scoreFile = new File("score.txt");
+
+                if (!posFile.exists()){
+                        posFile.createNewFile();
+                    }
+                if (!heroFile.exists()){
+                    heroFile.createNewFile();
+                }
+                if (!inventoryFile.exists()){
+                    inventoryFile.createNewFile();
+                }
+                if (!wampaFile.exists()){
+                    wampaFile.createNewFile();
+                }
+                if (!typhoneFile.exists()){
+                    typhoneFile.createNewFile();
+                }
+                if (!minotaurFile.exists()){
+                    minotaurFile.createNewFile();
+                }
+                PrintWriter pwPos = new PrintWriter(posFile);
+                pwPos.println(position);
+                pwPos.close();
+
+                PrintWriter pwHero = new PrintWriter(heroFile);
+                pwHero.println(hero.getName());                    //kanske separera
+                //pwHero.println(hero.getHp());
+                //pwHero.println(hero.getRogueMana());
+                pwHero.close();
+
+                FileOutputStream fos = new FileOutputStream(inventoryFile);
+                ObjectOutputStream oos = new ObjectOutputStream(fos);
+                oos.writeObject(playerInventory);
+                oos.close();
+
+                PrintWriter pwWampa = new PrintWriter(wampaFile);
+                pwWampa.println(wampa.getHp());
+                pwWampa.close();
+
+                PrintWriter pwTyphone = new PrintWriter(typhoneFile);
+                pwTyphone.println(typhone.getHp());
+                pwTyphone.close();
+
+                PrintWriter pwMinotaur = new PrintWriter(minotaurFile);
+                pwMinotaur.println(minotaur.getHp());
+                pwMinotaur.close();
+
+                PrintWriter pwScore = new PrintWriter(scoreFile);
+                pwScore.println(score.getScore());
+                pwScore.close();
+
+                }catch (IOException e) {
+                    e.printStackTrace();
+                }
 
             } else if (choice.equals("4")) {
                 System.out.println("Left   : " + keyboard.getLeft());

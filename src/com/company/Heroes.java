@@ -36,11 +36,12 @@ public class Heroes extends Creature {
     public void printHero() {
         System.out.println("*************************");
         System.out.println("You choose "+ getName() + "!");
-        System.out.print(getName() + "s hp is: ");
+        System.out.print(getName() + "'s hp is: ");
         System.out.println(getHp());
-        System.out.print(getName() + "s damage is: ");
+        System.out.print(getName() + "'s damage is: ");
         System.out.println(getDamage());
         if (getName() == "Rogue"){
+            System.out.println("Rogue's mana: 50");
             System.out.println("Special ability: 50 damage bomb, takes 25 mana");
         } else if (getName() == "Warrior"){
             System.out.println("Special ability: Healing cure, 1 time for 1 Monster");
