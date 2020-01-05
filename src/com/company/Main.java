@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.io.Writer;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.security.SecureRandom;
 import java.util.*;
 
 import java.lang.*;
@@ -31,7 +30,7 @@ public class Main {
         Treasure chest2 = new Treasure(Item.createItem(),Item.createItem(), Keys.createKey());
         Treasure chest3 = new Treasure(Item.createItem(),Item.createItem(), Keys.createKey());
         Keyboard keyboard = new Keyboard("2","1", "3", "4", "9");
-        int choice;
+        int choice = 4;
         int position = 0;
         int round = 1;
         int highscore = 0;
@@ -62,8 +61,35 @@ public class Main {
                 br = new BufferedReader(new FileReader("position.txt"));
                 while((pos = br.readLine())!=null) {
                     position = Integer.parseInt(pos);
-
                 }
+                br = new BufferedReader(new FileReader("hero.txt")); //måste läsa 3 värden, idk hur man får tag i dem separat.
+                while((pos = br.readLine())!=null) {
+                    if (pos.equals("Rogue")){
+                        hero.setName("Rogue");
+                        hero.setDamage(10);
+                        //Mana?
+                    }
+                }
+                br = new BufferedReader(new FileReader("inventory.txt")); //måste läsa flera värden idk hur man får tag i dem separat
+                while((pos = br.readLine())!=null) {
+                  //  for (int i = 0; i < ; i++)
+                    {
+                        //playerInventory.add(i);
+                    }
+                }
+                br = new BufferedReader(new FileReader("wampa.txt"));
+                while((pos = br.readLine())!=null) {
+                    wampa.setHp( Integer.parseInt(pos));
+                }
+                br = new BufferedReader(new FileReader("typhone.txt"));
+                while((pos = br.readLine())!=null) {
+                    typhone.setHp(Integer.parseInt(pos));
+                }
+                br = new BufferedReader(new FileReader("minotaur.txt"));
+                while((pos = br.readLine())!=null) {
+                   minotaur.setHp(Integer.parseInt(pos));
+                }
+
                 cont= false;
             }
             else if (mainMenu == 4) {
@@ -79,7 +105,7 @@ public class Main {
             }
         }
 
-        do {
+        while (choice != 1 && choice != 2 && choice != 3) {
             System.out.println("***************************");
             System.out.println("*  Welcome to WoW Borgen  *");
             System.out.println("*                         *");
@@ -92,7 +118,7 @@ public class Main {
 
             choice = input.nextInt();
 
-        } while (choice != 1 && choice != 2 && choice != 3);
+        }
         hero.choiceHero(choice);
 
         while(round <= 49){
@@ -137,7 +163,7 @@ public class Main {
             }else if(rooms[position].getTreasure()!= null){
                 playerInventory = Treasure.openTreasure(rooms,position,rooms[position].getTreasure(), playerInventory, score, firekeys, oceankeys, dirtkeys, windkeys);
             }else {
-                position=Map.move(position, hero, rooms, keyboard, firekeys, oceankeys, dirtkeys, windkeys);
+                position=Map.move(position, hero, rooms, keyboard, firekeys, oceankeys, dirtkeys, windkeys, playerInventory, wampa, typhone, minotaur, score);
             }
             round++;
         }

@@ -106,9 +106,15 @@ public class Rooms {
             }
             roomlist[p] = room1;
         }
-        roomlist[monsterroom1].setMonster(monster1);
-        roomlist[monsterroom2].setMonster(monster2);
-        roomlist[monsterroom3].setMonster(monster3);
+        if(monster1.getHp()!=0){
+            roomlist[monsterroom1].setMonster(monster1);
+        }
+        if(monster2.getHp()!=0) {
+            roomlist[monsterroom2].setMonster(monster2);
+        }
+        if(monster3.getHp()!=0) {
+            roomlist[monsterroom3].setMonster(monster3);
+        }
         roomlist[chestroom1].setTreasure(chest1);
         roomlist[chestroom2].setTreasure(chest2);
         roomlist[chestroom3].setTreasure(chest3);
