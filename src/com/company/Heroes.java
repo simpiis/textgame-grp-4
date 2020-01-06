@@ -10,22 +10,22 @@ public class Heroes extends Creature {
     public Heroes(int hp, int damage, String name) {
         super(hp, damage, name);
     }
-    public void choiceHero(int choice) {
+    public void choiceHero(String choice) {
         switch (choice) {
-            case 1:
+            case "1":
                 setHp(110);
                 setDamage(10);
                 setName("Rogue");
                 setRogueMana(50);
                 printHero();
                 break;
-            case 2:
+            case "2":
                 setHp(90);
                 setDamage(30);
                 setName("Warrior");
                 printHero();
                 break;
-            case 3:
+            case "3":
                 setHp(100);
                 setDamage(20);
                 setName("Mage");

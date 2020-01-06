@@ -15,7 +15,7 @@ public class Main {
         int dirtkeys = 0;
         int windkeys = 0;
         Doors.createDoor();
-        int mainMenu = 0;
+        String mainMenu = "0";
         Scanner input = new Scanner(System.in);
         Heroes hero = new Heroes(1, 1, "");
         Monster minotaur = new Monster(50,10, "Minotaur");
@@ -26,7 +26,7 @@ public class Main {
         Treasure chest2 = new Treasure(Item.createItem(),Item.createItem(), Item.createItem());
         Treasure chest3 = new Treasure(Item.createItem(),Item.createItem(), Item.createItem());
         Keyboard keyboard = new Keyboard("2","1", "3", "4", "9");
-        int choice = 4;
+        String choice = "4";
         int position = 0;
         int round = 1;
         int highscore = 0;
@@ -45,55 +45,74 @@ public class Main {
                 scanner.next();
             }
         }
-
         while (cont) {
             System.out.println("--- Main Menu ---");
-            System.out.println("1. Start new game\n2. Load game(not implemented)\n3. Quit\n4. Scoreboard\n5. Game Instructions");
-            mainMenu = input.nextInt();
-            if(mainMenu==3){
+            System.out.println("1. Start new game\n2. Load game\n3. Game Instructions\n4. Scoreboard\n5. Quit");
+            mainMenu = input.nextLine();
+            if(mainMenu.equals("5")){
                 System.exit(0);}
-            else if(mainMenu==2){
+            else if(mainMenu.equals("2")) {
                 String pos;
-                br = new BufferedReader(new FileReader("position.txt"));
-                while((pos = br.readLine())!=null) {
-                    position = Integer.parseInt(pos);
-                }
-                br = new BufferedReader(new FileReader("hero.txt")); //måste läsa 3 värden, idk hur man får tag i dem separat.
-                while((pos = br.readLine())!=null) {
-                    if (pos.equals("Rogue")){
-                        choice = 1;
+                try {
+                    Scanner scanner1 = new Scanner(new File("hero.txt"));
+                    int i = 0;
+                    while (i <= 7) {
+                        if (i == 0) {
+                            hero.setName(scanner1.nextLine());
+                        } else if (i == 1) {
+                            hero.setDamage(scanner1.nextInt());
+                        } else if (i == 2) {
+                            hero.setHp(scanner1.nextInt());
+                        } else if (i == 3) {
+                            hero.setRogueMana(scanner1.nextInt());
+                        } else if (i == 4) {
+                            hero.setMageCounter(scanner1.nextInt());
+                        } else if (i == 5) {
+                            position = scanner1.nextInt();
+                        } else if (i == 6) {
+                            score.setScore(scanner1.nextInt());
+                        } else if (i == 7) {
+                            round = scanner1.nextInt();
+                        }
+                        i += 1;
+                        choice = "1";
                     }
+                    scanner1.close();
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
                 }
+
                 FileInputStream fis = new FileInputStream("inventory.txt");
                 ObjectInputStream ois = new ObjectInputStream(fis);
                 playerInventory = (ArrayList<Item>) ois.readObject();
                 ois.close();
 
-                br = new BufferedReader(new FileReader("wampa.txt"));
-                while((pos = br.readLine())!=null) {
-                    wampa.setHp( Integer.parseInt(pos));
-                }
-                br = new BufferedReader(new FileReader("typhone.txt"));
-                while((pos = br.readLine())!=null) {
-                    typhone.setHp(Integer.parseInt(pos));
-                }
-                br = new BufferedReader(new FileReader("minotaur.txt"));
-                while((pos = br.readLine())!=null) {
-                   minotaur.setHp(Integer.parseInt(pos));
-                }
-                br = new BufferedReader(new FileReader("score.txt"));
-                while ((pos = br.readLine())!=null) {
-                    score.setScore(Integer.parseInt(pos));
+                try {
+                    Scanner scanner2 = new Scanner(new File("Monster.txt"));
+                    int i = 0;
+                    while (i <= 2) {
+                        if (i == 0) {
+                            wampa.setHp(scanner2.nextInt());
+                        } else if (i == 1) {
+                            typhone.setHp(scanner2.nextInt());
+                        } else if (i == 2) {
+                            minotaur.setHp(scanner2.nextInt());
+                        }
+                        i += 1;
+                    }
+                    scanner2.close();
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
                 }
 
                 cont= false;
             }
-            else if (mainMenu == 4) {
+            else if (mainMenu.equals("4")) {
                 System.out.println("Current High Score is: " + highscore);
                 System.out.println("Press '1' to go back to Main Menu");
                 input.nextInt();
             }
-            else if (mainMenu == 5) {
+            else if (mainMenu.equals("3")) {
                 Info.info();
             }
             else {
@@ -101,7 +120,7 @@ public class Main {
             }
         }
 
-        while (choice != 1 && choice != 2 && choice != 3) {
+        while (!choice.equals("1") && !choice.equals("2") && !choice.equals("3")) {
             System.out.println("***************************");
             System.out.println("*  Welcome to WoW Borgen  *");
             System.out.println("*                         *");
@@ -112,10 +131,9 @@ public class Main {
             System.out.println("***************************");
             System.out.print("> " );
 
-            choice = input.nextInt();
-
+            choice = input.nextLine();
+            hero.choiceHero(choice);
         }
-        hero.choiceHero(choice);
 
         while(round <= 49){
             System.out.println("Round: " + round);
@@ -124,7 +142,7 @@ public class Main {
                 if ( rooms[position].getMonster() == minotaur) {
                     int positionPrev = position;
                     int positionCombat = position;
-                    position=Combat.combatMethod(hero, minotaur, playerInventory, score, keyboard, position);
+                    position=Combat.combatMethod(hero, minotaur, playerInventory, score, keyboard, position, round);
                     if (positionPrev == position +7 || positionPrev == position -7){
                         round-=1;
                     }
@@ -136,7 +154,7 @@ public class Main {
                     int positionPrev = position;
                     int positionCombat = position;
 
-                    position=Combat.combatMethod(hero, typhone, playerInventory, score, keyboard, position);
+                    position=Combat.combatMethod(hero, typhone, playerInventory, score, keyboard, position, round);
                     if (positionPrev == position + 7 || positionPrev == position - 7){
                         round-=1;
                     }
@@ -147,7 +165,7 @@ public class Main {
                     int positionPrev = position;
                     int positionCombat = position;
 
-                    position=Combat.combatMethod(hero, wampa, playerInventory, score, keyboard, position);
+                    position=Combat.combatMethod(hero, wampa, playerInventory, score, keyboard, position, round);
                     if (positionPrev == position +7 || positionPrev == position - 7){
                         round-=1;
                     }
@@ -159,7 +177,7 @@ public class Main {
             }else if(rooms[position].getTreasure()!= null){
                 playerInventory = Treasure.openTreasure(rooms,position,rooms[position].getTreasure(), playerInventory, score, firekeys, oceankeys, dirtkeys, windkeys);
             }else {
-                position=Map.move(position, hero, rooms, keyboard, firekeys, oceankeys, dirtkeys, windkeys, playerInventory, wampa, typhone, minotaur, score);
+                position=Map.move(position, hero, rooms, keyboard, firekeys, oceankeys, dirtkeys, windkeys, playerInventory, wampa, typhone, minotaur, score, round);
             }
             round++;
         }

@@ -68,7 +68,7 @@ public class Treasure {
                 if (inventory.size() == 0 || inventory.size() == 1 || inventory.size() == 2) {
                     inventory.add(chest.getItem1().getName());
                     inventory.add(chest.getItem2().getName());
-                    inventory.add(chest.getItem3().getName());
+                   // inventory.add(chest.getItem3().getName());
                     list[position].setTreasure(null);
                     break;
                 }

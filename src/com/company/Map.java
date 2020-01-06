@@ -53,7 +53,7 @@ public class Map {
         }
     }
 
-    public static int move(int position, Heroes hero, Rooms[] roomlist, Keyboard keyboard, int firekeys, int oceankeys, int dirtkeys, int windkeys, ArrayList<Item> playerInventory, Monster wampa, Monster typhone, Monster minotaur, Score score){
+    public static int move(int position, Heroes hero, Rooms[] roomlist, Keyboard keyboard, int firekeys, int oceankeys, int dirtkeys, int windkeys, ArrayList<Item> playerInventory, Monster wampa, Monster typhone, Monster minotaur, Score score, int round){
         Scanner input = new Scanner(System.in);
         Map.printMap(position);
         String direction = "0";
@@ -95,7 +95,7 @@ public class Map {
                         position+=7;
                     }
                 } else if (direction.equals(keyboard.getOption())){
-                    SubMenu.subMenu(keyboard, position,hero, playerInventory, wampa, typhone, minotaur, score);
+                    SubMenu.subMenu(keyboard, position,hero, playerInventory, wampa, typhone, minotaur, score, round);
                 } else {
                     System.out.println("Not a valid option");
                     direction = "0";
@@ -120,7 +120,7 @@ public class Map {
                         position+=7;
                     }
                 } else if (direction.equals(keyboard.getOption())){
-                    SubMenu.subMenu(keyboard, position,hero, playerInventory, wampa, typhone, minotaur, score);
+                    SubMenu.subMenu(keyboard, position,hero, playerInventory, wampa, typhone, minotaur, score, round);
                 }else {
                     System.out.println("Not a valid option");
                     direction = "0";
@@ -145,7 +145,7 @@ public class Map {
                         position-=7;
                     }
                 } else if (direction.equals(keyboard.getOption())){
-                    SubMenu.subMenu(keyboard, position,hero, playerInventory, wampa, typhone, minotaur, score);
+                    SubMenu.subMenu(keyboard, position,hero, playerInventory, wampa, typhone, minotaur, score, round);
                 }else {
                     System.out.println("Not a valid option");
                     direction = "0";
@@ -170,7 +170,7 @@ public class Map {
                         position-=7;
                     }
                 } else if (direction.equals(keyboard.getOption())){
-                    SubMenu.subMenu(keyboard, position,hero, playerInventory, wampa, typhone, minotaur, score);
+                    SubMenu.subMenu(keyboard, position,hero, playerInventory, wampa, typhone, minotaur, score, round);
                 }else {
                     System.out.println("Not a valid option");
                     direction = "0";
@@ -202,7 +202,7 @@ public class Map {
                         position+=7;
                     }
                 } else if (direction.equals(keyboard.getOption())){
-                    SubMenu.subMenu(keyboard, position,hero, playerInventory, wampa, typhone, minotaur, score);
+                    SubMenu.subMenu(keyboard, position,hero, playerInventory, wampa, typhone, minotaur, score, round);
                 } else{
                     System.out.println("Not a valid option");
                     direction = "0";
@@ -234,7 +234,7 @@ public class Map {
                         position+=7;
                     }
                 } else if (direction.equals(keyboard.getOption())){
-                    SubMenu.subMenu(keyboard, position,hero, playerInventory, wampa, typhone, minotaur, score);
+                    SubMenu.subMenu(keyboard, position,hero, playerInventory, wampa, typhone, minotaur, score, round);
                 } else {
                     System.out.println("Not a valid option");
                     direction = "0";
@@ -266,7 +266,7 @@ public class Map {
                         position-=7;
                     }
                 }else if (direction.equals(keyboard.getOption())){
-                    SubMenu.subMenu(keyboard, position,hero, playerInventory, wampa, typhone, minotaur, score);
+                    SubMenu.subMenu(keyboard, position,hero, playerInventory, wampa, typhone, minotaur, score, round);
                 }else {
                     System.out.println("Not a valid option");
                     direction = "0";
@@ -298,7 +298,7 @@ public class Map {
                         position+=7;
                     }
                 }else if (direction.equals(keyboard.getOption())){
-                    SubMenu.subMenu(keyboard, position,hero, playerInventory, wampa, typhone, minotaur, score);
+                    SubMenu.subMenu(keyboard, position,hero, playerInventory, wampa, typhone, minotaur, score, round);
                 }else {
                     System.out.println("Not a valid option");
                     direction = "0";
@@ -337,7 +337,7 @@ public class Map {
                         position+=7;
                     }
                 }else if (direction.equals(keyboard.getOption())){
-                    SubMenu.subMenu(keyboard, position,hero, playerInventory, wampa, typhone, minotaur, score);
+                    SubMenu.subMenu(keyboard, position,hero, playerInventory, wampa, typhone, minotaur, score, round);
                 }else {
                     System.out.println("Not a valid option");
                     direction = "0";
