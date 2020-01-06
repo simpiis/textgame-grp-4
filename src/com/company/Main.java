@@ -9,11 +9,13 @@ import java.lang.*;
 
 public class Main {
     public static void main(String[] args) throws IOException, ClassNotFoundException {
+        Keys keys = new Keys();
+        keys.setDirtkeys(0);
+        keys.setFirekeys(0);
+        keys.setOceankeys(0);
+        keys.setOceankeys(0);
+
         BufferedReader br = null;
-        int firekeys = 0;
-        int oceankeys = 0;
-        int dirtkeys = 0;
-        int windkeys = 0;
         Doors.createDoor();
         String mainMenu = "0";
         Scanner input = new Scanner(System.in);
@@ -28,6 +30,7 @@ public class Main {
         Keyboard keyboard = new Keyboard("2","1", "3", "4", "9");
         String choice = "4";
         int position = 0;
+        int position2 = 0;
         int round = 1;
         int highscore = 0;
 
@@ -136,6 +139,25 @@ public class Main {
         }
 
         while(round <= 49){
+            if(position != 0 && round > 1){
+                String[] keytypes = new String[]{"Wind", "Fire", "Ocean", "Dirt"};
+                Random rand = new Random();
+                int number = rand.nextInt(4);
+                if (position != position2){
+                    if (keytypes[number] == "Ocean"){
+                        keys.setOceankeys(keys.getOceankeys()+1);
+                    }else if(keytypes[number] == "Wind"){
+                        keys.setWindkeys(keys.getWindkeys()+1);
+                    }else if (keytypes[number] == "Fire"){
+                        keys.setFirekeys(keys.getFirekeys()+1);
+                    }else{
+                        keys.setDirtkeys(keys.getDirtkeys()+1);
+                    }
+                }
+                System.out.println("You found a " + keytypes[number]+ "key");
+
+            }
+            position2 = position;
             System.out.println("Round: " + round);
             System.out.println("Score: " + score.getScore());
             if(rooms[position].getMonster()!= null){
@@ -175,9 +197,9 @@ public class Main {
                 }
 
             }else if(rooms[position].getTreasure()!= null){
-                playerInventory = Treasure.openTreasure(rooms,position,rooms[position].getTreasure(), playerInventory, score, firekeys, oceankeys, dirtkeys, windkeys);
+                playerInventory = Treasure.openTreasure(rooms,position,rooms[position].getTreasure(), playerInventory, score);
             }else {
-                position=Map.move(position, hero, rooms, keyboard, firekeys, oceankeys, dirtkeys, windkeys, playerInventory, wampa, typhone, minotaur, score, round);
+                position=Map.move(position, hero, rooms, keyboard,playerInventory, keys, wampa, typhone, minotaur, score, round);
             }
             round++;
         }

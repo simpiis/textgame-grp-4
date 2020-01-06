@@ -32,11 +32,9 @@ public class Treasure {
         System.out.println("You found also found: " + coins + " coins");
         return coins;
     }
-    public static ArrayList openTreasure(Rooms[] list , int position, Treasure chest, ArrayList inventory, Score score, int firekeys, int oceankeys, int dirtkeys, int windkeys) {
+    public static ArrayList openTreasure(Rooms[] list , int position, Treasure chest, ArrayList inventory, Score score) {
         Scanner input = new Scanner(System.in);
-        String[] keytypes = new String[]{"Wind", "Fire", "Ocean", "Dirt"};
         Random rand = new Random();
-        int number = rand.nextInt(4);
         int item1Cont = 0;
         int item2Cont = 0;
         int item3Cont = 0;
@@ -50,16 +48,7 @@ public class Treasure {
             System.out.println("You found:");
             System.out.println("1. " + (((Item) chest.getItem1()).getName()));
             System.out.println("2. " + (((Item) chest.getItem2()).getName()));
-            System.out.println("3. " + keytypes[number] + " " + (((Item) chest.getItem3()).getName()));
-            if (keytypes[number] == "Ocean"){
-                oceankeys +=1;
-            }else if(keytypes[number] == "Wind"){
-                windkeys +=1;
-            }else if (keytypes[number] == "Fire"){
-                firekeys+=1;
-            }else{
-                dirtkeys +=1;
-            }
+            System.out.println("3. " + (((Item) chest.getItem3()).getName()));
             int sum = chest.coinsGenerator();
             sum += score.getScore();
             score.setScore(sum);
