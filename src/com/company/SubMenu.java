@@ -37,11 +37,11 @@ public class SubMenu {
 
                 PrintWriter pwMonster = new PrintWriter("Monster.txt");
                 pwMonster.println(wampa.getHp());
-                pwMonster.println(wampaPos);
+                pwMonster.println(wampa.getPos());
                 pwMonster.println(typhone.getHp());
-                pwMonster.println(typhonePos);
+                pwMonster.println(typhone.getPos());
                 pwMonster.println(minotaur.getHp());
-                pwMonster.println(minotaurPos);
+                pwMonster.println(minotaur.getPos());
                 pwMonster.close();
 
                 }catch (IOException e) {

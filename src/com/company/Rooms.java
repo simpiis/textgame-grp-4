@@ -82,6 +82,9 @@ public class Rooms {
         } else {
             monsterroom3 = wampaPos;
         }
+        monster1.setPos(monsterroom1);
+        monster2.setPos(monsterroom2);
+        monster2.setPos(monsterroom3);
 
         while (monsterroom1 == monsterroom2 || monsterroom1 == monsterroom3 || monsterroom2 == monsterroom3){
             monsterroom2 = rand.nextInt(49);
@@ -153,4 +156,5 @@ public class Rooms {
         Doors thisdoor = new Doors(doortypes[number]);
         return thisdoor;
     }
+
 }

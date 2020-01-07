@@ -23,9 +23,9 @@ public class Main {
         String mainMenu = "0";
         Scanner input = new Scanner(System.in);
         Heroes hero = new Heroes(1, 1, "");
-        Monster minotaur = new Monster(50,10, "Minotaur");
-        Monster typhone = new Monster(60,30, "Typhone");
-        Monster wampa = new Monster(100,20, "Wampa");
+        Monster minotaur = new Monster(50,10, "Minotaur", 0);
+        Monster typhone = new Monster(60,30, "Typhone", 0);
+        Monster wampa = new Monster(100,20, "Wampa", 0);
         Score score = new Score();
         Treasure chest1 = new Treasure(Item.createItem(),Item.createItem(), Item.createItem());
         Treasure chest2 = new Treasure(Item.createItem(),Item.createItem(), Item.createItem());
