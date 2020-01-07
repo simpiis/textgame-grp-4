@@ -15,6 +15,9 @@ public class Main {
         keys.setOceankeys(0);
         keys.setOceankeys(0);
 
+        int minotaurPos = 0;
+        int typhonePos = 0;
+        int wampaPos = 0;
         BufferedReader br = null;
         Doors.createDoor();
         String mainMenu = "0";
@@ -34,7 +37,7 @@ public class Main {
         int round = 1;
         int highscore = 0;
 
-        Rooms[] rooms = Rooms.createRooms(minotaur, typhone, wampa, chest1, chest2, chest3);
+
 
         ArrayList<Item> playerInventory = new ArrayList<>();
         boolean cont = true;
@@ -97,9 +100,15 @@ public class Main {
                         if (i == 0) {
                             wampa.setHp(scanner2.nextInt());
                         } else if (i == 1) {
-                            typhone.setHp(scanner2.nextInt());
+                            wampaPos = scanner2.nextInt();
                         } else if (i == 2) {
+                            typhone.setHp(scanner2.nextInt());
+                        } else if (i == 3) {
+                            typhonePos = scanner2.nextInt();
+                        } else if (i == 4) {
                             minotaur.setHp(scanner2.nextInt());
+                        } else if (i == 5) {
+                            minotaurPos = scanner2.nextInt();
                         }
                         i += 1;
                     }
@@ -118,11 +127,14 @@ public class Main {
             else if (mainMenu.equals("3")) {
                 Info.info();
             }
-            else {
+            else if (mainMenu.equals("1")) {
                 cont = false;
             }
+            else {
+                System.out.println("Invalid command\n");
+            }
         }
-
+        Rooms[] rooms = Rooms.createRooms(minotaur, typhone, wampa, chest1, chest2, chest3, wampaPos, typhonePos, minotaurPos);
         while (!choice.equals("1") && !choice.equals("2") && !choice.equals("3")) {
             System.out.println("***************************");
             System.out.println("*  Welcome to WoW Borgen  *");

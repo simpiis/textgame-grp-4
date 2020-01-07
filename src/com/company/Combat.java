@@ -54,11 +54,20 @@ public class Combat {
                                 if (inventory.get(inventorySelection - 1).equals("Health potion")) {
                                     System.out.println("You consumed " + inventory.get(inventorySelection - 1) + " and gained 10 hp");
                                     hero.setHp(hero.getHp() + 10);
+                                    if (hero.getHp() > 200){
+                                        hero.setHp(200);
+                                    }
+                                    System.out.println("You now have " + hero.getHp() + " health");
                                 } else if (inventory.get(inventorySelection - 1).equals("Mana potion")) {
                                     if (hero.getName().equals("Rogue")) {
                                         System.out.println("You consumed " + inventory.get(inventorySelection - 1) + " and gained 25 mana");
                                         hero.setRogueMana(hero.getRogueMana() + 25);
+                                        if (hero.getRogueMana() > 75){
+                                            hero.setRogueMana(75);
+                                        }
+                                        System.out.println("You now have " + hero.getRogueMana() + " mana");
                                     }
+
                                 }
                                 inventory.remove(inventorySelection - 1);
                             }
@@ -88,11 +97,20 @@ public class Combat {
                                         System.out.println("You consumed " + inventory.get(inventorySelection - 1) + " and gained 10hp");
                                         if (inventory.get(inventorySelection - 1).equals("Health potion")) {
                                             hero.setHp(hero.getHp() + 10);
+                                            if (hero.getHp() > 200) {
+                                                hero.setHp(200);
+                                            }
+                                            System.out.println("You now have " + hero.getHp() + " health" );
                                         } else if (inventory.get(inventorySelection - 1).equals("Mana potion")) {
                                             if (hero.getName().equals("Rogue")) {
                                                 System.out.println("You consumed " + inventory.get(inventorySelection - 1) + " and gained 25 mana");
                                                 hero.setRogueMana(hero.getRogueMana() + 25);
+                                                if (hero.getRogueMana() > 75) {
+                                                    hero.setRogueMana(75);
+                                                }
+                                                System.out.println("You now have " + hero.getRogueMana() + " mana");
                                             }
+
                                         }
                                         inventory.remove(inventorySelection - 1);
 
@@ -140,11 +158,20 @@ public class Combat {
                                             System.out.println("You consumed " + inventory.get(inventorySelection - 1) + " and gained 10hp");
                                             if (inventory.get(inventorySelection - 1).equals("Health potion")) {
                                                 hero.setHp(hero.getHp() + 10);
+                                                if (hero.getHp() > 200) {
+                                                    hero.setHp(200);
+                                                }
+                                                System.out.println("You now have " + hero.getHp() + " health");
                                             } else if (inventory.get(inventorySelection - 1).equals("Mana potion")) {
                                                 if (hero.getName().equals("Rogue")) {
                                                     System.out.println("You consumed " + inventory.get(inventorySelection - 1) + " and gained 25 mana");
                                                     hero.setRogueMana(hero.getRogueMana() + 25);
+                                                    if (hero.getRogueMana() > 75) {
+                                                        hero.setRogueMana(75);
+                                                    }
+                                                    System.out.println("You now have " + hero.getRogueMana() + " mana");
                                                 }
+
                                             }
                                             inventory.remove(inventorySelection - 1);
                                         } else {

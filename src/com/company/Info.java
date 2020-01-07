@@ -3,12 +3,13 @@ package com.company;
 import java.util.Scanner;
 
 public class Info {
-    public static void info () {
+    public static void info() {
         Scanner input = new Scanner(System.in);
         int decision;
 
         System.out.println("1) What is this game about?");
-        System.out.println("2) How do I play\n");
+        System.out.println("2) How do I play");
+        System.out.println("3) Back to Main Menu\n");
         System.out.println("What would you like to know?");
         decision = input.nextInt();
 
@@ -31,7 +32,7 @@ public class Info {
                     "|    o | boo\n" +
                     "| v   v|  \n" +
                     "|/\\/\\/\\|\n\n");
-        }else {
+        } else if (decision == 2) {
             System.out.println("[Press Enter to continue]\n");
             System.out.println("To play this awesome game there are some things you need to know..");
             String catchEnter = input.nextLine();
@@ -47,6 +48,14 @@ public class Info {
             System.out.println("To move around, your will use either 1, 2, 3 or 4.");
             catchEnter = input.nextLine();
             System.out.println("These will also be the controls that you use in combat and when using items that you collect on your way");
+            catchEnter = input.nextLine();
+            System.out.println("A hero can have a maximum of 200 health through healing with potions or the warrior special ability.");
+            catchEnter = input.nextLine();
+            System.out.println("The rogue can have a maximum of 75 mana through the usage of mana potions");
+            catchEnter = input.nextLine();
+            System.out.println("Fleeing has a 50% chance to succeed");
+            catchEnter = input.nextLine();
+            System.out.println("If you are on the uppermost row of the map fleeing will move you one square down.\nIn all other cases you will be moved one square up");
             catchEnter = input.nextLine();
             System.out.println("And this is all you need to know to play this amazing game!\n");
         }
