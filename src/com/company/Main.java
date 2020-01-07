@@ -211,7 +211,7 @@ public class Main {
                 if ( rooms[position].getMonster() == minotaur) {
                     int positionPrev = position;
                     int positionCombat = position;
-                    position=Combat.combatMethod(hero, minotaur, playerInventory, score, keyboard, position, round);
+                    position=Combat.combatMethod(hero, minotaur, playerInventory, score, keyboard, position, round, chest1, chest2,chest3);
                     if (positionPrev == position +7 || positionPrev == position -7){
                         round-=1;
                     }
@@ -223,7 +223,7 @@ public class Main {
                     int positionPrev = position;
                     int positionCombat = position;
 
-                    position=Combat.combatMethod(hero, typhone, playerInventory, score, keyboard, position, round);
+                    position=Combat.combatMethod(hero, typhone, playerInventory, score, keyboard, position, round, chest1, chest2, chest3);
                     if (positionPrev == position + 7 || positionPrev == position - 7){
                         round-=1;
                     }
@@ -234,7 +234,7 @@ public class Main {
                     int positionPrev = position;
                     int positionCombat = position;
 
-                    position=Combat.combatMethod(hero, wampa, playerInventory, score, keyboard, position, round);
+                    position=Combat.combatMethod(hero, wampa, playerInventory, score, keyboard, position, round, chest1, chest2, chest3);
                     if (positionPrev == position +7 || positionPrev == position - 7){
                         round-=1;
                     }
@@ -246,7 +246,7 @@ public class Main {
             }else if(rooms[position].getTreasure()!= null){
                 playerInventory = Treasure.openTreasure(rooms,position,rooms[position].getTreasure(), playerInventory, score);
             }else {
-                position=Map.move(position, hero, rooms, keyboard,playerInventory, keys, wampa, typhone, minotaur, score, round);
+                position=Map.move(position, hero, rooms, keyboard,playerInventory, keys, wampa, typhone, minotaur, score, round, chest1, chest2, chest3);
             }
             round++;
         }

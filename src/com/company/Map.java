@@ -19,7 +19,7 @@ public class Map {
             }
         }
     }
-    public static int openDoor(String doorname, int position, int position2, Keys key){
+    public static int openDoor(String doorname, int position, int position2, Keys key, Treasure chest1, Treasure chest2, Treasure chest3){
         if(doorname == "Ocean"){
             if(key.getOceankeys() > 0){
                 key.setOceankeys(key.getOceankeys()-1);
@@ -64,7 +64,7 @@ public class Map {
     }
 
 
-    public static int move(int position, Heroes hero, Rooms[] roomlist, Keyboard keyboard, ArrayList<Item> playerInventory, Keys key, Monster wampa, Monster typhone, Monster minotaur, Score score, int round){
+    public static int move(int position, Heroes hero, Rooms[] roomlist, Keyboard keyboard, ArrayList<Item> playerInventory, Keys key, Monster wampa, Monster typhone, Monster minotaur, Score score, int round, Treasure chest1, Treasure chest2, Treasure chest3){
         Scanner input = new Scanner(System.in);
         Map.printMap(position);
         String direction = "0";
@@ -93,19 +93,19 @@ public class Map {
                 if (direction.equals(keyboard.getRight())) {
                     if(roomlist[position].getDoor1()!= null){
                         System.out.println((((Doors) roomlist[position].getDoor1()).getTypeOfDoor()) + " Door");
-                        position = Map.openDoor((((Doors) roomlist[position].getDoor1()).getTypeOfDoor()),position,position+1, key);
+                        position = Map.openDoor((((Doors) roomlist[position].getDoor1()).getTypeOfDoor()),position,position+1, key, chest1, chest2, chest3);
                     }else{
                         position+=1;
                     }
                 } else if (direction.equals(keyboard.getDown())){
                     if(roomlist[position].getDoor2()!= null) {
                         System.out.println((((Doors) roomlist[position].getDoor2()).getTypeOfDoor()) + " Door");
-                        position = Map.openDoor((((Doors) roomlist[position].getDoor2()).getTypeOfDoor()),position,position+7,key);
+                        position = Map.openDoor((((Doors) roomlist[position].getDoor2()).getTypeOfDoor()),position,position+7,key, chest1, chest2, chest3);
                     }else{
                         position+=7;
                     }
                 } else if (direction.equals(keyboard.getOption())){
-                    SubMenu.subMenu(keyboard, position,hero, playerInventory, wampa, typhone, minotaur, score, round);
+                    SubMenu.subMenu(keyboard, position,hero, playerInventory, wampa, typhone, minotaur, score, round, chest1, chest2, chest3);
                 } else {
                     System.out.println("Not a valid option");
                     direction = "0";
@@ -118,19 +118,19 @@ public class Map {
                 if (direction.equals(keyboard.getLeft())) {
                     if(roomlist[position].getDoor1()!= null) {
                         System.out.println((((Doors) roomlist[position].getDoor1()).getTypeOfDoor()) + " Door");
-                        position = Map.openDoor((((Doors) roomlist[position].getDoor1()).getTypeOfDoor()),position,position-1,key);
+                        position = Map.openDoor((((Doors) roomlist[position].getDoor1()).getTypeOfDoor()),position,position-1,key, chest1, chest2, chest3);
                     }else{
                         position-=1;
                     }
                 } else if (direction.equals(keyboard.getDown())) {
                     if(roomlist[position].getDoor2()!= null) {
                         System.out.println((((Doors) roomlist[position].getDoor2()).getTypeOfDoor()) + " Door");
-                        position = Map.openDoor((((Doors) roomlist[position].getDoor2()).getTypeOfDoor()),position,position+7,key);
+                        position = Map.openDoor((((Doors) roomlist[position].getDoor2()).getTypeOfDoor()),position,position+7,key, chest1, chest2, chest3);
                     }else{
                         position+=7;
                     }
                 } else if (direction.equals(keyboard.getOption())){
-                    SubMenu.subMenu(keyboard, position,hero, playerInventory, wampa, typhone, minotaur, score, round);
+                    SubMenu.subMenu(keyboard, position,hero, playerInventory, wampa, typhone, minotaur, score, round, chest1, chest2, chest3);
                 }else {
                     System.out.println("Not a valid option");
                     direction = "0";
@@ -143,19 +143,19 @@ public class Map {
                 if (direction.equals(keyboard.getRight())) {
                     if(roomlist[position].getDoor1()!= null) {
                         System.out.println((((Doors) roomlist[position].getDoor1()).getTypeOfDoor()) + " Door");
-                        position = Map.openDoor((((Doors) roomlist[position].getDoor1()).getTypeOfDoor()),position,position+1,key);
+                        position = Map.openDoor((((Doors) roomlist[position].getDoor1()).getTypeOfDoor()),position,position+1,key, chest1, chest2, chest3);
                     }else{
                         position+=1;
                     }
                 }else if (direction.equals(keyboard.getUp())) {
                     if(roomlist[position].getDoor2()!= null) {
                         System.out.println((((Doors) roomlist[position].getDoor2()).getTypeOfDoor()) + " Door");
-                        position = Map.openDoor((((Doors) roomlist[position].getDoor2()).getTypeOfDoor()),position,position-7,key);
+                        position = Map.openDoor((((Doors) roomlist[position].getDoor2()).getTypeOfDoor()),position,position-7,key, chest1, chest2, chest3);
                     }else{
                         position-=7;
                     }
                 } else if (direction.equals(keyboard.getOption())){
-                    SubMenu.subMenu(keyboard, position,hero, playerInventory, wampa, typhone, minotaur, score, round);
+                    SubMenu.subMenu(keyboard, position,hero, playerInventory, wampa, typhone, minotaur, score, round, chest1, chest2, chest3);
                 }else {
                     System.out.println("Not a valid option");
                     direction = "0";
@@ -168,19 +168,19 @@ public class Map {
                 if (direction.equals(keyboard.getLeft())) {
                     if(roomlist[position].getDoor1()!= null) {
                         System.out.println((((Doors) roomlist[position].getDoor1()).getTypeOfDoor()) + " Door");
-                        position = Map.openDoor((((Doors) roomlist[position].getDoor1()).getTypeOfDoor()),position,position-1,key);
+                        position = Map.openDoor((((Doors) roomlist[position].getDoor1()).getTypeOfDoor()),position,position-1,key, chest1, chest2, chest3);
                     }else{
                         position-=1;
                     }
                 } else if (direction.equals(keyboard.getUp())){
                     if(roomlist[position].getDoor2()!= null) {
                         System.out.println((((Doors) roomlist[position].getDoor2()).getTypeOfDoor()) + " Door");
-                        position = Map.openDoor((((Doors) roomlist[position].getDoor2()).getTypeOfDoor()),position,position-7,key);
+                        position = Map.openDoor((((Doors) roomlist[position].getDoor2()).getTypeOfDoor()),position,position-7,key, chest1, chest2, chest3);
                     }else{
                         position-=7;
                     }
                 } else if (direction.equals(keyboard.getOption())){
-                    SubMenu.subMenu(keyboard, position,hero, playerInventory, wampa, typhone, minotaur, score, round);
+                    SubMenu.subMenu(keyboard, position,hero, playerInventory, wampa, typhone, minotaur, score, round, chest1, chest2, chest3);
                 }else {
                     System.out.println("Not a valid option");
                     direction = "0";
@@ -193,26 +193,26 @@ public class Map {
                 if (direction.equals(keyboard.getRight())) {
                     if(roomlist[position].getDoor1()!= null) {
                         System.out.println((((Doors) roomlist[position].getDoor1()).getTypeOfDoor()) + " Door");
-                        position = Map.openDoor((((Doors) roomlist[position].getDoor1()).getTypeOfDoor()),position,position+1,key);
+                        position = Map.openDoor((((Doors) roomlist[position].getDoor1()).getTypeOfDoor()),position,position+1,key, chest1, chest2, chest3);
                     }else{
                         position+=1;
                     }
                 }else if (direction.equals(keyboard.getUp())) {
                     if(roomlist[position].getDoor2()!= null) {
                         System.out.println((((Doors) roomlist[position].getDoor2()).getTypeOfDoor()) + " Door");
-                        position = Map.openDoor((((Doors) roomlist[position].getDoor2()).getTypeOfDoor()),position,position-7,key);
+                        position = Map.openDoor((((Doors) roomlist[position].getDoor2()).getTypeOfDoor()),position,position-7,key, chest1, chest2, chest3);
                     }else{
                         position-=7;
                     }
                 }else if (direction.equals(keyboard.getDown())){
                     if(roomlist[position].getDoor3()!= null) {
                         System.out.println((((Doors) roomlist[position].getDoor3()).getTypeOfDoor()) + " Door");
-                        position = Map.openDoor((((Doors) roomlist[position].getDoor3()).getTypeOfDoor()),position,position+7,key);
+                        position = Map.openDoor((((Doors) roomlist[position].getDoor3()).getTypeOfDoor()),position,position+7,key, chest1, chest2, chest3);
                     }else{
                         position+=7;
                     }
                 } else if (direction.equals(keyboard.getOption())){
-                    SubMenu.subMenu(keyboard, position,hero, playerInventory, wampa, typhone, minotaur, score, round);
+                    SubMenu.subMenu(keyboard, position,hero, playerInventory, wampa, typhone, minotaur, score, round,chest1, chest2, chest3);
                 } else{
                     System.out.println("Not a valid option");
                     direction = "0";
@@ -225,26 +225,26 @@ public class Map {
                 if (direction.equals(keyboard.getRight())) {
                     if(roomlist[position].getDoor1()!= null) {
                         System.out.println((((Doors) roomlist[position].getDoor1()).getTypeOfDoor()) + " Door");
-                        position = Map.openDoor((((Doors) roomlist[position].getDoor1()).getTypeOfDoor()),position,position+1,key);
+                        position = Map.openDoor((((Doors) roomlist[position].getDoor1()).getTypeOfDoor()),position,position+1,key, chest1, chest2, chest3);
                     }else{
                         position+=1;
                     }
                 } else if (direction.equals(keyboard.getLeft())) {
                     if(roomlist[position].getDoor2()!= null) {
                         System.out.println((((Doors) roomlist[position].getDoor2()).getTypeOfDoor()) + " Door");
-                        position = Map.openDoor((((Doors) roomlist[position].getDoor2()).getTypeOfDoor()),position,position-1,key);
+                        position = Map.openDoor((((Doors) roomlist[position].getDoor2()).getTypeOfDoor()),position,position-1,key, chest1, chest2, chest3);
                     }else{
                         position-=1;
                     }
                 }else if(direction.equals(keyboard.getDown())){
                     if(roomlist[position].getDoor3()!= null) {
                         System.out.println((((Doors) roomlist[position].getDoor3()).getTypeOfDoor()) + " Door");
-                        position = Map.openDoor((((Doors) roomlist[position].getDoor3()).getTypeOfDoor()),position,position+7,key);
+                        position = Map.openDoor((((Doors) roomlist[position].getDoor3()).getTypeOfDoor()),position,position+7,key, chest1, chest2, chest3);
                     }else{
                         position+=7;
                     }
                 } else if (direction.equals(keyboard.getOption())){
-                    SubMenu.subMenu(keyboard, position,hero, playerInventory, wampa, typhone, minotaur, score, round);
+                    SubMenu.subMenu(keyboard, position,hero, playerInventory, wampa, typhone, minotaur, score, round, chest1, chest2, chest3);
                 } else {
                     System.out.println("Not a valid option");
                     direction = "0";
@@ -257,26 +257,26 @@ public class Map {
                 if (direction.equals(keyboard.getRight())) {
                     if(roomlist[position].getDoor1()!= null) {
                         System.out.println((((Doors) roomlist[position].getDoor1()).getTypeOfDoor()) + " Door");
-                        position = Map.openDoor((((Doors) roomlist[position].getDoor1()).getTypeOfDoor()),position,position+1,key);
+                        position = Map.openDoor((((Doors) roomlist[position].getDoor1()).getTypeOfDoor()),position,position+1,key, chest1, chest2, chest3);
                     }else{
                         position+=1;
                     }
                 } else if (direction.equals(keyboard.getLeft())) {
                     if(roomlist[position].getDoor2()!= null) {
                         System.out.println((((Doors) roomlist[position].getDoor2()).getTypeOfDoor()) + " Door");
-                        position = Map.openDoor((((Doors) roomlist[position].getDoor2()).getTypeOfDoor()),position,position-1,key);
+                        position = Map.openDoor((((Doors) roomlist[position].getDoor2()).getTypeOfDoor()),position,position-1,key, chest1, chest2, chest3);
                     }else{
                         position-=1;
                     }
                 }else if(direction.equals(keyboard.getUp())){
                     if(roomlist[position].getDoor3()!= null) {
                         System.out.println((((Doors) roomlist[position].getDoor3()).getTypeOfDoor()) + " Door");
-                        position = Map.openDoor((((Doors) roomlist[position].getDoor3()).getTypeOfDoor()),position,position-7,key);
+                        position = Map.openDoor((((Doors) roomlist[position].getDoor3()).getTypeOfDoor()),position,position-7,key, chest1, chest2, chest3);
                     }else{
                         position-=7;
                     }
                 }else if (direction.equals(keyboard.getOption())){
-                    SubMenu.subMenu(keyboard, position,hero, playerInventory, wampa, typhone, minotaur, score, round);
+                    SubMenu.subMenu(keyboard, position,hero, playerInventory, wampa, typhone, minotaur, score, round, chest1, chest2, chest3);
                 }else {
                     System.out.println("Not a valid option");
                     direction = "0";
@@ -289,26 +289,26 @@ public class Map {
                 if (direction.equals(keyboard.getLeft())) {
                     if(roomlist[position].getDoor1()!= null) {
                         System.out.println((((Doors) roomlist[position].getDoor1()).getTypeOfDoor()) + " Door");
-                        position = Map.openDoor((((Doors) roomlist[position].getDoor1()).getTypeOfDoor()),position,position-1,key);
+                        position = Map.openDoor((((Doors) roomlist[position].getDoor1()).getTypeOfDoor()),position,position-1,key, chest1, chest2, chest3);
                     }else{
                         position-=1;
                     }
                 } else if (direction.equals(keyboard.getUp())) {
                     if(roomlist[position].getDoor2()!= null) {
                         System.out.println((((Doors) roomlist[position].getDoor2()).getTypeOfDoor()) + " Door");
-                        position = Map.openDoor((((Doors) roomlist[position].getDoor2()).getTypeOfDoor()),position,position-7,key);
+                        position = Map.openDoor((((Doors) roomlist[position].getDoor2()).getTypeOfDoor()),position,position-7,key, chest1, chest2, chest3);
                     }else{
                         position-=7;
                     }
                 }else if(direction.equals(keyboard.getDown())){
                     if(roomlist[position].getDoor3()!= null) {
                         System.out.println((((Doors) roomlist[position].getDoor3()).getTypeOfDoor()) + " Door");
-                        position = Map.openDoor((((Doors) roomlist[position].getDoor3()).getTypeOfDoor()),position,position+7,key);
+                        position = Map.openDoor((((Doors) roomlist[position].getDoor3()).getTypeOfDoor()),position,position+7,key, chest1, chest2, chest3);
                     }else{
                         position+=7;
                     }
                 }else if (direction.equals(keyboard.getOption())){
-                    SubMenu.subMenu(keyboard, position,hero, playerInventory, wampa, typhone, minotaur, score, round);
+                    SubMenu.subMenu(keyboard, position,hero, playerInventory, wampa, typhone, minotaur, score, round, chest1, chest2, chest3);
                 }else {
                     System.out.println("Not a valid option");
                     direction = "0";
@@ -321,33 +321,33 @@ public class Map {
                 if (direction.equals(keyboard.getRight())) {
                     if(roomlist[position].getDoor1()!= null) {
                         System.out.println((((Doors) roomlist[position].getDoor1()).getTypeOfDoor()) + " Door");
-                        position = Map.openDoor((((Doors) roomlist[position].getDoor1()).getTypeOfDoor()),position,position+1,key);
+                        position = Map.openDoor((((Doors) roomlist[position].getDoor1()).getTypeOfDoor()),position,position+1,key, chest1, chest2, chest3);
                     }else{
                         position+=1;
                     }
                 } else if (direction.equals(keyboard.getLeft())) {
                     if(roomlist[position].getDoor2()!= null) {
                         System.out.println((((Doors) roomlist[position].getDoor2()).getTypeOfDoor()) + " Door");
-                        position = Map.openDoor((((Doors) roomlist[position].getDoor2()).getTypeOfDoor()),position,position-1,key);
+                        position = Map.openDoor((((Doors) roomlist[position].getDoor2()).getTypeOfDoor()),position,position-1,key, chest1, chest2, chest3);
                     }else{
                         position-=1;
                     }
                 }else if(direction.equals(keyboard.getUp())){
                     if(roomlist[position].getDoor3()!= null) {
                         System.out.println((((Doors) roomlist[position].getDoor3()).getTypeOfDoor()) + " Door");
-                        position = Map.openDoor((((Doors) roomlist[position].getDoor3()).getTypeOfDoor()),position,position-7,key);
+                        position = Map.openDoor((((Doors) roomlist[position].getDoor3()).getTypeOfDoor()),position,position-7,key, chest1, chest2, chest3);
                     }else{
                         position-=7;
                     }
                 }else if(direction.equals(keyboard.getDown())){
                     if(roomlist[position].getDoor4()!= null) {
                         System.out.println((((Doors) roomlist[position].getDoor4()).getTypeOfDoor()) + " Door");
-                        position = Map.openDoor((((Doors) roomlist[position].getDoor4()).getTypeOfDoor()),position,position+7,key);
+                        position = Map.openDoor((((Doors) roomlist[position].getDoor4()).getTypeOfDoor()),position,position+7,key, chest1, chest2, chest3);
                     }else{
                         position+=7;
                     }
                 }else if (direction.equals(keyboard.getOption())){
-                    SubMenu.subMenu(keyboard, position,hero, playerInventory, wampa, typhone, minotaur, score, round);
+                    SubMenu.subMenu(keyboard, position,hero, playerInventory, wampa, typhone, minotaur, score, round, chest1, chest2, chest3);
                 }else {
                     System.out.println("Not a valid option");
                     direction = "0";

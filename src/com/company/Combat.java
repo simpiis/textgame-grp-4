@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class Combat {
 
-    public static int combatMethod(Heroes hero, Monster monster, ArrayList inventory, Score score, Keyboard keyboard, int position, int round) {
+    public static int combatMethod(Heroes hero, Monster monster, ArrayList inventory, Score score, Keyboard keyboard, int position, int round, Treasure chest1, Treasure chest2, Treasure chest3) {
         int inventorySelection = 0;
         int count = 0;
         String submenu = "0";
@@ -23,7 +23,7 @@ public class Combat {
             switch (combatChoice) {
 
                 case "3":
-                    SubMenu.subMenu(keyboard, position, hero, inventory, monster, monster, monster, score, round);
+                    SubMenu.subMenu(keyboard, position, hero, inventory, monster, monster, monster, score, round, chest1, chest2, chest3);
                     break;
                 case "1":
                     cont = false;
