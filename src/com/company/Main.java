@@ -14,13 +14,15 @@ public class Main {
         keys.setFirekeys(0);
         keys.setOceankeys(0);
         keys.setOceankeys(0);
-
+        int chest1Check = 0;
+        int chest2Check = 0;
+        int chest3Check = 0;
         int minotaurPos = 0;
         int typhonePos = 0;
         int wampaPos = 0;
-        BufferedReader br = null;
         Doors.createDoor();
         String mainMenu = "0";
+        Rooms [] list = new Rooms[49];
         Scanner input = new Scanner(System.in);
         Heroes hero = new Heroes(1, 1, "");
         Monster minotaur = new Monster(50,10, "Minotaur", 0);
@@ -88,7 +90,7 @@ public class Main {
                     e.printStackTrace();
                 }
 
-                FileInputStream fis = new FileInputStream("inventory.txt");
+               FileInputStream fis = new FileInputStream("inventory.txt");
                 ObjectInputStream ois = new ObjectInputStream(fis);
                 playerInventory = (ArrayList<Item>) ois.readObject();
                 ois.close();
@@ -119,31 +121,27 @@ public class Main {
                 try {
                     Scanner scanner3 = new Scanner(new File("Treasure.txt"));
                     int i = 0;
-                    while (i <= 11) {
+                    while (i <= 5) {
                         if (i == 0) {
-                            chest1.setItem1(scanner3.nextLine());
-                        } else if (i == 1) {
-                            chest1.setItem2(scanner3.nextLine());
-                        } else if (i == 2) {
-                            chest1.setItem3(scanner3.nextLine());
-                        } else if (i == 3) {
                             chest1.setPos(scanner3.nextInt());
-                        } else if (i == 4) {
-                            chest2.setItem1(scanner3.nextLine());
-                        } else if (i == 5) {
-                            chest2.setItem2(scanner3.nextLine());
-                        } else if (i == 6) {
-                            chest2.setItem3(scanner3.nextLine());
-                        } else if (i == 7) {
+                        } else if (i == 1) {
                             chest2.setPos(scanner3.nextInt());
-                        } else if (i == 8) {
-                            chest3.setItem1(scanner3.nextLine());
-                        } else if (i == 9) {
-                            chest3.setItem2(scanner3.nextLine());
-                        } else if (i == 10) {
-                            chest3.setItem3(scanner3.nextLine());
-                        } else if (i == 11) {
+                        } else if (i == 2) {
                             chest3.setPos(scanner3.nextInt());
+                        } else if (i == 3) {
+                            if (scanner3.nextInt() == 1) {
+                                chest1Check = 1;
+                            }
+                        }
+                        else if (i == 4) {
+                            if (scanner3.nextInt() == 1) {
+                                chest2Check = 1;
+                            }
+                        }
+                        else if (i == 5) {
+                            if (scanner3.nextInt() == 1) {
+                                chest3Check = 1;
+                            }
                         }
                         i += 1;
                     }
@@ -169,7 +167,7 @@ public class Main {
                 System.out.println("Invalid command\n");
             }
         }
-        Rooms[] rooms = Rooms.createRooms(minotaur, typhone, wampa, chest1, chest2, chest3, wampaPos, typhonePos, minotaurPos);
+        Rooms[] rooms = Rooms.createRooms(minotaur, typhone, wampa, chest1, chest2, chest3, wampaPos, typhonePos, minotaurPos, list, chest1Check, chest2Check, chest3Check);
         while (!choice.equals("1") && !choice.equals("2") && !choice.equals("3")) {
             System.out.println("***************************");
             System.out.println("*  Welcome to WoW Borgen  *");
@@ -200,8 +198,8 @@ public class Main {
                     }else{
                         keys.setDirtkeys(keys.getDirtkeys()+1);
                     }
+                    System.out.println("You found a " + keytypes[number]+ "key");
                 }
-                System.out.println("You found a " + keytypes[number]+ "key");
 
             }
             position2 = position;
@@ -211,7 +209,7 @@ public class Main {
                 if ( rooms[position].getMonster() == minotaur) {
                     int positionPrev = position;
                     int positionCombat = position;
-                    position=Combat.combatMethod(hero, minotaur, playerInventory, score, keyboard, position, round, chest1, chest2,chest3);
+                    position=Combat.combatMethod(hero, minotaur, playerInventory, score, keyboard, position, round, chest1, chest2,chest3, list);
                     if (positionPrev == position +7 || positionPrev == position -7){
                         round-=1;
                     }
@@ -223,7 +221,7 @@ public class Main {
                     int positionPrev = position;
                     int positionCombat = position;
 
-                    position=Combat.combatMethod(hero, typhone, playerInventory, score, keyboard, position, round, chest1, chest2, chest3);
+                    position=Combat.combatMethod(hero, typhone, playerInventory, score, keyboard, position, round, chest1, chest2, chest3, list);
                     if (positionPrev == position + 7 || positionPrev == position - 7){
                         round-=1;
                     }
@@ -234,7 +232,7 @@ public class Main {
                     int positionPrev = position;
                     int positionCombat = position;
 
-                    position=Combat.combatMethod(hero, wampa, playerInventory, score, keyboard, position, round, chest1, chest2, chest3);
+                    position=Combat.combatMethod(hero, wampa, playerInventory, score, keyboard, position, round, chest1, chest2, chest3, list);
                     if (positionPrev == position +7 || positionPrev == position - 7){
                         round-=1;
                     }

@@ -2,10 +2,11 @@ package com.company;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
 
 public class SubMenu {
-    public static void subMenu(Keyboard keyboard, int position, Heroes hero, ArrayList<Item> playerInventory, Monster wampa, Monster typhone, Monster minotaur, Score score, int round, Treasure chest1, Treasure chest2, Treasure chest3){
+    public static void subMenu(Keyboard keyboard, int position, Heroes hero, ArrayList<Item> playerInventory, Monster wampa, Monster typhone, Monster minotaur, Score score, int round, Treasure chest1, Treasure chest2, Treasure chest3, Rooms[] list){
 
         Scanner input = new Scanner(System.in);
         boolean cont = true;
@@ -45,18 +46,24 @@ public class SubMenu {
                 pwMonster.close();
 
                 PrintWriter pwTreasure = new PrintWriter("Treasure.txt");
-                pwTreasure.println(chest1.getItem1().getName());
-                pwTreasure.println(chest1.getItem2().getName());
-                pwTreasure.println(chest1.getItem3().getName());
                 pwTreasure.println(chest1.getPos());
-                pwTreasure.println(chest2.getItem1().getName());
-                pwTreasure.println(chest2.getItem2().getName());
-                pwTreasure.println(chest2.getItem3().getName());
                 pwTreasure.println(chest2.getPos());
-                pwTreasure.println(chest3.getItem1().getName());
-                pwTreasure.println(chest3.getItem2().getName());
-                pwTreasure.println(chest3.getItem3().getName());
                 pwTreasure.println(chest3.getPos());
+                if (list[chest1.getPos()].getTreasure() == null){
+                    pwTreasure.println(1);
+                } else {
+                    pwTreasure.println(0);
+                }
+                if (list[chest2.getPos()].getTreasure() == null){
+                    pwTreasure.println(1);
+                } else {
+                    pwTreasure.println(0);
+                }
+                if (list[chest3.getPos()].getTreasure() == null){
+                    pwTreasure.println(1);
+                } else {
+                    pwTreasure.println(0);
+                }
                 pwTreasure.close();
 
                 }catch (IOException e) {

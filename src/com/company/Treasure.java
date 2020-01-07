@@ -66,7 +66,6 @@ public class Treasure {
         System.out.println("Press 1 to open\nPress 2 to ignore chest and permanently remove it. ");
         String choice = input.nextLine();
         if (choice.equals("1")) {
-            System.out.println("--------");
             System.out.println("You found:");
             System.out.println("1. " + (((Item) chest.getItem1()).getName()));
             System.out.println("2. " + (((Item) chest.getItem2()).getName()));
@@ -74,12 +73,11 @@ public class Treasure {
             int sum = chest.coinsGenerator();
             sum += score.getScore();
             score.setScore(sum);
-            System.out.println("--------");
             do {
                 if (inventory.size() == 0 || inventory.size() == 1 || inventory.size() == 2) {
                     inventory.add(chest.getItem1().getName());
                     inventory.add(chest.getItem2().getName());
-                   // inventory.add(chest.getItem3().getName());
+                    inventory.add(chest.getItem3().getName());
                     list[position].setTreasure(null);
                     break;
                 }

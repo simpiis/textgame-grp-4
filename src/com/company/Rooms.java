@@ -51,15 +51,14 @@ public class Rooms {
     public void setTreasure(Treasure treasure) {
         this.treasure = treasure;
     }
-    public static  Rooms[] createRooms(Monster monster1, Monster monster2,Monster monster3, Treasure chest1, Treasure chest2, Treasure chest3, int wampaPos, int typhonePos, int minotaurPos){
+    public static  Rooms[] createRooms(Monster monster1, Monster monster2,Monster monster3, Treasure chest1, Treasure chest2, Treasure chest3, int wampaPos, int typhonePos, int minotaurPos, Rooms [] roomlist, int check1, int check2, int check3){
        int monsterroom1 = 0;
        int monsterroom2 = 0;
        int monsterroom3 = 0;
-        Rooms[] roomlist = new Rooms[49];
-        Random rand = new Random();
+       Random rand = new Random();
 
         if (minotaurPos == 0) {
-            monsterroom1 = rand.nextInt(49);  // minotaur
+            monsterroom1 =rand.nextInt(49);  // minotaur
             if (monsterroom1 == 0) {
                 monsterroom1 += 1;
             }
@@ -67,7 +66,7 @@ public class Rooms {
             monsterroom1 = minotaurPos;
         }
         if (typhonePos == 0) {
-            monsterroom2 = rand.nextInt(49); // typhone
+            monsterroom2 =rand.nextInt(49); // typhone
             if (monsterroom2 == 0) {
                 monsterroom2 += 1;
             }
@@ -82,14 +81,13 @@ public class Rooms {
         } else {
             monsterroom3 = wampaPos;
         }
-        monster1.setPos(monsterroom1);
-        monster2.setPos(monsterroom2);
-        monster2.setPos(monsterroom3);
-
         while (monsterroom1 == monsterroom2 || monsterroom1 == monsterroom3 || monsterroom2 == monsterroom3){
             monsterroom2 = rand.nextInt(49);
             monsterroom3 = rand.nextInt(49);
         }
+        monster1.setPos(monsterroom1);
+        monster2.setPos(monsterroom2);
+        monster2.setPos(monsterroom3);
         int chestroom1 = rand.nextInt(49);
         int chestroom2 = rand.nextInt(49);
         int chestroom3 = rand.nextInt(49);
@@ -102,6 +100,9 @@ public class Rooms {
         while(monsterroom1 == chestroom3 || monsterroom2 == chestroom3 || monsterroom3 == chestroom3 || chestroom1 == chestroom3 || chestroom2 == chestroom3 ) {
             chestroom3 = rand.nextInt(49);
         }
+        chest1.setPos(chestroom1);
+        chest2.setPos(chestroom2);
+        chest3.setPos(chestroom3);
         for(int p = 0; p < 49; p++){
             Rooms room1;
             if(p == 0 || p== 6 || p == 42 ||p == 48){
@@ -144,9 +145,15 @@ public class Rooms {
         if(monster3.getHp()!=0) {
             roomlist[monsterroom3].setMonster(monster3);
         }
-        roomlist[chestroom1].setTreasure(chest1);
-        roomlist[chestroom2].setTreasure(chest2);
-        roomlist[chestroom3].setTreasure(chest3);
+        if (check1 == 0) {
+            roomlist[chestroom1].setTreasure(chest1);
+        }
+        if (check1 == 0) {
+            roomlist[chestroom2].setTreasure(chest2);
+        }
+        if (check1 == 0) {
+            roomlist[chestroom3].setTreasure(chest3);
+        }
         return roomlist;
     }
     public static Doors createDoor(){
