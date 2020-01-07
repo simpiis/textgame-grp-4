@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class SubMenu {
-    public static void subMenu(Keyboard keyboard, int position, Heroes hero, ArrayList<Item> playerInventory, Monster wampa, Monster typhone, Monster minotaur, Score score, int round){
+    public static void subMenu(Keyboard keyboard, int position, Heroes hero, ArrayList<Item> playerInventory, Monster wampa, Monster typhone, Monster minotaur, Score score, int round, Treasure chest1, Treasure chest2, Treasure chest3){
 
         Scanner input = new Scanner(System.in);
         boolean cont = true;
@@ -43,6 +43,21 @@ public class SubMenu {
                 pwMonster.println(minotaur.getHp());
                 pwMonster.println(minotaur.getPos());
                 pwMonster.close();
+
+                PrintWriter pwTreasure = new PrintWriter("Treasure.txt");
+                pwTreasure.println(chest1.getItem1().getName());
+                pwTreasure.println(chest1.getItem2().getName());
+                pwTreasure.println(chest1.getItem3().getName());
+                pwTreasure.println(chest1.getPos());
+                pwTreasure.println(chest2.getItem1().getName());
+                pwTreasure.println(chest2.getItem2().getName());
+                pwTreasure.println(chest2.getItem3().getName());
+                pwTreasure.println(chest2.getPos());
+                pwTreasure.println(chest3.getItem1().getName());
+                pwTreasure.println(chest3.getItem2().getName());
+                pwTreasure.println(chest3.getItem3().getName());
+                pwTreasure.println(chest3.getPos());
+                pwTreasure.close();
 
                 }catch (IOException e) {
                     e.printStackTrace();

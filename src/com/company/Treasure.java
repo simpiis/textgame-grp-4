@@ -8,6 +8,7 @@ public class Treasure {
     Item item1;
     Item item2;
     Item item3;
+    int pos;
 
 
     public Item getItem1() {
@@ -18,10 +19,31 @@ public class Treasure {
 
     public Item getItem3() { return item3; }
 
-    public Treasure(Item item1, Item item2, Item item3){
+    public void setItem1(Item item1) {
+        this.item1 = item1;
+    }
+
+    public void setItem2(Item item2) {
+        this.item2 = item2;
+    }
+
+    public void setItem3(Item item3) {
+        this.item3 = item3;
+    }
+
+    public int getPos() {
+        return pos;
+    }
+
+    public void setPos(int pos) {
+        this.pos = pos;
+    }
+
+    public Treasure(Item item1, Item item2, Item item3, int pos){
         this.item1 = item1;
         this.item2 = item2;
         this.item3 = item3;
+        this.pos = pos;
     }
     public int coinsGenerator (){
         Random rand = new Random();

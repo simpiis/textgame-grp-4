@@ -27,9 +27,9 @@ public class Main {
         Monster typhone = new Monster(60,30, "Typhone", 0);
         Monster wampa = new Monster(100,20, "Wampa", 0);
         Score score = new Score();
-        Treasure chest1 = new Treasure(Item.createItem(),Item.createItem(), Item.createItem());
-        Treasure chest2 = new Treasure(Item.createItem(),Item.createItem(), Item.createItem());
-        Treasure chest3 = new Treasure(Item.createItem(),Item.createItem(), Item.createItem());
+        Treasure chest1 = new Treasure(Item.createItem(),Item.createItem(), Item.createItem(), 0);
+        Treasure chest2 = new Treasure(Item.createItem(),Item.createItem(), Item.createItem(), 0);
+        Treasure chest3 = new Treasure(Item.createItem(),Item.createItem(), Item.createItem(), 0);
         Keyboard keyboard = new Keyboard("2","1", "3", "4", "9");
         String choice = "4";
         int position = 0;
@@ -113,6 +113,41 @@ public class Main {
                         i += 1;
                     }
                     scanner2.close();
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    Scanner scanner3 = new Scanner(new File("Treasure.txt"));
+                    int i = 0;
+                    while (i <= 11) {
+                        if (i == 0) {
+                            chest1.setItem1(scanner3.nextLine());
+                        } else if (i == 1) {
+                            chest1.setItem2(scanner3.nextLine());
+                        } else if (i == 2) {
+                            chest1.setItem3(scanner3.nextLine());
+                        } else if (i == 3) {
+                            chest1.setPos(scanner3.nextInt());
+                        } else if (i == 4) {
+                            chest2.setItem1(scanner3.nextLine());
+                        } else if (i == 5) {
+                            chest2.setItem2(scanner3.nextLine());
+                        } else if (i == 6) {
+                            chest2.setItem3(scanner3.nextLine());
+                        } else if (i == 7) {
+                            chest2.setPos(scanner3.nextInt());
+                        } else if (i == 8) {
+                            chest3.setItem1(scanner3.nextLine());
+                        } else if (i == 9) {
+                            chest3.setItem2(scanner3.nextLine());
+                        } else if (i == 10) {
+                            chest3.setItem3(scanner3.nextLine());
+                        } else if (i == 11) {
+                            chest3.setPos(scanner3.nextInt());
+                        }
+                        i += 1;
+                    }
+                    scanner3.close();
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 }
