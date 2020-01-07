@@ -96,7 +96,7 @@ public class Main {
                 try {
                     Scanner scanner2 = new Scanner(new File("Monster.txt"));
                     int i = 0;
-                    while (i <= 2) {
+                    while (i <= 5) {
                         if (i == 0) {
                             wampa.setHp(scanner2.nextInt());
                         } else if (i == 1) {

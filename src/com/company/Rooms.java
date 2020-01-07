@@ -63,18 +63,24 @@ public class Rooms {
             if (monsterroom1 == 0) {
                 monsterroom1 += 1;
             }
+        } else {
+            monsterroom1 = minotaurPos;
         }
         if (typhonePos == 0) {
             monsterroom2 = rand.nextInt(49); // typhone
             if (monsterroom2 == 0) {
                 monsterroom2 += 1;
             }
+        } else {
+            monsterroom2 = typhonePos;
         }
         if (wampaPos == 0) {
             monsterroom3 = rand.nextInt(49); // wampa
             if (monsterroom3 == 0) {
                 monsterroom3 += 1;
             }
+        } else {
+            monsterroom3 = wampaPos;
         }
 
         while (monsterroom1 == monsterroom2 || monsterroom1 == monsterroom3 || monsterroom2 == monsterroom3){
