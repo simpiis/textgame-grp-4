@@ -51,6 +51,7 @@ public class Combat {
                                 }
                                 System.out.println("Enter the number corresponding to the item you want to use");
                                 inventorySelection = input.nextInt();
+                                input.nextLine();
                                 if (inventory.get(inventorySelection - 1).equals("Health potion")) {
                                     System.out.println("You consumed " + inventory.get(inventorySelection - 1) + " and gained 10 hp");
                                     hero.setHp(hero.getHp() + 10);
@@ -94,6 +95,7 @@ public class Combat {
                                         }
                                         System.out.println("Enter the number corresponding to the item you want to use");
                                         inventorySelection = input.nextInt();
+                                        input.nextLine();
                                         System.out.println("You consumed " + inventory.get(inventorySelection - 1) + " and gained 10hp");
                                         if (inventory.get(inventorySelection - 1).equals("Health potion")) {
                                             hero.setHp(hero.getHp() + 10);
