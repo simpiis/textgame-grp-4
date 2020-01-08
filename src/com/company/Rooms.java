@@ -100,9 +100,15 @@ public class Rooms {
         while(monsterroom1 == chestroom3 || monsterroom2 == chestroom3 || monsterroom3 == chestroom3 || chestroom1 == chestroom3 || chestroom2 == chestroom3 ) {
             chestroom3 = rand.nextInt(49);
         }
-        chest1.setPos(chestroom1);
-        chest2.setPos(chestroom2);
-        chest3.setPos(chestroom3);
+        if (chest1.getPos() == 0) {
+            chest1.setPos(chestroom1);
+        }
+        if (chest2.getPos() == 0) {
+            chest2.setPos(chestroom2);
+        }
+        if (chest3.getPos() == 0) {
+            chest3.setPos(chestroom3);
+        }
         for(int p = 0; p < 49; p++){
             Rooms room1;
             if(p == 0 || p== 6 || p == 42 ||p == 48){
