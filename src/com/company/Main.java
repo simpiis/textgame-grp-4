@@ -155,7 +155,7 @@ public class Main {
             else if (mainMenu.equals("4")) {
                 System.out.println("Current High Score is: " + highscore);
                 System.out.println("Press '1' to go back to Main Menu");
-                input.nextInt();
+                input.nextLine();
             }
             else if (mainMenu.equals("3")) {
                 Info.info();

@@ -22,7 +22,7 @@ public class Info {
                 catchEnter = input.nextLine();
                 System.out.println("Pick a hero that suits you to take on this adventure\nand use your special attacks when needed.");
                 catchEnter = input.nextLine();
-                System.out.println("If you are lucky you might find a\ntreasure chest full of goodies and a key.");
+                System.out.println("If you are lucky you might find a\ntreasure chest full of goodies!");
                 catchEnter = input.nextLine();
                 System.out.println("but what is it for?");
                 catchEnter = input.nextLine();
