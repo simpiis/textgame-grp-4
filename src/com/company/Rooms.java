@@ -51,7 +51,7 @@ public class Rooms {
     public void setTreasure(Treasure treasure) {
         this.treasure = treasure;
     }
-    public static  Rooms[] createRooms(Monster monster1, Monster monster2,Monster monster3, Treasure chest1, Treasure chest2, Treasure chest3, int wampaPos, int typhonePos, int minotaurPos, Rooms [] roomlist, int check1, int check2, int check3){
+    public static  Rooms[] createRooms(Monster minotaur, Monster typhone,Monster wampa, Treasure chest1, Treasure chest2, Treasure chest3, int wampaPos, int typhonePos, int minotaurPos, Rooms [] roomlist, int check1, int check2, int check3){
        int monsterroom1 = 0;
        int monsterroom2 = 0;
        int monsterroom3 = 0;
@@ -85,9 +85,9 @@ public class Rooms {
             monsterroom2 = rand.nextInt(49);
             monsterroom3 = rand.nextInt(49);
         }
-        monster1.setPos(monsterroom1);
-        monster2.setPos(monsterroom2);
-        monster3.setPos(monsterroom3);
+        minotaur.setPos(monsterroom1);
+        typhone.setPos(monsterroom2);
+        wampa.setPos(monsterroom3);
         int chestroom1 = rand.nextInt(49);
         int chestroom2 = rand.nextInt(49);
         int chestroom3 = rand.nextInt(49);
@@ -136,14 +136,14 @@ public class Rooms {
             }
             roomlist[p] = room1;
         }
-        if(monster1.getHp()!=0) {
-            roomlist[monsterroom1].setMonster(monster1);
+        if(minotaur.getHp()!=0) {
+            roomlist[monsterroom1].setMonster(minotaur);
         }
-        if(monster2.getHp()!=0) {
-            roomlist[monsterroom2].setMonster(monster2);
+        if(typhone.getHp()!=0) {
+            roomlist[monsterroom2].setMonster(typhone);
         }
-        if(monster3.getHp()!=0) {
-            roomlist[monsterroom3].setMonster(monster3);
+        if(wampa.getHp()!=0) {
+            roomlist[monsterroom3].setMonster(wampa);
         }
         if (check1 == 0) {
             roomlist[chestroom1].setTreasure(chest1);
