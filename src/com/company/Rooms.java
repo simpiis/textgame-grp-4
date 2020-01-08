@@ -87,7 +87,7 @@ public class Rooms {
         }
         monster1.setPos(monsterroom1);
         monster2.setPos(monsterroom2);
-        monster2.setPos(monsterroom3);
+        monster3.setPos(monsterroom3);
         int chestroom1 = rand.nextInt(49);
         int chestroom2 = rand.nextInt(49);
         int chestroom3 = rand.nextInt(49);
