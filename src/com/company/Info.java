@@ -11,7 +11,7 @@ public class Info {
             System.out.println("1) What is this game about?");
             System.out.println("2) How do I play");
             System.out.println("3) Back to Main Menu\n");
-            System.out.println("What would you like to know?");
+            System.out.println("Select an option");
             decision = input.nextLine();
 
             if (decision.equals("1")) {
@@ -24,18 +24,20 @@ public class Info {
                 catchEnter = input.nextLine();
                 System.out.println("If you are lucky you might find a\ntreasure chest full of goodies!");
                 catchEnter = input.nextLine();
-                System.out.println("but what is it for?");
+                System.out.println("Collect keys to open locked doors.");
+                catchEnter = input.nextLine();
+                System.out.println("What you will find behind those doors?");
                 catchEnter = input.nextLine();
                 System.out.print("  ____\n" +
                         " /  ..\\\n" +
                         "|    o | boo\n" +
                         "| v   v|  \n" +
                         "|/\\/\\/\\|\n\n");
+                catchEnter = input.nextLine();
             } else if (decision.equals("2")) {
                 System.out.println("[Press Enter to continue]\n");
                 System.out.println("To play this awesome game there are some things you need to know..");
                 String catchEnter = input.nextLine();
-                catchEnter = input.nextLine();
                 System.out.println("This is a text-based game, if you have not yet realised.");
                 catchEnter = input.nextLine();
                 System.out.println("So to manoeuvre around you will not use anything other than your keyboard.");
@@ -43,6 +45,17 @@ public class Info {
                 System.out.println("A map of possible rooms to explore will appear once the game has started.");
                 catchEnter = input.nextLine();
                 System.out.println("A star '*' resembles your position.");
+                catchEnter = input.nextLine();
+                System.out.print("Like so:\n");
+                System.out.print("[*][ ][ ][ ][ ][ ][ ]\n" +
+                        "[ ][ ][ ][ ][ ][ ][ ]\n" +
+                        "[ ][ ][ ][ ][ ][ ][ ]\n" +
+                        "[ ][ ][ ][ ][ ][ ][ ]\n" +
+                        "[ ][ ][ ][ ][ ][ ][ ]\n" +
+                        "[ ][ ][ ][ ][ ][ ][ ]\n" +
+                        "[ ][ ][ ][ ][ ][ ][ ]\n");
+                catchEnter = input.nextLine();
+                System.out.println("In the example above, your character is located in the top left room.");
                 catchEnter = input.nextLine();
                 System.out.println("To move around, your will use either 1, 2, 3 or 4.");
                 catchEnter = input.nextLine();
