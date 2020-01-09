@@ -5,9 +5,8 @@ import java.util.Scanner;
 
 public class Map {
 
-
-
     public static void printMap(int position){
+
         for(int p = 0; p<49; p++){
             if(p != position){
                 System.out.print("[ ]");
@@ -20,6 +19,7 @@ public class Map {
         }
     }
     public static int openDoor(String doorname, int position, int position2, Keys key, Treasure chest1, Treasure chest2, Treasure chest3){
+        Scanner input = new Scanner(System.in);
         if(doorname == "Ocean"){
             if(key.getOceankeys() > 0){
                 key.setOceankeys(key.getOceankeys()-1);
@@ -27,7 +27,10 @@ public class Map {
                 System.out.println("You have " + key.getOceankeys()+  " ocean keys left");
                 return position2;
             }else{
-                System.out.println("You cant open that door");
+                System.out.println("********************************");
+                System.out.println("You need a key to open that door");
+                System.out.println("********************************");
+                String catchEnter = input.nextLine();
                 return position;
             }
         }else if(doorname == "Wind"){
@@ -37,7 +40,10 @@ public class Map {
                 System.out.println("You have " + key.getWindkeys() +  " wind keys left");
                 return position2;
             }else{
-                System.out.println("You cant open that door");
+                System.out.println("********************************");
+                System.out.println("You need a key to open that door");
+                System.out.println("********************************");
+                String catchEnter = input.nextLine();
                 return position;
             }
         }else if(doorname == "Dirt"){
@@ -47,7 +53,10 @@ public class Map {
                 System.out.println("You have " + key.getDirtkeys() +  " dirt keys left");
                 return position2;
             }else{
-                System.out.println("You cant open that door");
+                System.out.println("********************************");
+                System.out.println("You need a key to open that door");
+                System.out.println("********************************");
+                String catchEnter = input.nextLine();
                 return position;
             }
         }else{
@@ -57,7 +66,10 @@ public class Map {
                 System.out.println("You have " + key.getFirekeys() +  " fire keys left");
                 return position2;
             }else{
-                System.out.println("You cant open that door");
+                System.out.println("********************************");
+                System.out.println("You need a key to open that door");
+                System.out.println("********************************");
+                String catchEnter = input.nextLine();
                 return position;
             }
         }
