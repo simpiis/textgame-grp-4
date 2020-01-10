@@ -198,7 +198,7 @@ public class Main {
                     }else{
                         keys.setDirtkeys(keys.getDirtkeys()+1);
                     }
-                    System.out.println("You found a " + keytypes[number]+ "key");
+                    System.out.println("You found a key with the " + keytypes[number]+ " element!");
                 }
 
             }

@@ -42,11 +42,11 @@ public class Heroes extends Creature {
         System.out.println(getDamage());
         if (getName() == "Rogue"){
             System.out.println("Rogue's mana: 50");
-            System.out.println("Special ability: 50 damage bomb, takes 25 mana");
+            System.out.println("Special ability: 50 damage bomb, costs 25 mana points");
         } else if (getName() == "Warrior"){
             System.out.println("Special ability: Healing cure, 1 time for 1 Monster");
         } else {
-            System.out.println("Special ability: Jump between rooms, Only 3 times");
+            System.out.println("Special ability: Jump between rooms, only 3 times");
         }
         System.out.println("*************************");
 
