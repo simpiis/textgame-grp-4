@@ -30,7 +30,6 @@ public class Map {
                 System.out.println("********************************");
                 System.out.println("You need a key to open that door");
                 System.out.println("********************************");
-                String catchEnter = input.nextLine();
                 return position;
             }
         }else if(doorname == "Wind"){
@@ -43,7 +42,6 @@ public class Map {
                 System.out.println("********************************");
                 System.out.println("You need a key to open that door");
                 System.out.println("********************************");
-                String catchEnter = input.nextLine();
                 return position;
             }
         }else if(doorname == "Dirt"){
@@ -56,7 +54,6 @@ public class Map {
                 System.out.println("********************************");
                 System.out.println("You need a key to open that door");
                 System.out.println("********************************");
-                String catchEnter = input.nextLine();
                 return position;
             }
         }else{
@@ -69,7 +66,6 @@ public class Map {
                 System.out.println("********************************");
                 System.out.println("You need a key to open that door");
                 System.out.println("********************************");
-                String catchEnter = input.nextLine();
                 return position;
             }
         }

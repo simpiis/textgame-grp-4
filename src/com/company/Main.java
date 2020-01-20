@@ -13,7 +13,7 @@ public class Main {
         keys.setDirtkeys(0);
         keys.setFirekeys(0);
         keys.setOceankeys(0);
-        keys.setOceankeys(0);
+        keys.setWindkeys(0);
         int chest1Check = 0;
         int chest2Check = 0;
         int chest3Check = 0;
@@ -36,7 +36,7 @@ public class Main {
         String choice = "4";
         int position = 0;
         int position2 = 0;
-        int round = 1;
+        int round = 0;
         int highscore = 0;
 
 
@@ -202,6 +202,7 @@ public class Main {
                 }
 
             }
+            input.nextLine();
             position2 = position;
             System.out.println("Round: " + round);
             System.out.println("Score: " + score.getScore());
@@ -214,6 +215,7 @@ public class Main {
                         round-=1;
                     }
                     if(positionCombat == position && minotaur.getHp() <=0) {
+                        round -=1;
                         rooms[position].setMonster(null);
                     }
                 }
@@ -226,6 +228,7 @@ public class Main {
                         round-=1;
                     }
                     if(positionCombat == position && typhone.getHp() <=0) {
+                        round -=1;
                         rooms[position].setMonster(null);
                     }
                 } else {
@@ -237,12 +240,14 @@ public class Main {
                         round-=1;
                     }
                     if(positionCombat == position && wampa.getHp() <=0) {
+                        round -=1;
                         rooms[position].setMonster(null);
                     }
                 }
 
             }else if(rooms[position].getTreasure()!= null){
                 playerInventory = Treasure.openTreasure(rooms,position,rooms[position].getTreasure(), playerInventory, score);
+                round -= 1;
             }else {
                 position=Map.move(position, hero, rooms, keyboard,playerInventory, keys, wampa, typhone, minotaur, score, round, chest1, chest2, chest3);
             }

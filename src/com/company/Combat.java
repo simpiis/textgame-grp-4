@@ -14,7 +14,6 @@ public class Combat {
         int flee = 0;
         boolean cont = true;
         Scanner input = new Scanner(System.in);
-
         System.out.println("You have encountered a " + monster.getName() + ", it has " + monster.getHp() + " health and " + monster.getDamage() + " damage!");
         while (cont){
             System.out.println("--- Combat Menu ---");
@@ -157,8 +156,8 @@ public class Combat {
                                             }
                                             System.out.println("Enter the number corresponding to the item you want to use");
                                             inventorySelection = input.nextInt();
-                                            System.out.println("You consumed " + inventory.get(inventorySelection - 1) + " and gained 10hp");
                                             if (inventory.get(inventorySelection - 1).equals("Health potion")) {
+                                                System.out.println("You consumed " + inventory.get(inventorySelection - 1) + " and gained 10hp");
                                                 hero.setHp(hero.getHp() + 10);
                                                 if (hero.getHp() > 200) {
                                                     hero.setHp(200);

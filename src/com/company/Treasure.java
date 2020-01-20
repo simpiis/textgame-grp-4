@@ -148,8 +148,10 @@ public class Treasure {
                 }
             } while (drop);
             list[position].setTreasure(null);
-        } else {
+        } else if (choice.equals("2")){
             list[position].setTreasure(null);
+        } else {
+            System.out.println("Invalid number");
         }
         return inventory;
     }

@@ -142,22 +142,22 @@ public class Rooms {
             }
             roomlist[p] = room1;
         }
-        if(minotaur.getHp()!=0) {
+        if(minotaur.getHp()>0) {
             roomlist[monsterroom1].setMonster(minotaur);
         }
-        if(typhone.getHp()!=0) {
+        if(typhone.getHp()>0) {
             roomlist[monsterroom2].setMonster(typhone);
         }
-        if(wampa.getHp()!=0) {
+        if(wampa.getHp()>0) {
             roomlist[monsterroom3].setMonster(wampa);
         }
         if (check1 == 0) {
             roomlist[chestroom1].setTreasure(chest1);
         }
-        if (check1 == 0) {
+        if (check2 == 0) {
             roomlist[chestroom2].setTreasure(chest2);
         }
-        if (check1 == 0) {
+        if (check3 == 0) {
             roomlist[chestroom3].setTreasure(chest3);
         }
         return roomlist;
